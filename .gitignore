@@ -6,6 +6,6 @@ Debug
 Release
 *vcxproj*.user
 
-working-dir/*.gif
-working-dir/*.png
-working-dir/*.dds
+**/*.gif
+**/*.png
+**/*.dds

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r4.1">
+    <folder id="0" name="sonic/idle">
+        <file id="0" name="sonic/idle/0.gif" width="29" height="39" pivot_x="0.5" pivot_y="0"/>
+        <file id="1" name="sonic/idle/1.gif" width="30" height="38" pivot_x="0.5" pivot_y="0"/>
+        <file id="2" name="sonic/idle/2.gif" width="30" height="38" pivot_x="0.5" pivot_y="0"/>
+        <file id="3" name="sonic/idle/3.gif" width="29" height="38" pivot_x="0.5" pivot_y="0"/>
+    </folder>
+    <entity id="0" name="sonic">
+        <animation id="0" name="idle" length="3500" interval="100" looping="false">
+            <mainline>
+                <key id="0" curve_type="instant">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="3000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+                <key id="1" time="3000" spin="0">
+                    <object folder="0" file="1" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle-anim" length="1000" interval="100">
+            <mainline>
+                <key id="0" curve_type="instant">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="500" curve_type="instant">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" angle="0"/>
+                </key>
+                <key id="1" time="500" spin="0">
+                    <object folder="0" file="3" x="-0.5" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
