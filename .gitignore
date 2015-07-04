@@ -5,3 +5,7 @@ __pycache__
 Debug
 Release
 *vcxproj*.user
+
+working-dir/*.gif
+working-dir/*.png
+working-dir/*.dds

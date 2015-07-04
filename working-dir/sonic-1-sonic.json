@@ -1,0 +1,268 @@
+{
+	"spritesheet": {
+		"name": "Sonic 1 Sonic",
+		"imageFile": "sonic-1-sonic.gif",
+		"animations": [
+			{
+				"name": "idle",
+				"frames": [
+					{
+						"x": 6,
+						"y": 8,
+						"width": 29,
+						"height": 39
+					}
+				]
+			},
+			{
+				"name": "crouch",
+				"frames": [
+					{
+						"x": 157,
+						"y": 21,
+						"width": 29,
+						"height": 26
+					}
+				]
+			},
+			{
+				"name": "walk",
+				"frames": [
+					{
+						"x": 8,
+						"y": 52,
+						"width": 24,
+						"height": 37,
+						"durationMs": 250
+					},
+					{
+						"x": 36,
+						"y": 52,
+						"width": 36,
+						"height": 37,
+						"durationMs": 250
+					},
+					{
+						"x": 75,
+						"y": 51,
+						"width": 29,
+						"height": 38,
+						"durationMs": 250
+					},
+					{
+						"x": 110,
+						"y": 52,
+						"width": 27,
+						"height": 37,
+						"durationMs": 250
+					},
+					{
+						"x": 141,
+						"y": 52,
+						"width": 37,
+						"height": 37,
+						"durationMs": 250
+					},
+					{
+						"x": 183,
+						"y": 51,
+						"width": 32,
+						"height": 38,
+						"durationMs": 250
+					}
+				]
+			},
+			{
+				"name": "run",
+				"frames": [
+					{
+						"x": 4,
+						"y": 94,
+						"width": 31,
+						"height": 36,
+						"durationMs": 100
+					},
+					{
+						"x": 38,
+						"y": 95,
+						"width": 30,
+						"height": 35,
+						"durationMs": 100
+					},
+					{
+						"x": 71,
+						"y": 94,
+						"width": 31,
+						"height": 36,
+						"durationMs": 100
+					},
+					{
+						"x": 104,
+						"y": 95,
+						"width": 31,
+						"height": 35,
+						"durationMs": 100
+					}
+				]
+			},
+			{
+				"name": "walk-angled",
+				"frames": [
+					{
+						"x": 5,
+						"y": 135,
+						"width": 34,
+						"height": 37,
+						"durationMs": 500
+					},
+					{
+						"x": 42,
+						"y": 135,
+						"width": 36,
+						"height": 43,
+						"durationMs": 500
+					},
+					{
+						"x": 80,
+						"y": 135,
+						"width": 35,
+						"height": 40,
+						"durationMs": 500
+					},
+					{
+						"x": 118,
+						"y": 135,
+						"width": 38,
+						"height": 38,
+						"durationMs": 500
+					},
+					{
+						"x": 157,
+						"y": 134,
+						"width": 38,
+						"height": 43,
+						"durationMs": 500
+					},
+					{
+						"x": 197,
+						"y": 134,
+						"width": 41,
+						"height": 34,
+						"durationMs": 500
+					}
+				]
+			},
+			{
+				"name": "run-angled",
+				"frames": [
+					{
+						"x": 6,
+						"y": 179,
+						"width": 36,
+						"height": 40,
+						"durationMs": 250
+					},
+					{
+						"x": 44,
+						"y": 180,
+						"width": 36,
+						"height": 39,
+						"durationMs": 250
+					},
+					{
+						"x": 83,
+						"y": 179,
+						"width": 36,
+						"height": 40,
+						"durationMs": 250
+					},
+					{
+						"x": 122,
+						"y": 180,
+						"width": 37,
+						"height": 39,
+						"durationMs": 250
+					}
+				]
+			},
+			{
+				"name": "jump",
+				"frames": [
+					{
+						"x": 7,
+						"y": 226,
+						"width": 29,
+						"height": 30,
+						"durationMs": 250
+					},
+					{
+						"x": 44,
+						"y": 227,
+						"width": 30,
+						"height": 29,
+						"durationMs": 250
+					},
+					{
+						"x": 80,
+						"y": 226,
+						"width": 29,
+						"height": 30,
+						"durationMs": 250
+					},
+					{
+						"x": 117,
+						"y": 227,
+						"width": 30,
+						"height": 29,
+						"durationMs": 250
+					},
+					{
+						"x": 115,
+						"y": 225,
+						"width": 30,
+						"height": 30,
+						"durationMs": 250
+					}
+				]
+			},
+			{
+				"name": "skid",
+				"frames": [
+					{
+						"x": 7,
+						"y": 304,
+						"width": 30,
+						"height": 36,
+						"durationMs": 500
+					},
+					{
+						"x": 41,
+						"y": 304,
+						"width": 34,
+						"height": 36,
+						"durationMs": 500
+					}
+				]
+			},
+			{
+				"name": "hang-side",
+				"frames": [
+					{
+						"x": 6,
+						"y": 343,
+						"width": 48,
+						"height": 25,
+						"durationMs": 1000
+					},
+					{
+						"x": 60,
+						"y": 343,
+						"width": 47,
+						"height": 26,
+						"durationMs": 1000
+					}
+				]
+			}
+		]
+	}
+}
