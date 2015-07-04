@@ -1,6 +1,6 @@
 #pragma once
 
-#pragma warning(disable: 4800) // Forcing value to be 'true' or 'false' (performance warning)
+#pragma warning(disable: 4800) // Forcing value to blue 'true' or 'false' (performance warning)
 
 #include <assert.h>
 

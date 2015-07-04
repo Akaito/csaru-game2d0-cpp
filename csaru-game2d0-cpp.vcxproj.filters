@@ -4,6 +4,45 @@
     <Filter Include="src">
       <UniqueIdentifier>{93a06f57-1c85-4abe-a220-0726f0e24135}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Collections">
+      <UniqueIdentifier>{50ac5611-4ac3-445d-9b6f-52e3342ab89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Components">
+      <UniqueIdentifier>{7d5750cd-1488-44fe-bcba-265551f2c963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataMap">
+      <UniqueIdentifier>{8d8ad69c-7a7d-4288-9ff3-81ea6fa71523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Components\Common">
+      <UniqueIdentifier>{85e70829-ee96-4e75-8023-271592856207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Components\Input">
+      <UniqueIdentifier>{eda9adc5-053d-492e-b21e-317150f6abb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Components\Input\DirectX">
+      <UniqueIdentifier>{28d78118-3df0-4450-8af5-84477eae49bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataMap\Json">
+      <UniqueIdentifier>{48e02d35-d203-45c4-b3e0-0e0a429fd779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Demos">
+      <UniqueIdentifier>{2946bf74-9fe0-4ca2-82de-7df89749319d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject">
+      <UniqueIdentifier>{ba12d0ee-36ed-47de-887c-a7ddfe22d19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics">
+      <UniqueIdentifier>{72f66c5b-1bfd-4e7f-8722-216d037564bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Resources">
+      <UniqueIdentifier>{5c986b07-67d7-469e-acb9-f122f9ffa91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Text">
+      <UniqueIdentifier>{426f0b3c-a80e-46a2-9ad1-47b3401145fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{d1009770-c9aa-4d4a-8ac2-ac33637aaccd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -12,10 +51,172 @@
     <ClCompile Include="src\StdAfx.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Transform.cpp">
+      <Filter>src\Components\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XInputGamepad.cpp">
+      <Filter>src\Components\Input\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp">
+      <Filter>src\Components\Input\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\DataMap.cpp">
+      <Filter>src\DataMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\DataMapMutator.cpp">
+      <Filter>src\DataMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\DataMapReader.cpp">
+      <Filter>src\DataMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\DataMapReaderSimple.cpp">
+      <Filter>src\DataMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\DataNode.cpp">
+      <Filter>src\DataMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\Json\JsonGenerator.cpp">
+      <Filter>src\DataMap\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\Json\JsonParser2.cpp">
+      <Filter>src\DataMap\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CsDataMap\Json\JsonParserCallbackForDataMap.cpp">
+      <Filter>src\DataMap\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlankDemo.cpp">
+      <Filter>src\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dx11DemoBase.cpp">
+      <Filter>src\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameSpriteDemo.cpp">
+      <Filter>src\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureDemo.cpp">
+      <Filter>src\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TriangleDemo.cpp">
+      <Filter>src\Demos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameTimer.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\GraphicsMgr.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\PixelShader.cpp">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexShader.cpp">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Spritesheet.cpp">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\BitmapFont.cpp">
+      <Filter>src\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils_Posix.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils_Windows.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\StdAfx.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collections\ObjectCollection.h">
+      <Filter>src\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform.h">
+      <Filter>src\Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XInputGamepad.h">
+      <Filter>src\Components\Input\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\DirectInputKeyboardMouse.h">
+      <Filter>src\Components\Input\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\DataMap.h">
+      <Filter>src\DataMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\DataMapMutator.h">
+      <Filter>src\DataMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\DataMapReader.h">
+      <Filter>src\DataMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\DataMapReaderSimple.h">
+      <Filter>src\DataMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\DataNode.h">
+      <Filter>src\DataMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\Json\JsonGenerator.h">
+      <Filter>src\DataMap\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\Json\JsonParser2.h">
+      <Filter>src\DataMap\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CsDataMap\Json\JsonParserCallbackForDataMap.h">
+      <Filter>src\DataMap\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlankDemo.hpp">
+      <Filter>src\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dx11DemoBase.hpp">
+      <Filter>src\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameSpriteDemo.hpp">
+      <Filter>src\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextureDemo.hpp">
+      <Filter>src\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TriangleDemo.hpp">
+      <Filter>src\Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject.h">
+      <Filter>src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObjectComponent.h">
+      <Filter>src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScratchComponents.h">
+      <Filter>src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameTimer.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\GraphicsMgr.h">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\GraphicsMgrExtern.h">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\PixelShader.h">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\VertexShader.h">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Spritesheet.h">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\BitmapFont.h">
+      <Filter>src\Graphics\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils.h">
+      <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
