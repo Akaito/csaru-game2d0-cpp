@@ -19,7 +19,7 @@ limitations under the License.
 namespace Core {
 
 //==============================================================================
-DataMapReaderSimple::DataMapReaderSimple (const Core::DataMapReader & reader) :
+DataMapReaderSimple::DataMapReaderSimple (const CSaruContainer::DataMapReader & reader) :
     m_reader(reader),
     m_errorDepth(0)
 {
@@ -32,7 +32,7 @@ DataMapReaderSimple::~DataMapReaderSimple () {
 //==============================================================================
 bool DataMapReaderSimple::Bool (const char * name) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     ASSERT(temp.IsValid());
 
@@ -49,7 +49,7 @@ bool DataMapReaderSimple::Bool (const char * name) const {
 //==============================================================================
 bool DataMapReaderSimple::Bool (const char * name, bool defaultValue) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     
     if (!temp.IsValid())
@@ -94,7 +94,7 @@ void DataMapReaderSimple::ExitArray () {
 //==============================================================================
 float DataMapReaderSimple::Float (const char * name) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     ASSERT(temp.IsValid());
 
@@ -111,7 +111,7 @@ float DataMapReaderSimple::Float (const char * name) const {
 //==============================================================================
 float DataMapReaderSimple::Float (const char * name, float defaultValue) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     
     if (!temp.IsValid())
@@ -128,7 +128,7 @@ float DataMapReaderSimple::Float (const char * name, float defaultValue) const {
 //==============================================================================
 int DataMapReaderSimple::Int (const char * name) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     ASSERT(temp.IsValid());
 
@@ -145,7 +145,7 @@ int DataMapReaderSimple::Int (const char * name) const {
 //==============================================================================
 int DataMapReaderSimple::Int (const char * name, int defaultValue) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     
     if (!temp.IsValid())
@@ -172,7 +172,7 @@ bool DataMapReaderSimple::IsValid () const {
 //==============================================================================
 std::string DataMapReaderSimple::String (const char * name) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     ASSERT(temp.IsValid());
 
@@ -192,7 +192,7 @@ std::string DataMapReaderSimple::String (
     const std::string & defaultValue
 ) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     
     if (!temp.IsValid())
@@ -283,7 +283,7 @@ bool DataMapReaderSimple::ToParent () {
 //==============================================================================
 std::wstring DataMapReaderSimple::WString (const char * name) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     ASSERT(temp.IsValid());
 
@@ -307,7 +307,7 @@ std::wstring DataMapReaderSimple::WString (
     const std::wstring & defaultValue
 ) const {
 
-    DataMapReader temp(m_reader);
+    CSaruContainer::DataMapReader temp(m_reader);
     temp.ToChild(name);
     
     if (!temp.IsValid())

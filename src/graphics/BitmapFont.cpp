@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 #include "BitmapFont.h"
-#include "../CsDataMap/DataMap.h"
-#include "../CsDataMap/Json/JsonParserCallbackForDataMap.h"
+#include <DataMap.hpp>
+#include <JsonParserCallbackForDataMap.hpp>
 #include "../CsDataMap/DataMapReaderSimple.h"
 
 //==============================================================================
@@ -34,22 +34,30 @@ bool BitmapFont::BuildFromDataFile (const WCHAR * filepath) {
 
     m_sourceFile = filepath;
     
-    Core::DataMap                      dataMap;
-    Core::JsonParserCallbackForDataMap callback(dataMap.GetMutator());
+    CSaruContainer::DataMap                 dataMap;
+    CSaruJson::JsonParserCallbackForDataMap callback(dataMap.GetMutator());
+
+    char filepathNarrow[512];
+    sprintf_s(filepathNarrow, "%S", filepath);
+    FILE * file = nullptr;
+    fopen_s(&file, filepathNarrow, "rt");
     
-    Core::JsonParser2 parser;
+    CSaruJson::JsonParser parser;
     if (!parser.ParseEntireFile(
-        filepath,
+        file,
         NULL,
         0,
         &callback
     )) {
         ASSERT(0 && "Failed to parse spritesheet file.");
+        fclose(file);
         return false;
     }
+    fclose(file);
+    file = nullptr;
     
-    Core::DataMapReader       reader       = dataMap.GetReader();
-    Core::DataMapReaderSimple simpleReader = reader;
+    CSaruContainer::DataMapReader reader       = dataMap.GetReader();
+    Core::DataMapReaderSimple     simpleReader = reader;
     
     /*
     reader.ToChild("spritesheet");

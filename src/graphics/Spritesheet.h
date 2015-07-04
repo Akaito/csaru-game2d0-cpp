@@ -38,7 +38,7 @@ public: // Constants and types
         std::vector<Frame> frames;
         
         Animation();
-        bool FromDataMap (const Core::DataMapReader & reader);
+        bool FromDataMap (const CSaruContainer::DataMapReader & reader);
     };
     
     struct VertexShaderPerFrameConstantBufferData {

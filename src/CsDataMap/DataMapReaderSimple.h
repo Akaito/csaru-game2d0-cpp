@@ -16,7 +16,7 @@ limitations under the License.
 
 #pragma once
 
-#include "DataMapReader.h"
+#include <DataMapReader.hpp>
 
 namespace Core {
 
@@ -24,17 +24,17 @@ class DataMapReaderSimple {
 
 private: // Data
 
-    DataMapReader m_reader;
-    int           m_errorDepth;
+    CSaruContainer::DataMapReader m_reader;
+    int                           m_errorDepth;
 
 public: // Construction
 
-    DataMapReaderSimple (const Core::DataMapReader & reader);
+    DataMapReaderSimple (const CSaruContainer::DataMapReader & reader);
     virtual ~DataMapReaderSimple ();
     
 public: // Queries / Commands
 
-    DataMapReader GetReader () const { return m_reader; }
+    CSaruContainer::DataMapReader GetReader () const { return m_reader; }
     
     bool IsValid () const;
     

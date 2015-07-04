@@ -22,9 +22,6 @@
     <Filter Include="src\Components\Input\DirectX">
       <UniqueIdentifier>{28d78118-3df0-4450-8af5-84477eae49bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\DataMap\Json">
-      <UniqueIdentifier>{48e02d35-d203-45c4-b3e0-0e0a429fd779}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Demos">
       <UniqueIdentifier>{2946bf74-9fe0-4ca2-82de-7df89749319d}</UniqueIdentifier>
     </Filter>
@@ -60,29 +57,8 @@
     <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp">
       <Filter>src\Components\Input\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="src\CsDataMap\DataMap.cpp">
-      <Filter>src\DataMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\DataMapMutator.cpp">
-      <Filter>src\DataMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\DataMapReader.cpp">
-      <Filter>src\DataMap</Filter>
-    </ClCompile>
     <ClCompile Include="src\CsDataMap\DataMapReaderSimple.cpp">
       <Filter>src\DataMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\DataNode.cpp">
-      <Filter>src\DataMap</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\Json\JsonGenerator.cpp">
-      <Filter>src\DataMap\Json</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\Json\JsonParser2.cpp">
-      <Filter>src\DataMap\Json</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\Json\JsonParserCallbackForDataMap.cpp">
-      <Filter>src\DataMap\Json</Filter>
     </ClCompile>
     <ClCompile Include="src\BlankDemo.cpp">
       <Filter>src\Demos</Filter>
@@ -146,29 +122,8 @@
     <ClInclude Include="src\input\DirectInputKeyboardMouse.h">
       <Filter>src\Components\Input\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="src\CsDataMap\DataMap.h">
-      <Filter>src\DataMap</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\DataMapMutator.h">
-      <Filter>src\DataMap</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\DataMapReader.h">
-      <Filter>src\DataMap</Filter>
-    </ClInclude>
     <ClInclude Include="src\CsDataMap\DataMapReaderSimple.h">
       <Filter>src\DataMap</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\DataNode.h">
-      <Filter>src\DataMap</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\Json\JsonGenerator.h">
-      <Filter>src\DataMap\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\Json\JsonParser2.h">
-      <Filter>src\DataMap\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\Json\JsonParserCallbackForDataMap.h">
-      <Filter>src\DataMap\Json</Filter>
     </ClInclude>
     <ClInclude Include="src\BlankDemo.hpp">
       <Filter>src\Demos</Filter>

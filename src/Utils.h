@@ -32,25 +32,7 @@ SOFTWARE.
 
 #define ASSERT assert
 
-#ifndef ref
-#define ref(x) ((void *)&x)
-#endif
-
 namespace Core {
-
-// this is very similar to what is defined in Google's coding standard.
-//  Following the Google C++ style guide as much as makes sense to me is
-//  one of my goals in this library.  I'm hoping a common standard will make
-//  all the code easier to understand.
-#define DISALLOW_COPY_AND_ASSIGN(type_name) \
-  private: \
-   type_name(const type_name&); \
-   void operator=(const type_name&);
-
-
-// system page size in bytes
-// TODO: Test this function on a POSIX-based system
-int GetSystemPageSize(void);
 
 
 // djb2 hash from http://www.cse.yorku.ca/~oz/hash.html

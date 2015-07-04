@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 #include "Spritesheet.h"
-#include "../CsDataMap/DataMap.h"
-#include "../CsDataMap/Json/JsonParserCallbackForDataMap.h"
+#include <DataMap.hpp>
+#include <JsonParserCallbackForDataMap.hpp>
 #include <shlwapi.h>
 //#include "../Dx11DemoBase.hpp"
 #include "../CsDataMap/DataMapReaderSimple.h"
@@ -49,7 +49,7 @@ Spritesheet::Animation::Animation () {
 }
 
 //==============================================================================
-bool Spritesheet::Animation::FromDataMap (const Core::DataMapReader & reader) {
+bool Spritesheet::Animation::FromDataMap (const CSaruContainer::DataMapReader & reader) {
 
     Core::DataMapReaderSimple animReader(reader);
     
@@ -101,31 +101,44 @@ bool Spritesheet::BuildFromDatafile (const char * filepath) {
     
     Reset();
 
-    Core::DataMap                      dataMap;
-    Core::JsonParserCallbackForDataMap callback(dataMap.GetMutator());
+    CSaruContainer::DataMap                 dataMap;
+    CSaruJson::JsonParserCallbackForDataMap callback(dataMap.GetMutator());
+
+    FILE * file;
+    fopen_s(&file, filepath, "rt");
     
-    Core::JsonParser2 parser;
+    CSaruJson::JsonParser parser;
     if (!parser.ParseEntireFile(
-        filepath,
+        file,
         NULL,
         0,
         &callback
     )) {
         ASSERT(0 && "Failed to parse spritesheet file.");
+        fclose(file);
         return false;
     }
+    fclose(file);
+    file = nullptr;
     
-    Core::DataMapReader reader = dataMap.GetReader();
+    CSaruContainer::DataMapReader reader = dataMap.GetReader();
     
     reader.ToChild("spritesheet");
     if (!reader.IsValid())
         return false;
+
+    char  tempStr[512];
+    WCHAR tempWStr[512];
         
     // Get spritesheet name
     reader.ToChild("name");
     if (!reader.IsValid())
         return false;
-    reader.ReadWString(&m_name);
+    if (!reader.ReadStringSafe(tempStr, arrsize(tempStr)))
+        return false;
+    m_name.clear();
+    swprintf_s(tempWStr, L"%S", tempStr);
+    m_name = tempWStr;
     
     // Get image filepath
     reader.PopNode().ToChild("imageFile");
@@ -133,7 +146,11 @@ bool Spritesheet::BuildFromDatafile (const char * filepath) {
         Reset();
         return false;
     }
-    reader.ReadWString(&m_imageFilepath);
+    if (!reader.ReadStringSafe(tempStr, arrsize(tempStr)))
+        return false;
+    m_imageFilepath.clear();
+    swprintf_s(tempWStr, L"%S", tempStr);
+    m_imageFilepath = tempWStr;
         
     // Prepare to read in animations
     reader.PopNode().ToChild("animations");
@@ -145,7 +162,7 @@ bool Spritesheet::BuildFromDatafile (const char * filepath) {
     // Try reading in each animation
     for (reader.ToFirstChild(); reader.IsValid(); reader.ToNextSibling()) {
     
-        Core::DataMapReader animReader(reader);
+        CSaruContainer::DataMapReader animReader(reader);
         m_animations.push_back(Animation());
         Animation & anim = m_animations.back();
         
