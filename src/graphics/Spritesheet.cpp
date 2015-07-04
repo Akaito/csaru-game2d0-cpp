@@ -18,8 +18,7 @@ limitations under the License.
 #include <DataMap.hpp>
 #include <JsonParserCallbackForDataMap.hpp>
 #include <shlwapi.h>
-//#include "../Dx11DemoBase.hpp"
-#include "../CsDataMap/DataMapReaderSimple.h"
+#include <DataMapReaderSimple.hpp>
 
 //==============================================================================
 Spritesheet::Frame::Frame ()
@@ -32,7 +31,7 @@ Spritesheet::Frame::Frame ()
 }
 
 //==============================================================================
-bool Spritesheet::Frame::FromDataMap (const Core::DataMapReaderSimple & reader) {
+bool Spritesheet::Frame::FromDataMap (const CSaruContainer::DataMapReaderSimple & reader) {
 
     x          = unsigned short(reader.Int("x"));
     y          = unsigned short(reader.Int("y"));
@@ -51,7 +50,7 @@ Spritesheet::Animation::Animation () {
 //==============================================================================
 bool Spritesheet::Animation::FromDataMap (const CSaruContainer::DataMapReader & reader) {
 
-    Core::DataMapReaderSimple animReader(reader);
+    CSaruContainer::DataMapReaderSimple animReader(reader);
     
     name = animReader.WString("name");
     

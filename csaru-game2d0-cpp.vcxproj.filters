@@ -10,9 +10,6 @@
     <Filter Include="src\Components">
       <UniqueIdentifier>{7d5750cd-1488-44fe-bcba-265551f2c963}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\DataMap">
-      <UniqueIdentifier>{8d8ad69c-7a7d-4288-9ff3-81ea6fa71523}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Components\Common">
       <UniqueIdentifier>{85e70829-ee96-4e75-8023-271592856207}</UniqueIdentifier>
     </Filter>
@@ -56,9 +53,6 @@
     </ClCompile>
     <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp">
       <Filter>src\Components\Input\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CsDataMap\DataMapReaderSimple.cpp">
-      <Filter>src\DataMap</Filter>
     </ClCompile>
     <ClCompile Include="src\BlankDemo.cpp">
       <Filter>src\Demos</Filter>
@@ -121,9 +115,6 @@
     </ClInclude>
     <ClInclude Include="src\input\DirectInputKeyboardMouse.h">
       <Filter>src\Components\Input\DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CsDataMap\DataMapReaderSimple.h">
-      <Filter>src\DataMap</Filter>
     </ClInclude>
     <ClInclude Include="src\BlankDemo.hpp">
       <Filter>src\Demos</Filter>

@@ -17,7 +17,7 @@ limitations under the License.
 #include "BitmapFont.h"
 #include <DataMap.hpp>
 #include <JsonParserCallbackForDataMap.hpp>
-#include "../CsDataMap/DataMapReaderSimple.h"
+#include <DataMapReaderSimple.hpp>
 
 //==============================================================================
 BitmapFont::BitmapFont () {
@@ -56,8 +56,8 @@ bool BitmapFont::BuildFromDataFile (const WCHAR * filepath) {
     fclose(file);
     file = nullptr;
     
-    CSaruContainer::DataMapReader reader       = dataMap.GetReader();
-    Core::DataMapReaderSimple     simpleReader = reader;
+    CSaruContainer::DataMapReader       reader       = dataMap.GetReader();
+    CSaruContainer::DataMapReaderSimple simpleReader = reader;
     
     /*
     reader.ToChild("spritesheet");

@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 #pragma once
-#include "../CsDataMap/DataMapReaderSimple.h"
+#include <DataMapReaderSimple.hpp>
 #include "GraphicsMgr.h"
 
 class Spritesheet {
@@ -30,7 +30,7 @@ public: // Constants and types
         unsigned short durationMs;
         
         Frame();
-        bool FromDataMap (const Core::DataMapReaderSimple & reader);
+        bool FromDataMap (const CSaruContainer::DataMapReaderSimple & reader);
     };
 
     struct Animation {

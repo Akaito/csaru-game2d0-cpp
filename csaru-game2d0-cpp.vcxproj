@@ -25,7 +25,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\CsDataMap\DataMapReaderSimple.cpp" />
     <ClCompile Include="src\Dx11DemoBase.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameSpriteDemo.cpp" />
@@ -69,7 +68,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\Collections\ObjectCollection.h" />
-    <ClInclude Include="src\CsDataMap\DataMapReaderSimple.h" />
     <ClInclude Include="src\Dx11DemoBase.hpp" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameObjectComponent.h" />
