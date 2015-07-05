@@ -16,14 +16,14 @@ Transform::~Transform () {
 }
 
 //==============================================================================
-XMMATRIX Transform::GetWorldMatrix () const {
+void Transform::GetWorldMatrix (XMMATRIX * worldMatrixOut) const {
 
     XMMATRIX translation = XMMatrixTranslation(m_position.x, m_position.y, 0.0f);
-    XMMATRIX rotation_z  = XMMatrixRotationZ(m_rotation);
+    XMMATRIX rotationZ   = XMMatrixRotationZ(m_rotation);
     XMMATRIX scale       = XMMatrixScaling(m_scale.x, m_scale.y, 1.0f);
 
-    //return translation * rotation_z * scale;
-    return scale * rotation_z * translation;
+    //*worldMatrixOut = translation * rotationZ * scale;
+    *worldMatrixOut = scale * rotationZ * translation;
 
 }
 

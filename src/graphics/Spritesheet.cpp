@@ -29,17 +29,16 @@ SOFTWARE.
 #include <DataMapReaderSimple.hpp>
 
 //==============================================================================
-Spritesheet::Frame::Frame ()
-    : x(0),
-      y(0),
-      width(0),
-      height(0),
-      durationMs(0)
-{
-}
+SpritesheetFrame::SpritesheetFrame () :
+    x(0),
+    y(0),
+    width(0),
+    height(0),
+    durationMs(0)
+{}
 
 //==============================================================================
-bool Spritesheet::Frame::FromDataMap (const CSaruContainer::DataMapReaderSimple & reader) {
+bool SpritesheetFrame::FromDataMap (const CSaruContainer::DataMapReaderSimple & reader) {
 
     x          = unsigned short(reader.Int("x"));
     y          = unsigned short(reader.Int("y"));
@@ -65,7 +64,7 @@ bool Spritesheet::Animation::FromDataMap (const CSaruContainer::DataMapReader & 
     // Read in each frame's data
     for (animReader.EnterArray("frames"); animReader.IsValid(); animReader.ToNextSibling()) {
     
-        Frame frame;
+        SpritesheetFrame frame;
         if (!frame.FromDataMap(animReader))
             continue;
             

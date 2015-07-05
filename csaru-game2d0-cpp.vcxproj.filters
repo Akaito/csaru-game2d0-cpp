@@ -105,6 +105,9 @@
     <ClCompile Include="src\Levels\Level.cpp">
       <Filter>src\Level</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\SpriteAnimation.cpp">
+      <Filter>src\Graphics\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\StdAfx.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="src\Levels\Level.hpp">
       <Filter>src\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\SpriteAnimation.hpp">
+      <Filter>src\Graphics\Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

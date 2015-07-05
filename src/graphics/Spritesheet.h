@@ -26,24 +26,25 @@ SOFTWARE.
 #include <DataMapReaderSimple.hpp>
 #include "GraphicsMgr.h"
 
+struct SpritesheetFrame {
+    unsigned short x;
+    unsigned short y;
+    unsigned short width;
+    unsigned short height;
+    unsigned short durationMs;
+    
+    SpritesheetFrame();
+    bool FromDataMap (const CSaruContainer::DataMapReaderSimple & reader);
+};
+
+
 class Spritesheet {
 
 public: // Constants and types
 
-    struct Frame {
-        unsigned short x;
-        unsigned short y;
-        unsigned short width;
-        unsigned short height;
-        unsigned short durationMs;
-        
-        Frame();
-        bool FromDataMap (const CSaruContainer::DataMapReaderSimple & reader);
-    };
-
     struct Animation {
-        std::wstring        name;
-        std::vector<Frame> frames;
+        std::wstring                  name;
+        std::vector<SpritesheetFrame> frames;
         
         Animation();
         bool FromDataMap (const CSaruContainer::DataMapReader & reader);

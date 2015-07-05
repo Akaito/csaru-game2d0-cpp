@@ -32,6 +32,7 @@
     <ClCompile Include="src\graphics\BitmapFont.cpp" />
     <ClCompile Include="src\graphics\GraphicsMgr.cpp" />
     <ClCompile Include="src\graphics\PixelShader.cpp" />
+    <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
     <ClCompile Include="src\graphics\Spritesheet.cpp" />
     <ClCompile Include="src\graphics\VertexShader.cpp" />
     <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="src\graphics\GraphicsMgr.h" />
     <ClInclude Include="src\graphics\GraphicsMgrExtern.h" />
     <ClInclude Include="src\graphics\PixelShader.h" />
+    <ClInclude Include="src\graphics\SpriteAnimation.hpp" />
     <ClInclude Include="src\graphics\Spritesheet.h" />
     <ClInclude Include="src\graphics\VertexShader.h" />
     <ClInclude Include="src\input\DirectInputKeyboardMouse.h" />
