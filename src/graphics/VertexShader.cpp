@@ -51,6 +51,14 @@ bool VertexShader::Compile (
 ) {
     
     m_name = name;
+    if (m_inputLayout) {
+        m_inputLayout->Release();
+        m_inputLayout = nullptr;
+    }
+    if (m_shader) {
+        m_shader->Release();
+        m_shader = nullptr;
+    }
 
     ID3DBlob * vsBuffer      = NULL;
     bool       compileResult = g_graphicsMgrInternal->CompileD3DShader(

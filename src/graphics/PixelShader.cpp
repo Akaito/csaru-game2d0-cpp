@@ -46,6 +46,10 @@ bool PixelShader::Compile (
 ) {
     
     m_name = name;
+    if (m_shader) {
+        m_shader->Release();
+        m_shader = nullptr;
+    }
 
     ID3DBlob * psBuffer      = NULL;
     bool       compileResult = g_graphicsMgrInternal->CompileD3DShader(
