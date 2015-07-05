@@ -31,6 +31,7 @@ public: // Types and Constants
     enum class TileCollision : unsigned char {
         None = 0,
         Solid,
+        BottomHalf,
         TERM
     };
 
@@ -64,4 +65,10 @@ public:
     Level ();
 
     bool BuildFromDatafile (const char * filepath);
+
+    void Update (float dt);
+    void Render (
+        const Transform & levelTransform,
+        const XMMATRIX &  viewProjection
+    );
 };

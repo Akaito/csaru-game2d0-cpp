@@ -3,8 +3,8 @@
 
 static const char * s_spriteFiles[] = {
     "sonic-1-sonic.json",
-    "sotn-debug-terrain.json",
-    //"shadow.json",
+    "shadow.json",
+    //"sotn-debug-terrain.json",
     //"sonic-1-sonic.json",
 };
 static const unsigned s_spriteFilesCount = arrsize(s_spriteFiles);
@@ -25,16 +25,14 @@ GameSpriteDemo::~GameSpriteDemo(void)
 bool GameSpriteDemo::LoadContent(void)
 {
 
-    m_level.BuildFromDatafile(s_levelFile);
-
-    for (unsigned i = 0;  i < s_spriteFilesCount;  ++i) {
+    for (unsigned i = 0;  i < s_spriteFilesCount && i < s_goCount;  ++i) {
         GocSprite * sprite = new GocSprite();
         m_gameObjects[i].AddComponent(sprite);
         bool success = sprite->BuildFromDatafile(s_spriteFiles[i]);
         ASSERT(success);
     }
 
-    m_gameObjects[0].AddComponent(new CompTest());
+    m_gameObjects[0].AddComponent(new GocTest());
     m_gameObjects[0].AddComponent(new GocGamepad());
     m_gameObjects[0].AddComponent(new GocLeverDashMan());
 
@@ -57,6 +55,18 @@ bool GameSpriteDemo::LoadContent(void)
     m_gameObjects[1].GetTransform().SetPosition(sprite2_pos);
     //*/
 
+
+    // -- go3 --
+    {
+        GameObject & go3 = m_gameObjects[2];
+        go3.GetTransform().SetPosition(XMFLOAT2(300.0f, 200.0f));
+        go3.GetTransform().SetScale(XMFLOAT2(3.0f, 3.0f));
+
+        GocLevel * level = new GocLevel();
+        go3.AddComponent(level);
+        level->LoadLevel(s_levelFile);
+    }
+
     return true;
 
 }
@@ -74,7 +84,7 @@ void GameSpriteDemo::Update(float dt)
 {
     ++m_demoFrame;
 
-    for (unsigned i = 0; i < s_spriteFilesCount; ++i) {
+    for (unsigned i = 0; i < s_goCount; ++i) {
         m_gameObjects[i].Update(dt);
     }
 }
@@ -87,7 +97,7 @@ void GameSpriteDemo::Render () {
 
     g_graphicsMgr->RenderPre();
 
-    for (unsigned i = 0;  i < s_spriteFilesCount;  ++i)
+    for (unsigned i = 0;  i < s_goCount;  ++i)
         m_gameObjects[i].Render();
     
     g_graphicsMgr->RenderPost();

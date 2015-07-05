@@ -17,6 +17,6 @@ class GameSpriteDemo : public Dx11DemoBase
   virtual void Render(void);
  
  private:
-  GameObject m_gameObjects[2];
-  Level      m_level;
+  static const unsigned s_goCount = 3;
+  GameObject m_gameObjects[s_goCount];
 };

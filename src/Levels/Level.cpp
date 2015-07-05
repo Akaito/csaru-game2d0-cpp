@@ -131,8 +131,10 @@ bool Level::BuildFromDatafile (const char * filepath) {
         CSaruContainer::DataMapReader rowReader(reader);
         rowReader.ToFirstChild();
         for (unsigned x = 0; x < width; ++x) {
-            TileData & tileData = m_tiles[y * width + x];
-            tileData.collision = static_cast<TileCollision>(rowReader.ReadIntWalk());
+            TileData & tileData = m_tiles[((height - y) - 1) * width + x];
+            tileData.legendIndex = rowReader.ReadIntWalk();
+            ASSERT(tileData.legendIndex < m_legend.size());
+            tileData.collision   = m_legend[tileData.legendIndex].collision;
         }
 
         ++y;
@@ -143,6 +145,44 @@ bool Level::BuildFromDatafile (const char * filepath) {
         m_sourceFilepath.push_back(*src);
     
     return true;
+
+}
+
+//==============================================================================
+void Level::Render (
+    const Transform & levelTransform,
+    const XMMATRIX &  viewProjection
+) {
+
+    ASSERT(m_legend.size());
+
+    const SpritesheetFrame * sampleFrame = m_legend[0].sprite.GetCurrentFrame();
+    ASSERT(sampleFrame);
+    const float tileWidth  = sampleFrame->width  * levelTransform.GetScale().x;
+    const float tileHeight = sampleFrame->height * levelTransform.GetScale().y;
+
+    Transform tileTransform;
+    XMMATRIX  tileWorldMtx;
+
+    const unsigned tileCount = m_width * m_height;
+    for (unsigned i = 0; i < tileCount; ++i) {
+        TileData & tile = m_tiles[i];
+
+        ASSERT(tile.legendIndex < m_legend.size());
+        TileLegend & legend = m_legend[tile.legendIndex];
+
+        const unsigned x = i % m_width;
+        const unsigned y = i / m_width;
+
+        tileTransform = levelTransform;
+        tileTransform.SetPosition(XMFLOAT2(
+            x * tileWidth  + levelTransform.GetPosition().x,
+            y * tileHeight + levelTransform.GetPosition().y
+        ));
+
+        tileTransform.GetWorldMatrix(&tileWorldMtx);
+        legend.sprite.Render(tileWorldMtx, viewProjection);
+    }
 
 }
 
@@ -188,5 +228,13 @@ bool Level::Resize (unsigned width, unsigned height) {
     m_tiles = newTiles;
 
     return true;
+
+}
+
+//==============================================================================
+void Level::Update (float dt) {
+
+    for (TileLegend & legend : m_legend)
+        legend.sprite.Update(dt);
 
 }

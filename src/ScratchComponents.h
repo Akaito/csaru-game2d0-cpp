@@ -216,7 +216,7 @@ public:
 
 
 //==============================================================================
-class CompTest : public GameObjectComponent {
+class GocTest : public GameObjectComponent {
 
     void Update (float dt) override {
         ref(dt);
@@ -234,7 +234,7 @@ class CompTest : public GameObjectComponent {
     }
 
 public:
-    CompTest () :
+    GocTest () :
         GameObjectComponent()
     {
         m_type = GOC_TYPE_COMP_TEST;
@@ -244,15 +244,22 @@ public:
 
 
 //==============================================================================
-class CompLevel : public GameObjectComponent {
+class GocLevel : public GameObjectComponent {
 
     Level m_level;
 
-    void Update (float dt) override;
-    void Render () override;
+    void Update (float dt) override {
+        m_level.Update(dt);
+    }
+
+    void Render () override {
+        XMMATRIX viewProjectionMtx;
+        g_graphicsMgrInternal->GetViewProjectionMatrix(&viewProjectionMtx);
+        m_level.Render(m_owner->GetTransform(), viewProjectionMtx);
+    }
 
 public:
-    CompLevel () : GameObjectComponent() {
+    GocLevel () : GameObjectComponent() {
         m_type = GOC_TYPE_LEVEL;
     }
 
