@@ -24,6 +24,8 @@ SOFTWARE.
 
 #pragma once
 
+#include "../graphics/SpriteAnimation.hpp"
+
 class Level {
 public: // Types and Constants
     enum class TileCollision : unsigned char {
@@ -34,14 +36,25 @@ public: // Types and Constants
 
     struct TileData {
         TileCollision collision;
+        unsigned      legendIndex;
+    };
+
+    struct TileLegend {
+        SpriteAnimation sprite;
+        TileCollision   collision;
+
+        TileLegend () :
+            collision(TileCollision::None)
+        {}
     };
 
 private: // Data
-    std::wstring m_name;
-    std::wstring m_sourceFilepath;
-    unsigned     m_width;
-    unsigned     m_height;
-    TileData *   m_tiles;
+    std::wstring            m_name;
+    std::wstring            m_sourceFilepath;
+    unsigned                m_width;
+    unsigned                m_height;
+    TileData *              m_tiles;
+    std::vector<TileLegend> m_legend;
 
 private: // Helpers
     bool Resize (unsigned width, unsigned height);

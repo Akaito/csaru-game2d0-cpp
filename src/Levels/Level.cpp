@@ -27,6 +27,7 @@ SOFTWARE.
 #include <DataMap.hpp>
 #include <JsonParserCallbackForDataMap.hpp>
 #include <DataMapReaderSimple.hpp>
+#include "../graphics/Spritesheet.h"
 
 //==============================================================================
 Level::Level () :
@@ -92,6 +93,31 @@ bool Level::BuildFromDatafile (const char * filepath) {
     if (!width || !height)
         return false;
     Resize(width, height);
+
+    // Read in the tile legend
+    reader.PopNode().ToChild("visual").ToChild("legend");
+    {
+        reader.ToFirstChild();
+        do {
+            CSaruContainer::DataMapReaderSimple simple(reader);
+            const unsigned                      legendIndex = simple.Int("key");
+            if (m_legend.size() <= legendIndex)
+                m_legend.resize(legendIndex + 1);
+
+            TileLegend & legend = m_legend[legendIndex];
+            legend.collision = static_cast<Level::TileCollision>(simple.Int("collision"));
+
+            std::string tempStdStr = simple.String("spritefile");
+            Spritesheet * sheet = g_graphicsMgr->LoadSpritesheet(tempStdStr.c_str());
+            legend.sprite.SetSheet(sheet);
+
+            std::wstring tempStdWStr = simple.WString("anim");
+            legend.sprite.SetAnimIndex(sheet->GetAnimationIndex(tempStdWStr.c_str()));
+
+        } while (reader.ToNextSibling().IsValid());
+
+        reader.PopNode().PopNode();
+    }
         
     // Prepare to read in rows
     reader.PopNode().ToChild("rows");
@@ -139,12 +165,13 @@ bool Level::Resize (unsigned width, unsigned height) {
     if (width == m_width && height == m_height)
         return true;
 
-    TileData * newTiles = new TileData [width * height];
+    const unsigned newTileCount = width * height;
+    TileData *     newTiles     = new TileData [newTileCount];
     ASSERT(newTiles);
     if (!newTiles)
         return false;
 
-    memset(newTiles, 0, sizeof(TileData) * width * height);
+    memset(newTiles, 0, sizeof(TileData) * newTileCount);
 
     if (m_tiles) {
         const unsigned minWidth  = MIN(m_width, width);

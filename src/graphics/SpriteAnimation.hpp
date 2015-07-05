@@ -41,6 +41,13 @@ public:
         m_timeOnFrameSeconds(0.0f)
     {}
 
+    SpriteAnimation (const SpriteAnimation & other) :
+        m_spritesheet(other.m_spritesheet),
+        m_animIndex(other.m_animIndex),
+        m_frameIndex(other.m_frameIndex),
+        m_timeOnFrameSeconds(other.m_timeOnFrameSeconds)
+    {}
+
     // Commands
     void Update (float dt);
     void Render (const XMMATRIX & world, const XMMATRIX & viewProjection);

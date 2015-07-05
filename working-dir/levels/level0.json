@@ -4,10 +4,19 @@
         "width": 3,
         "height": 3,
         "visual": {
-            "spritefile": "sotn-debug-terrain.json",
             "legend": [
-                { "number": 0, "anim": "empty" },
-                { "number": 5, "anim": "solid" }
+                {
+                    "key": 0,
+                    "collision": 0,
+                    "spritefile": "sotn-debug-terrain.json",
+                    "anim": "empty"
+                },
+                {
+                    "key": 5,
+                    "collision": 1,
+                    "spritefile": "sotn-debug-terrain.json",
+                    "anim": "solid"
+                }
             ]
         },
         "rows": [

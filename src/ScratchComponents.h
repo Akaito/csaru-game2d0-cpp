@@ -241,3 +241,23 @@ public:
     }
 
 };
+
+
+//==============================================================================
+class CompLevel : public GameObjectComponent {
+
+    Level m_level;
+
+    void Update (float dt) override;
+    void Render () override;
+
+public:
+    CompLevel () : GameObjectComponent() {
+        m_type = GOC_TYPE_LEVEL;
+    }
+
+    bool LoadLevel (const char * filepath) {
+        return m_level.BuildFromDatafile(filepath);
+    }
+
+};
