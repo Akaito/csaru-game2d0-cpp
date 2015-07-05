@@ -19,7 +19,7 @@ limitations under the License.
 #include <D3Dcompiler.h>
 #include "../input/DirectInputKeyboardMouse.h"
 
-#define REPORT_OBJECT_LEAKS 0
+#define REPORT_OBJECT_LEAKS 1
 
 //==============================================================================
 CGraphicsMgr::CGraphicsMgr ()
@@ -315,7 +315,6 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
             D3D11_SDK_VERSION,
             &swap_chain_desc, &m_swapChain, &m_d3dDevice, &m_featureLevel, &m_d3dContext
         );
-
         if (SUCCEEDED(hresult)) {
             m_driverType = driver_types[driver];
             break;
@@ -325,6 +324,12 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
         DXTRACE_MSG(L"Failed to create the Direct3D device!");
         return false;
     }
+#if defined(_DEBUG)
+    {
+        char tempName[] = "GraphicsMgr's SwapChain";
+        m_swapChain->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
+    }
+#endif
 
     // Debug layer
     if (SUCCEEDED(m_d3dDevice->QueryInterface(__uuidof(ID3D11Debug), (void**)&m_d3dDebug))) {
@@ -333,8 +338,8 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
 #if defined(_DEBUG)
             d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_CORRUPTION, true);
             d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_ERROR, true);
-            d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_WARNING, true);
-            d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_INFO, true);
+            //d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_WARNING, true);
+            //d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_INFO, true);
 #endif
 
             D3D11_MESSAGE_ID hiddenMessages[] = {
@@ -359,15 +364,20 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
     }
 
     hresult = m_d3dDevice->CreateRenderTargetView(back_buffer_texture, 0, &m_backBufferTarget);
-
-    if (back_buffer_texture)
-    back_buffer_texture->Release();
-
     if (FAILED(hresult)) {
         DXTRACE_MSG(L"Failed to create the render target view!");
         ASSERT(!FAILED(hresult));
         return false;
     }
+#if defined(_DEBUG)
+    {
+        char tempName[] = "GraphicsMgr's BackBufferTarget";
+        m_backBufferTarget->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
+    }
+#endif
+
+    if (back_buffer_texture)
+        back_buffer_texture->Release();
 
     m_d3dContext->OMSetRenderTargets(1, &m_backBufferTarget, 0);
 
@@ -394,11 +404,16 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
             &rasterDesc,
             &m_rasterState
         );
-        
         if (FAILED(result)) {
             ASSERT(!FAILED(result));
             return false;
         }
+#if defined(_DEBUG)
+        {
+            char tempName[] = "GraphicsMgr's RasterState";
+            m_rasterState->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
+        }
+#endif
             
         m_d3dContext->RSSetState(m_rasterState);
     }
@@ -418,11 +433,16 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
     const_desc.Usage = D3D11_USAGE_DEFAULT;
 
     HRESULT d3d_result = g_graphicsMgr->GetDevice()->CreateBuffer(&const_desc, 0, &m_mvpCB);
-
     if (FAILED(d3d_result)) {
         ASSERT(!FAILED(d3d_result));
         return false;
     }
+#if defined(_DEBUG)
+    {
+        char tempName[] = "GraphicsMgr's model-view-proj ConstantBuffer";
+        m_mvpCB->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
+    }
+#endif
         
     //m_vertexShaders.reserve(16);
     //m_pixelShaders.reserve(16);

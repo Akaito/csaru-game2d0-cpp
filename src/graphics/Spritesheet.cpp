@@ -241,6 +241,11 @@ bool Spritesheet::PrepareBlendState () {
         );
         return false;
     }
+#if defined(_DEBUG)
+    char           tempName[256];
+    const unsigned strLen = sprintf_s(tempName, "Spritesheet {%S}'s BlendState", m_name.c_str());
+    m_alphaBlendState->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
+#endif
     
     g_graphicsMgrInternal->GetContext()->OMSetBlendState(m_alphaBlendState, blend_factor, 0xFFFFFFFF);
     
@@ -274,10 +279,15 @@ bool Spritesheet::PrepareConstantBuffers () {
         &initData,
         &m_perObjectCb
     );
-
-    ASSERT(!FAILED(d3dResult));
-    if (FAILED(d3dResult))
+    if (FAILED(d3dResult)) {
+        DXTRACE_MSG(L"Failed to create constant buffer!");
         return false;
+    }
+#if defined(_DEBUG)
+    char           tempName[256];
+    const unsigned strLen = sprintf_s(tempName, "Spritesheet {%S}'s ConstantBuffer", m_name.c_str());
+    m_perObjectCb->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
+#endif
     
     return true;
 
@@ -311,11 +321,15 @@ bool Spritesheet::PrepareGraphicsResources () {
         &m_colorMap,
         NULL
     );
-
     if (FAILED(d3dResult)) {
         DXTRACE_MSG(L"Failed to load the texture image!");
         return false;
     }
+#if defined(_DEBUG)
+    char     tempName[256];
+    unsigned strLen = sprintf_s(tempName, "Spritesheet {%S}'s ColorMap", m_name.c_str());
+    m_colorMap->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
+#endif
 
     D3D11_SAMPLER_DESC color_map_desc;
     SecureZeroMemory(&color_map_desc, sizeof(color_map_desc));
@@ -328,11 +342,14 @@ bool Spritesheet::PrepareGraphicsResources () {
     color_map_desc.MaxLOD = D3D11_FLOAT32_MAX;
 
     d3dResult = g_graphicsMgr->GetDevice()->CreateSamplerState(&color_map_desc, &m_colorMapSampler);
-
     if (FAILED(d3dResult)) {
         DXTRACE_MSG(L"Failed to create color map sampler state!");
         return false;
     }
+#if defined(_DEBUG)
+    strLen = sprintf_s(tempName, "Spritesheet {%S}'s ColorMapSampler", m_name.c_str());
+    m_colorMapSampler->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
+#endif
     
     if (!PrepareVertexBuffer())
         return false;
@@ -384,11 +401,15 @@ bool Spritesheet::PrepareVertexBuffer () {
     resource_data.pSysMem = vertices;
 
     HRESULT d3d_result = g_graphicsMgr->GetDevice()->CreateBuffer(&vertex_desc, &resource_data, &m_vertexBuffer);
-
     if (FAILED(d3d_result)) {
         DXTRACE_MSG(L"Failed to create vertex buffer!");
         return false;
     }
+#if defined(_DEBUG)
+    char           tempName[256];
+    const unsigned strLen = sprintf_s(tempName, "Spritesheet {%S}'s VertexBuffer", m_name.c_str());
+    m_vertexBuffer->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
+#endif
     
     return true;
 }

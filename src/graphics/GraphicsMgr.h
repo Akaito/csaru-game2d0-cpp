@@ -56,8 +56,6 @@ private: // Helpers
 
     VertexShader * FindVertexShaderRaii (const std::wstring & name);
     PixelShader *  FindPixelShaderRaii (const std::wstring & name);
-    bool           PrepareInputLayout ();
-    bool           fooVertexBuffer ();
 
 public: // Construction
 
