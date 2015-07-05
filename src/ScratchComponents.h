@@ -57,14 +57,15 @@ public:
 //==============================================================================
 class GocSprite : public GameObjectComponent {
 private:
-    Spritesheet m_spritesheet;
-    unsigned    m_animIndex;
-    unsigned    m_frameIndex;
-    float       m_timeOnFrameSeconds;
+    Spritesheet * m_sheet2;
+    unsigned      m_animIndex;
+    unsigned      m_frameIndex;
+    float         m_timeOnFrameSeconds;
 
 public:
     GocSprite () :
         GameObjectComponent(),
+        m_sheet2(nullptr),
         m_animIndex(0),
         m_frameIndex(0),
         m_timeOnFrameSeconds(0)
@@ -75,7 +76,7 @@ public:
 private:
     void Render () override {
 
-        const Spritesheet::Frame & frame = m_spritesheet.GetAnimation(m_animIndex)->frames[m_frameIndex];
+        const Spritesheet::Frame & frame = m_sheet2->GetAnimation(m_animIndex)->frames[m_frameIndex];
         
         XMMATRIX view_projection;
         g_graphicsMgrInternal->GetViewProjectionMatrix(&view_projection);
@@ -87,7 +88,7 @@ private:
         ID3D11Buffer *        buffer     = g_graphicsMgrInternal->GetRenderResource();
         ID3D11DeviceContext * d3dContext = g_graphicsMgrInternal->GetContext();
 
-        m_spritesheet.RenderPrep(
+        m_sheet2->RenderPrep(
             frame.x,
             frame.y,
             frame.width,
@@ -103,6 +104,30 @@ private:
 
         d3dContext->Draw(6, 0);
 
+
+
+        /*
+        m_sheet2->RenderPrep(
+            frame.x,
+            frame.y,
+            frame.width,
+            frame.height
+        );
+        
+        scale[0] = frame.width * 10.0f;
+        scale[1] = frame.height * 15.0f;
+        world = m_owner->GetTransform().GetWorldMatrix();
+        XMMATRIX test = XMMatrixTranslation(50.0f, 0.0f, 0.0f);
+        mvp = XMMatrixMultiply(world, test);
+        mvp = XMMatrixMultiply(mvp, view_projection);
+        mvp = XMMatrixTranspose(mvp);
+        
+        d3dContext->UpdateSubresource(buffer, 0, NULL, &mvp, 0, 0);
+        d3dContext->VSSetConstantBuffers(1, 1, &buffer);
+
+        d3dContext->Draw(6, 0);
+        //*/
+
     }
 
     void Update (float dt) override {
@@ -110,7 +135,7 @@ private:
         m_timeOnFrameSeconds += dt;
 
         // Animations
-        const Spritesheet::Animation * anim  = m_spritesheet.GetAnimation(m_animIndex);
+        const Spritesheet::Animation * anim  = m_sheet2->GetAnimation(m_animIndex);
         const Spritesheet::Frame *     frame = anim ? &anim->frames[m_frameIndex] : NULL;
         if (!frame)
             return;
@@ -129,14 +154,17 @@ private:
     }
 
 public:
-    bool                           BuildFromDatafile (const char * filepath)  { return m_spritesheet.BuildFromDatafile(filepath); }
-    bool                           RebuildFromDatafile ()                     { return m_spritesheet.RebuildFromDatafile();       }
-    const Spritesheet::Animation * GetAnimation (unsigned index) const        { return m_spritesheet.GetAnimation(index);         }
+    bool                           BuildFromDatafile (const char * filepath)  {
+        m_sheet2 = g_graphicsMgrInternal->LoadSpritesheet(filepath);
+        return m_sheet2;
+    }
+    bool                           RebuildFromDatafile ()                     { return m_sheet2->RebuildFromDatafile();       }
+    const Spritesheet::Animation * GetAnimation (unsigned index) const        { return m_sheet2->GetAnimation(index);         }
 
     unsigned GetAnimIndex () const         { return m_animIndex;  }
     void     SetAnimIndex (unsigned index) { m_animIndex = index; }
     bool     TrySetAnim (const std::wstring & name) {
-        unsigned animIndex = m_spritesheet.GetAnimationIndex(name);
+        unsigned animIndex = m_sheet2->GetAnimationIndex(name);
         if (animIndex < unsigned(-1)) {
             SetAnimIndex(animIndex);
             return true;

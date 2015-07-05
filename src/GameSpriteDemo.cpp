@@ -3,7 +3,8 @@
 
 static const char * s_spriteFiles[] = {
     "sonic-1-sonic.json",
-    "shadow.json",
+    "sotn-debug-terrain.json",
+    //"shadow.json",
     //"sonic-1-sonic.json",
 };
 static const unsigned s_spriteFilesCount = arrsize(s_spriteFiles);
@@ -29,7 +30,8 @@ bool GameSpriteDemo::LoadContent(void)
     for (unsigned i = 0;  i < s_spriteFilesCount;  ++i) {
         GocSprite * sprite = new GocSprite();
         m_gameObjects[i].AddComponent(sprite);
-        sprite->BuildFromDatafile(s_spriteFiles[i]);
+        bool success = sprite->BuildFromDatafile(s_spriteFiles[i]);
+        ASSERT(success);
     }
 
     m_gameObjects[0].AddComponent(new CompTest());
@@ -39,9 +41,10 @@ bool GameSpriteDemo::LoadContent(void)
     //////
     //
     {
-      XMFLOAT2 scale;
-      scale.x = scale.y = 1.6f;
-      m_gameObjects[0].GetTransform().SetScale(scale);
+        XMFLOAT2 scale;
+        scale.x = scale.y = 1.6f;
+        m_gameObjects[0].GetTransform().SetScale(scale);
+        m_gameObjects[1].GetTransform().SetScale(scale);
     }
     //
     /////
@@ -49,8 +52,10 @@ bool GameSpriteDemo::LoadContent(void)
     XMFLOAT2 sprite1_pos(200.0f, 100.0f);
     m_gameObjects[0].GetTransform().SetPosition(sprite1_pos);
 
-    //XMFLOAT2 sprite2_pos(400.0f, 100.0f);
-    //m_gameObjects[1].GetTransform()->SetPosition(sprite2_pos);
+    //*
+    XMFLOAT2 sprite2_pos(400.0f, 100.0f);
+    m_gameObjects[1].GetTransform().SetPosition(sprite2_pos);
+    //*/
 
     return true;
 

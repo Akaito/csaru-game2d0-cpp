@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 #include "GraphicsMgr.h"
+#include "Spritesheet.h"
 #include <D3Dcompiler.h>
 #include "../input/DirectInputKeyboardMouse.h"
 
@@ -164,6 +165,24 @@ PixelShader * CGraphicsMgr::LoadPixelShader (
 }
 
 //==============================================================================
+Spritesheet * CGraphicsMgr::LoadSpritesheet (const char * filepath) {
+
+    std::map<std::string, Spritesheet *>::iterator iter = m_spritesheets.find(filepath);
+    if (iter != m_spritesheets.end())
+        return iter->second;
+
+    Spritesheet * sheet = new Spritesheet;
+    if (!sheet->BuildFromDatafile(filepath)) {
+        delete sheet;
+        return nullptr;
+    }
+
+    m_spritesheets[filepath] = sheet;
+    return sheet;
+
+}
+
+//==============================================================================
 VertexShader * CGraphicsMgr::LoadVertexShader (
     const std::wstring & name,
     const std::wstring & filepath,
@@ -181,6 +200,12 @@ VertexShader * CGraphicsMgr::LoadVertexShader (
 
 //==============================================================================
 void CGraphicsMgr::Shutdown () {
+
+    {
+        for (std::pair<std::string, Spritesheet *> sheetIter : m_spritesheets)
+            delete sheetIter.second;
+        m_spritesheets.clear();
+    }
 
     if (g_keyboardMouse)
         g_keyboardMouse->Shutdown();

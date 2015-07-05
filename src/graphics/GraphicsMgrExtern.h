@@ -16,6 +16,8 @@ limitations under the License.
 
 #pragma once
 
+class Spritesheet;
+
 struct VertexPos {
   XMFLOAT3 pos;
   XMFLOAT2 tex0;
@@ -54,6 +56,8 @@ public: // Commands
         const std::wstring & filepath,
         const std::string &  entryFunction
     ) = 0;
+
+    virtual Spritesheet * LoadSpritesheet (const char * filepath) = 0;
 
 };
 

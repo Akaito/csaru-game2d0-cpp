@@ -3,6 +3,13 @@
         "name": "level0",
         "width": 3,
         "height": 3,
+        "visual": {
+            "spritefile": "sotn-debug-terrain.json",
+            "legend": [
+                { "number": 0, "anim": "empty" },
+                { "number": 5, "anim": "solid" }
+            ]
+        },
         "rows": [
             [
                 5,5,5
