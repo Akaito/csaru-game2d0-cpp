@@ -35,6 +35,7 @@
     <ClCompile Include="src\graphics\Spritesheet.cpp" />
     <ClCompile Include="src\graphics\VertexShader.cpp" />
     <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp" />
+    <ClCompile Include="src\Levels\Level.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -80,6 +81,7 @@
     <ClInclude Include="src\graphics\Spritesheet.h" />
     <ClInclude Include="src\graphics\VertexShader.h" />
     <ClInclude Include="src\input\DirectInputKeyboardMouse.h" />
+    <ClInclude Include="src\Levels\Level.hpp" />
     <ClInclude Include="src\ScratchComponents.h" />
     <ClInclude Include="src\StdAfx.h" />
     <ClInclude Include="src\TextureDemo.hpp">

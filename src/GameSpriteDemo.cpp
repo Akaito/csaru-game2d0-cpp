@@ -1,11 +1,14 @@
 #include "GameSpriteDemo.hpp"
+#include "ScratchComponents.h"
 
 static const char * s_spriteFiles[] = {
     "sonic-1-sonic.json",
     "shadow.json",
     //"sonic-1-sonic.json",
 };
-static const unsigned s_spriteFilesCount = sizeof(s_spriteFiles) / sizeof(s_spriteFiles[0]);
+static const unsigned s_spriteFilesCount = arrsize(s_spriteFiles);
+
+static const char s_levelFile[] = "levels/level0.json";
 
 GameSpriteDemo::GameSpriteDemo(void)
 {
@@ -18,9 +21,10 @@ GameSpriteDemo::~GameSpriteDemo(void)
 }
 
 
-#include "ScratchComponents.h"
 bool GameSpriteDemo::LoadContent(void)
 {
+
+    m_level.BuildFromDatafile(s_levelFile);
 
     for (unsigned i = 0;  i < s_spriteFilesCount;  ++i) {
         GocSprite * sprite = new GocSprite();
@@ -49,6 +53,7 @@ bool GameSpriteDemo::LoadContent(void)
     //m_gameObjects[1].GetTransform()->SetPosition(sprite2_pos);
 
     return true;
+
 }
 
 

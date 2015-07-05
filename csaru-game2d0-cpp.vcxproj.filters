@@ -37,6 +37,9 @@
     <Filter Include="src\Utils">
       <UniqueIdentifier>{d1009770-c9aa-4d4a-8ac2-ac33637aaccd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Level">
+      <UniqueIdentifier>{2264cf18-2bb5-491f-ad69-487662d52530}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="src\Utils_Windows.cpp">
       <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Level.cpp">
+      <Filter>src\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="src\Utils.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Level.hpp">
+      <Filter>src\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

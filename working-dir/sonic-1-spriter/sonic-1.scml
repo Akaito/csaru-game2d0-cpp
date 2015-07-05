@@ -6,6 +6,16 @@
         <file id="2" name="sonic/idle/2.gif" width="30" height="38" pivot_x="0.5" pivot_y="0"/>
         <file id="3" name="sonic/idle/3.gif" width="29" height="38" pivot_x="0.5" pivot_y="0"/>
     </folder>
+    <folder id="1" name="misc-objects/big-ring">
+        <file id="0" name="misc-objects/big-ring/0.png" width="64" height="64" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="misc-objects/big-ring/1.png" width="48" height="64" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="misc-objects/big-ring/2.png" width="24" height="64" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="misc-objects/big-ring/3.png" width="48" height="64" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <folder id="2" name="misc-objects/button">
+        <file id="0" name="misc-objects/button/down.png" width="32" height="10" pivot_x="0.5" pivot_y="0"/>
+        <file id="1" name="misc-objects/button/up.png" width="32" height="16" pivot_x="0.5" pivot_y="0"/>
+    </folder>
     <entity id="0" name="sonic">
         <animation id="0" name="idle" length="3500" interval="100" looping="false">
             <mainline>
@@ -40,6 +50,64 @@
                 </key>
                 <key id="1" time="500" spin="0">
                     <object folder="0" file="3" x="-0.5" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="button">
+        <animation id="0" name="up" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="up">
+                <key id="0" spin="0">
+                    <object folder="2" file="1"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="down" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="down">
+                <key id="0" spin="0">
+                    <object folder="2" file="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="big-ring">
+        <animation id="0" name="idle" length="750" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="187">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="375">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="562">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="1" file="0"/>
+                </key>
+                <key id="1" time="187" spin="0">
+                    <object folder="1" file="1"/>
+                </key>
+                <key id="2" time="375" spin="0">
+                    <object folder="1" file="2"/>
+                </key>
+                <key id="3" time="562" spin="0">
+                    <object folder="1" file="3"/>
                 </key>
             </timeline>
         </animation>
