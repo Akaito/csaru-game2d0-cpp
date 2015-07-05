@@ -1,7 +1,7 @@
 #include "TextureDemo.hpp"
 #include <xnamath.h>
 
-struct VertexPos
+struct VertexPos3Uv
 {
   XMFLOAT3 pos;
   XMFLOAT2 tex0;
@@ -56,7 +56,7 @@ bool TextureDemo::LoadContent(void)
   {
     { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
     { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-    //{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, offsetof(VertexPos,tex0), D3D11_INPUT_PER_VERTEX_DATA, 0 }
+    //{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, offsetof(VertexPos3Uv,tex0), D3D11_INPUT_PER_VERTEX_DATA, 0 }
   };
   
   unsigned int layout_count = sizeof(solid_color_layout) / sizeof(solid_color_layout[0]);
@@ -101,7 +101,7 @@ bool TextureDemo::LoadContent(void)
   
   // ...
   
-  VertexPos vertices[] =
+  VertexPos3Uv vertices[] =
   {
     { XMFLOAT3( 1.0f,  1.0f, 1.0f), XMFLOAT2(1.0f, 0.0f) },
     { XMFLOAT3( 1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
@@ -120,7 +120,7 @@ bool TextureDemo::LoadContent(void)
   SecureZeroMemory(&vertex_desc, sizeof(vertex_desc));
   vertex_desc.Usage = D3D11_USAGE_DEFAULT;
   vertex_desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-  vertex_desc.ByteWidth = sizeof(VertexPos) * 6;
+  vertex_desc.ByteWidth = sizeof(VertexPos3Uv) * 6;
   
   D3D11_SUBRESOURCE_DATA resource_data;
   SecureZeroMemory(&resource_data, sizeof(resource_data));
@@ -204,7 +204,7 @@ void TextureDemo::Render(void)
   float clear_color[4] = { 0.0f, 0.0f, 0.25f, 1.0f };
   m_D3dContext->ClearRenderTargetView(m_BackBufferTarget, clear_color);
   
-  unsigned int stride = sizeof(VertexPos);
+  unsigned int stride = sizeof(VertexPos3Uv);
   unsigned int offset = 0;
   
   m_D3dContext->IASetInputLayout(m_InputLayout);

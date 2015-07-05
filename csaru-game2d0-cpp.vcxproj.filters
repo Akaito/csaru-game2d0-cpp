@@ -40,6 +40,9 @@
     <Filter Include="src\Level">
       <UniqueIdentifier>{2264cf18-2bb5-491f-ad69-487662d52530}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Graphics\Debug">
+      <UniqueIdentifier>{71ba05e7-20e4-45b2-b68e-07686b3c8f87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -106,7 +109,7 @@
       <Filter>src\Level</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\SpriteAnimation.cpp">
-      <Filter>src\Graphics\Resources</Filter>
+      <Filter>src\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +180,10 @@
       <Filter>src\Level</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\SpriteAnimation.hpp">
-      <Filter>src\Graphics\Resources</Filter>
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\DebugLine.hpp">
+      <Filter>src\Graphics\Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

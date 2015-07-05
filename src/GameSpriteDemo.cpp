@@ -39,6 +39,7 @@ bool GameSpriteDemo::LoadContent(void)
     }
 
     m_gameObjects[0].AddComponent(new GocLeverDashMan());
+    m_gameObjects[1].AddComponent(new GocLeverDashMan());
 
     //////
     //

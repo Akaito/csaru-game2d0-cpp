@@ -95,16 +95,9 @@ bool VertexShader::Compile (
     // Prepare input layout
     //
 
-    D3D11_INPUT_ELEMENT_DESC solid_color_layout[] = {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-    };
-
-    unsigned int layout_count = sizeof(solid_color_layout) / sizeof(solid_color_layout[0]);
-
     d3dResult = g_graphicsMgrInternal->GetDevice()->CreateInputLayout(
-        solid_color_layout,
-        layout_count,
+        s_VertexPos3UvLayout,
+        s_VertexPos3UvLayoutCount,
         vsBuffer->GetBufferPointer(),
         vsBuffer->GetBufferSize(),
         &m_inputLayout

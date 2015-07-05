@@ -76,6 +76,7 @@
     <ClInclude Include="src\GameSpriteDemo.hpp" />
     <ClInclude Include="src\GameTimer.h" />
     <ClInclude Include="src\graphics\BitmapFont.h" />
+    <ClInclude Include="src\graphics\DebugLine.hpp" />
     <ClInclude Include="src\graphics\GraphicsMgr.h" />
     <ClInclude Include="src\graphics\GraphicsMgrExtern.h" />
     <ClInclude Include="src\graphics\PixelShader.h" />

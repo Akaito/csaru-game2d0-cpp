@@ -1,7 +1,7 @@
 #include "TriangleDemo.hpp"
 #include <xnamath.h>
 
-struct VertexPos
+struct VertexPos3Uv
 {
   XMFLOAT3 pos;
 };
@@ -89,7 +89,7 @@ bool TriangleDemo::LoadContent(void)
   
   // ...
   
-  VertexPos vertices[] =
+  VertexPos3Uv vertices[] =
   {
     XMFLOAT3( 0.5f,  0.5f, 0.5f),
     XMFLOAT3( 0.5f, -0.5f, 0.5f),
@@ -100,7 +100,7 @@ bool TriangleDemo::LoadContent(void)
   SecureZeroMemory(&vertex_desc, sizeof(vertex_desc));
   vertex_desc.Usage = D3D11_USAGE_DEFAULT;
   vertex_desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-  vertex_desc.ByteWidth = sizeof(VertexPos) * 3;
+  vertex_desc.ByteWidth = sizeof(VertexPos3Uv) * 3;
   
   D3D11_SUBRESOURCE_DATA resource_data;
   SecureZeroMemory(&resource_data, sizeof(resource_data));
@@ -149,7 +149,7 @@ void TriangleDemo::Render(void)
   float clear_color[4] = { 0.0f, 0.0f, 0.25f, 1.0f };
   m_D3dContext->ClearRenderTargetView(m_BackBufferTarget, clear_color);
   
-  unsigned int stride = sizeof(VertexPos);
+  unsigned int stride = sizeof(VertexPos3Uv);
   unsigned int offset = 0;
   
   m_D3dContext->IASetInputLayout(m_InputLayout);
