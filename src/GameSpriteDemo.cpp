@@ -25,6 +25,12 @@ GameSpriteDemo::~GameSpriteDemo(void)
 bool GameSpriteDemo::LoadContent(void)
 {
 
+    // Make every GameObject hot-reloadable when 'A' is pressed
+    for (unsigned i = 0; i < s_goCount; ++i) {
+        m_gameObjects[i].AddComponent(new GocTest());
+        m_gameObjects[i].AddComponent(new GocGamepad());
+    }
+
     for (unsigned i = 0;  i < s_spriteFilesCount && i < s_goCount;  ++i) {
         GocSprite * sprite = new GocSprite();
         m_gameObjects[i].AddComponent(sprite);
@@ -32,8 +38,6 @@ bool GameSpriteDemo::LoadContent(void)
         ASSERT(success);
     }
 
-    m_gameObjects[0].AddComponent(new GocTest());
-    m_gameObjects[0].AddComponent(new GocGamepad());
     m_gameObjects[0].AddComponent(new GocLeverDashMan());
 
     //////

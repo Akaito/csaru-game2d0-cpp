@@ -141,10 +141,17 @@ bool Level::BuildFromDatafile (const char * filepath) {
     }
     
     // Store source filename
-    for (const char * src = filepath; *src; ++src)
-        m_sourceFilepath.push_back(*src);
+    m_sourceFilepath = filepath;
     
     return true;
+
+}
+
+//==============================================================================
+void Level::Reload () {
+
+    std::string tempFilepath = m_sourceFilepath;
+    BuildFromDatafile(tempFilepath.c_str());
 
 }
 

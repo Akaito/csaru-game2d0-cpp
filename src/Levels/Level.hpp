@@ -51,7 +51,7 @@ public: // Types and Constants
 
 private: // Data
     std::wstring            m_name;
-    std::wstring            m_sourceFilepath;
+    std::string             m_sourceFilepath;
     unsigned                m_width;
     unsigned                m_height;
     TileData *              m_tiles;
@@ -65,6 +65,7 @@ public:
     Level ();
 
     bool BuildFromDatafile (const char * filepath);
+    void Reload ();
 
     void Update (float dt);
     void Render (

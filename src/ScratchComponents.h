@@ -216,34 +216,6 @@ public:
 
 
 //==============================================================================
-class GocTest : public GameObjectComponent {
-
-    void Update (float dt) override {
-        ref(dt);
-        int i = 4;
-        i = 5;
-
-        GocGamepad * gamepad = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
-        GocSprite *  sprite  = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
-        assert(gamepad);
-        assert(sprite);
-            
-        if (gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A))
-            sprite->RebuildFromDatafile();
-
-    }
-
-public:
-    GocTest () :
-        GameObjectComponent()
-    {
-        m_type = GOC_TYPE_COMP_TEST;
-    }
-
-};
-
-
-//==============================================================================
 class GocLevel : public GameObjectComponent {
 
     Level m_level;
@@ -265,6 +237,40 @@ public:
 
     bool LoadLevel (const char * filepath) {
         return m_level.BuildFromDatafile(filepath);
+    }
+
+    void Reload () {
+        m_level.Reload();
+    }
+
+};
+
+
+//==============================================================================
+class GocTest : public GameObjectComponent {
+
+    void Update (float dt) override {
+        ref(dt);
+
+        GocGamepad * gamepad = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
+        if (!gamepad || !gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A))
+            return;
+
+        GocSprite * sprite = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
+        if (sprite)
+            sprite->RebuildFromDatafile();
+
+        GocLevel * level = dynamic_cast<GocLevel *>(m_owner->GetComponent(GOC_TYPE_LEVEL));
+        if (level)
+            level->Reload();
+
+    }
+
+public:
+    GocTest () :
+        GameObjectComponent()
+    {
+        m_type = GOC_TYPE_COMP_TEST;
     }
 
 };
