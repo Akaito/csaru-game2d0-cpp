@@ -69,6 +69,18 @@ bool VertexShader::Compile (
 
         return false;
     }
+
+    /* To be tested.  From https://msdn.microsoft.com/en-us/library/windows/desktop/ff476383(v=vs.85).aspx
+#if defined(_DEBUG)
+    char tempName[256];
+    sprintf_s(tempName, "%S", name.c_str());
+    m_shader->SetPrivateData(
+        WKPDID_D3DDebugObjectName,
+        UINT(strlen(tempName) - 1),
+        tempName
+    );
+#endif
+    //*/
     
     //
     // Prepare input layout

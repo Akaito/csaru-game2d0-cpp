@@ -9,6 +9,7 @@ Dx11DemoBase::Dx11DemoBase(void) :
 
 Dx11DemoBase::~Dx11DemoBase(void) {
     Shutdown();
+    //ReportLiveObjects();
 }
 
 

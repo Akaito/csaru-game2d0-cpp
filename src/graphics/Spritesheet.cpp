@@ -97,9 +97,7 @@ Spritesheet::Spritesheet () :
 
 //==============================================================================
 Spritesheet::~Spritesheet () {
-
     Reset();
-
 }
 
 //==============================================================================
@@ -464,23 +462,27 @@ void Spritesheet::Reset () {
     m_imageFilepath.clear();
     m_animations.clear();
     
-    m_vertexShader = NULL;
-    m_pixelShader = NULL;
+    m_vertexShader = nullptr;
+    m_pixelShader = nullptr;
+
+    if (m_perObjectCb)
+        m_perObjectCb->Release();
+    m_perObjectCb = nullptr;
     
     if (m_vertexBuffer)
         m_vertexBuffer->Release();
-    m_vertexBuffer = NULL;
+    m_vertexBuffer = nullptr;
 
     if (m_colorMap)
         m_colorMap->Release();
-    m_colorMap = NULL;
+    m_colorMap = nullptr;
     
     if (m_colorMapSampler)
         m_colorMapSampler->Release();
-    m_colorMapSampler = NULL;
+    m_colorMapSampler = nullptr;
     
     if (m_alphaBlendState)
         m_alphaBlendState->Release();
-    m_alphaBlendState = NULL;
+    m_alphaBlendState = nullptr;
 
 }

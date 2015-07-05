@@ -19,16 +19,19 @@ limitations under the License.
 #include <D3Dcompiler.h>
 #include "../input/DirectInputKeyboardMouse.h"
 
+#define REPORT_OBJECT_LEAKS 0
+
 //==============================================================================
 CGraphicsMgr::CGraphicsMgr ()
     : m_driverType(D3D_DRIVER_TYPE_NULL),
       m_featureLevel(D3D_FEATURE_LEVEL_11_0),
-      m_d3dDevice(NULL),
-      m_d3dContext(NULL),
-      m_swapChain(NULL),
-      m_backBufferTarget(NULL),
-      m_rasterState(NULL),
-      m_mvpCB(NULL)
+      m_d3dDevice(nullptr),
+      m_d3dContext(nullptr),
+      m_d3dDebug(nullptr),
+      m_swapChain(nullptr),
+      m_backBufferTarget(nullptr),
+      m_rasterState(nullptr),
+      m_mvpCB(nullptr)
 {
 }
 
@@ -192,7 +195,7 @@ VertexShader * CGraphicsMgr::LoadVertexShader (
     VertexShader * shader = FindVertexShaderRaii(name);
     
     if (!shader->Compile(name, filepath, entryFunction))
-        return NULL;
+        return nullptr;
 
     return shader;
 
@@ -201,34 +204,54 @@ VertexShader * CGraphicsMgr::LoadVertexShader (
 //==============================================================================
 void CGraphicsMgr::Shutdown () {
 
+    // spritesheets
     {
         for (std::pair<std::string, Spritesheet *> sheetIter : m_spritesheets)
             delete sheetIter.second;
         m_spritesheets.clear();
     }
 
+    // vertex shaders
+    m_vertexShaders.clear();
+    m_pixelShaders.clear();
+
     if (g_keyboardMouse)
         g_keyboardMouse->Shutdown();
 
     if (m_mvpCB)
         m_mvpCB->Release();
-    m_mvpCB = NULL;
+    m_mvpCB = nullptr;
 
     if (m_backBufferTarget)
         m_backBufferTarget->Release();
-    m_backBufferTarget = NULL;
+    m_backBufferTarget = nullptr;
     
     if (m_swapChain)
         m_swapChain->Release();
-    m_swapChain = NULL;
+    m_swapChain = nullptr;
+
+    if (m_rasterState)
+        m_rasterState->Release();
+    m_rasterState = nullptr;
     
     if (m_d3dContext)
         m_d3dContext->Release();
-    m_d3dContext = NULL;
+    m_d3dContext = nullptr;
+
+    if (m_d3dDebug) {
+#if REPORT_OBJECT_LEAKS
+        m_d3dDebug->ReportLiveDeviceObjects(
+            D3D11_RLDO_SUMMARY |
+            D3D11_RLDO_DETAIL
+        );
+#endif
+        m_d3dDebug->Release();
+    }
+    m_d3dDebug = nullptr;
     
     if (m_d3dDevice)
         m_d3dDevice->Release();
-    m_d3dDevice = NULL;
+    m_d3dDevice = nullptr;
 
 }
 
@@ -298,10 +321,33 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
             break;
         }
     }
-
     if (FAILED(hresult)) {
         DXTRACE_MSG(L"Failed to create the Direct3D device!");
         return false;
+    }
+
+    // Debug layer
+    if (SUCCEEDED(m_d3dDevice->QueryInterface(__uuidof(ID3D11Debug), (void**)&m_d3dDebug))) {
+        ID3D11InfoQueue * d3dInfoQueue = nullptr;
+        if (SUCCEEDED(m_d3dDebug->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&d3dInfoQueue))) {
+#if defined(_DEBUG)
+            d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_CORRUPTION, true);
+            d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_ERROR, true);
+            d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_WARNING, true);
+            d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_INFO, true);
+#endif
+
+            D3D11_MESSAGE_ID hiddenMessages[] = {
+                D3D11_MESSAGE_ID_SETPRIVATEDATA_CHANGINGPARAMS,
+            };
+
+            D3D11_INFO_QUEUE_FILTER filter;
+            memset(&filter, 0, sizeof(filter));
+            filter.DenyList.NumIDs  = _countof(hiddenMessages);
+            filter.DenyList.pIDList = hiddenMessages;
+            d3dInfoQueue->AddStorageFilterEntries(&filter);
+            d3dInfoQueue->Release();
+        }
     }
 
     ID3D11Texture2D* back_buffer_texture;

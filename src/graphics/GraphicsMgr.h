@@ -39,6 +39,7 @@ private: // Data
 
     ID3D11Device *           m_d3dDevice;
     ID3D11DeviceContext *    m_d3dContext;
+    ID3D11Debug *            m_d3dDebug;
     IDXGISwapChain *         m_swapChain;
     ID3D11RenderTargetView * m_backBufferTarget;
     ID3D11RasterizerState *  m_rasterState;
