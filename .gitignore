@@ -9,3 +9,5 @@ Release
 **/*.gif
 **/*.png
 **/*.dds
+
+**/*.autosave.scml
