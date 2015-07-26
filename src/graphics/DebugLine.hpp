@@ -74,7 +74,7 @@ public:
                 SecureZeroMemory(&vertex_desc, sizeof(vertex_desc));
                 vertex_desc.Usage = D3D11_USAGE_DEFAULT;
                 vertex_desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-                vertex_desc.ByteWidth = sizeof(VertexPos3Uv) * 2;
+                vertex_desc.ByteWidth = sizeof(VertexPos3Rgb) * 2;
 
                 D3D11_SUBRESOURCE_DATA resource_data;
                 SecureZeroMemory(&resource_data, sizeof(resource_data));
