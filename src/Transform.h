@@ -19,7 +19,7 @@ public:
     
     // Queries
 
-    void             GetWorldMatrix (XMMATRIX * worldMatrixOut) const;
+    void             GetWorldFromModelMtx (XMMATRIX * worldMatrixOut) const;
     const XMFLOAT2 & GetPosition () const { return m_position; }
     float            GetRotation () const { return m_rotation; }
     const XMFLOAT2 & GetScale () const    { return m_scale; }

@@ -6,7 +6,7 @@ cbuffer cbPerObject : register(b0) {
 };
 
 cbuffer cbPerFrame : register(b1) {
-	matrix viewProj;
+	matrix projectionFromWorldMtx;
 };
 
 Texture2D    colorMap_     : register(t0);
@@ -31,7 +31,7 @@ PS_Input VS_Main(VS_Input vertex) {
 	float4 vertPos = vertex.pos;
 	vertPos.xy *= frameTexDims;
 	
-	vs_out.pos = mul(vertPos, viewProj);
+	vs_out.pos = mul(vertPos, projectionFromWorldMtx);
 	
 	// Texture coords
 	vs_out.tex0 = (frameTexPos + vertex.tex0 * frameTexDims) / textureDims;

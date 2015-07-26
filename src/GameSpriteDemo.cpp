@@ -72,6 +72,9 @@ bool GameSpriteDemo::LoadContent(void)
         GocLevel * level = new GocLevel();
         go3.AddComponent(level);
         level->LoadLevel(s_levelFile);
+
+
+        go3.AddComponent(new GocDebugLines());
     }
 
     return true;

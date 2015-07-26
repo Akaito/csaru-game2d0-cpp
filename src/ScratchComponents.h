@@ -71,12 +71,12 @@ public:
 private:
     void Render () override {
 
-        XMMATRIX viewProjection;
-        XMMATRIX world;
-        g_graphicsMgrInternal->GetViewProjectionMatrix(&viewProjection);
-        m_owner->GetTransform().GetWorldMatrix(&world);
+        XMMATRIX projectionFromWorldMtx;
+        XMMATRIX worldFromModelMtx;
+        g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
+        m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
-        m_sprite.Render(world, viewProjection);
+        m_sprite.Render(worldFromModelMtx, projectionFromWorldMtx);
 
     }
 
@@ -126,17 +126,25 @@ public:
 private:
     void Render () override {
 
-        XMMATRIX viewProjection;
-        XMMATRIX world;
-        g_graphicsMgrInternal->GetViewProjectionMatrix(&viewProjection);
-        m_owner->GetTransform().GetWorldMatrix(&world);
+        XMMATRIX projectionFromWorldMtx;
+        XMMATRIX worldFromModelMtx;
+        g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
+        m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
-        m_lines[0].Render(world, viewProjection);
+        m_lines[0].Render(worldFromModelMtx, projectionFromWorldMtx);
 
     }
 
     void Update (float dt) override {
+
         ref(dt);
+
+        /*
+        XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
+        pos.y -= 10.0f * dt;
+        m_owner->GetTransform().SetPosition(pos);
+        //*/
+
     }
 
 public:
@@ -258,9 +266,9 @@ class GocLevel : public GameObjectComponent {
     }
 
     void Render () override {
-        XMMATRIX viewProjectionMtx;
-        g_graphicsMgrInternal->GetViewProjectionMatrix(&viewProjectionMtx);
-        m_level.Render(m_owner->GetTransform(), viewProjectionMtx);
+        XMMATRIX projectionFromWorldMtx;
+        g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
+        m_level.Render(m_owner->GetTransform(), projectionFromWorldMtx);
     }
 
 public:

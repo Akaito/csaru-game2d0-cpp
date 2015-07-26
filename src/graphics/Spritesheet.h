@@ -50,9 +50,11 @@ public: // Constants and types
         bool FromDataMap (const CSaruContainer::DataMapReader & reader);
     };
     
+    /*
     struct VertexShaderPerFrameConstantBufferData {
         XMFLOAT4X4 projectionFromModel; // TODO : Lie about what this is, and pass in mvp to the shader anyway.  Make sure we can get just one cb working.
     };
+    //*/
     
     struct VertexShaderPerObjectConstantBufferData {
         //XMFLOAT4X4 worldFromModel;

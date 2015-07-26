@@ -29,6 +29,13 @@ SOFTWARE.
 
 class CGraphicsMgr : public IGraphicsMgr {
 
+public: // Types and Constants
+
+    struct DebugLines {
+        VertexPos3Rgb  points[42];
+        unsigned       lineCount;
+    };
+
 private: // Data
 
     HINSTANCE m_hInstance;
@@ -44,8 +51,8 @@ private: // Data
     ID3D11RenderTargetView * m_backBufferTarget;
     ID3D11RasterizerState *  m_rasterState;
     
-    XMFLOAT4X4 m_ViewProjectionMatrix;
-    ID3D11Buffer* m_mvpCB;
+    XMFLOAT4X4 m_projectionFromWorldMtx; // aka view-projection matrix
+    ID3D11Buffer* m_projectionFromWorldMtxCb;
     
     std::vector<VertexShader> m_vertexShaders;
     std::vector<PixelShader>  m_pixelShaders;
@@ -77,8 +84,8 @@ public: // Internal interface
     VertexShader * FindVertexShader (const std::wstring & name);
     PixelShader *  FindPixelShader (const std::wstring & name);
     
-    void GetViewProjectionMatrix (XMMATRIX * mtxOut);
-    ID3D11Buffer * GetRenderResource () { return m_mvpCB; }; // TODO : Just what is this thing?
+    void GetProjectionFromWorldMtx (XMMATRIX * mtxOut);
+    ID3D11Buffer * GetProjectionFromWorldMtxCb () { return m_projectionFromWorldMtxCb; };
     
 public: // IGraphicsMgr
     

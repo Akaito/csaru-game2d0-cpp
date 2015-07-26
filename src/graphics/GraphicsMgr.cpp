@@ -53,7 +53,7 @@ CGraphicsMgr::CGraphicsMgr ()
       m_swapChain(nullptr),
       m_backBufferTarget(nullptr),
       m_rasterState(nullptr),
-      m_mvpCB(nullptr)
+      m_projectionFromWorldMtxCb(nullptr)
 {
 }
 
@@ -169,8 +169,8 @@ VertexShader * CGraphicsMgr::FindVertexShaderRaii (const std::wstring & name) {
 }
 
 //==============================================================================
-void CGraphicsMgr::GetViewProjectionMatrix (XMMATRIX * mtxOut) {
-    memcpy(mtxOut->r, m_ViewProjectionMatrix.m, sizeof(mtxOut->r));
+void CGraphicsMgr::GetProjectionFromWorldMtx (XMMATRIX * mtxOut) {
+    memcpy(mtxOut->m, m_projectionFromWorldMtx.m, sizeof(mtxOut->m));
 }
 
 //==============================================================================
@@ -240,9 +240,9 @@ void CGraphicsMgr::Shutdown () {
     if (g_keyboardMouse)
         g_keyboardMouse->Shutdown();
 
-    if (m_mvpCB)
-        m_mvpCB->Release();
-    m_mvpCB = nullptr;
+    if (m_projectionFromWorldMtxCb)
+        m_projectionFromWorldMtxCb->Release();
+    m_projectionFromWorldMtxCb = nullptr;
 
     if (m_backBufferTarget)
         m_backBufferTarget->Release();
@@ -441,11 +441,13 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
     }
     
     // TODO : Move this to a camera class
-    XMMATRIX view = XMMatrixIdentity();
-    XMMATRIX projection = XMMatrixOrthographicOffCenterLH(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+    {
+        XMMATRIX view = XMMatrixIdentity();
+        XMMATRIX projectionFromViewMtx = XMMatrixOrthographicOffCenterLH(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
 
-    XMMATRIX vpm_temp = XMMatrixMultiply(view, projection);
-    memcpy(m_ViewProjectionMatrix.m, vpm_temp.m, sizeof(m_ViewProjectionMatrix));
+        XMMATRIX vpm_temp = XMMatrixMultiply(view, projectionFromViewMtx);
+        memcpy(m_projectionFromWorldMtx.m, vpm_temp.m, sizeof(m_projectionFromWorldMtx));
+    }
     
     
     D3D11_BUFFER_DESC const_desc;
@@ -454,7 +456,7 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
     const_desc.ByteWidth = sizeof(XMMATRIX);
     const_desc.Usage = D3D11_USAGE_DEFAULT;
 
-    HRESULT d3d_result = g_graphicsMgr->GetDevice()->CreateBuffer(&const_desc, 0, &m_mvpCB);
+    HRESULT d3d_result = g_graphicsMgr->GetDevice()->CreateBuffer(&const_desc, 0, &m_projectionFromWorldMtxCb);
     if (FAILED(d3d_result)) {
         ASSERT(!FAILED(d3d_result));
         return false;
@@ -462,7 +464,7 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
 #if defined(_DEBUG)
     {
         char tempName[] = "GraphicsMgr's model-view-proj ConstantBuffer";
-        m_mvpCB->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
+        m_projectionFromWorldMtxCb->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
     }
 #endif
         

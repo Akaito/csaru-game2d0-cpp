@@ -31,10 +31,10 @@ void SpriteAnimation::Render (const XMMATRIX & world, const XMMATRIX & viewProje
     XMMATRIX mvp = XMMatrixMultiply(world, viewProjection);
     mvp = XMMatrixTranspose(mvp);
     
-    ID3D11Buffer *        buffer     = g_graphicsMgrInternal->GetRenderResource();
-    ID3D11DeviceContext * d3dContext = g_graphicsMgrInternal->GetContext();
-    d3dContext->UpdateSubresource(buffer, 0, nullptr, &mvp, 0, 0);
-    d3dContext->VSSetConstantBuffers(1, 1, &buffer);
+    ID3D11Buffer *        projFromWorldCb = g_graphicsMgrInternal->GetProjectionFromWorldMtxCb();
+    ID3D11DeviceContext * d3dContext      = g_graphicsMgrInternal->GetContext();
+    d3dContext->UpdateSubresource(projFromWorldCb, 0, nullptr, &mvp, 0, 0);
+    d3dContext->VSSetConstantBuffers(1, 1, &projFromWorldCb);
 
     d3dContext->Draw(6, 0);
 

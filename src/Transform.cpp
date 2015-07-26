@@ -16,7 +16,7 @@ Transform::~Transform () {
 }
 
 //==============================================================================
-void Transform::GetWorldMatrix (XMMATRIX * worldMatrixOut) const {
+void Transform::GetWorldFromModelMtx (XMMATRIX * worldMatrixOut) const {
 
     XMMATRIX translation = XMMatrixTranslation(m_position.x, m_position.y, 0.0f);
     XMMATRIX rotationZ   = XMMatrixRotationZ(m_rotation);

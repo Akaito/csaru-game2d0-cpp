@@ -158,7 +158,7 @@ void Level::Reload () {
 //==============================================================================
 void Level::Render (
     const Transform & levelTransform,
-    const XMMATRIX &  viewProjection
+    const XMMATRIX &  projectionFromWorldMtx
 ) {
 
     ASSERT(m_legend.size());
@@ -168,8 +168,8 @@ void Level::Render (
     const float tileWidth  = sampleFrame->width  * levelTransform.GetScale().x;
     const float tileHeight = sampleFrame->height * levelTransform.GetScale().y;
 
-    Transform tileTransform;
-    XMMATRIX  tileWorldMtx;
+    Transform tileTransform = levelTransform;
+    XMMATRIX  tileWorldFromModelMtx;
 
     const unsigned tileCount = m_width * m_height;
     for (unsigned i = 0; i < tileCount; ++i) {
@@ -181,14 +181,13 @@ void Level::Render (
         const unsigned x = i % m_width;
         const unsigned y = i / m_width;
 
-        tileTransform = levelTransform;
         tileTransform.SetPosition(XMFLOAT2(
             x * tileWidth  + levelTransform.GetPosition().x,
             y * tileHeight + levelTransform.GetPosition().y
         ));
 
-        tileTransform.GetWorldMatrix(&tileWorldMtx);
-        legend.sprite.Render(tileWorldMtx, viewProjection);
+        tileTransform.GetWorldFromModelMtx(&tileWorldFromModelMtx);
+        legend.sprite.Render(tileWorldFromModelMtx, projectionFromWorldMtx);
     }
 
 }

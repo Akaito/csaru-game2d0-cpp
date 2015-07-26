@@ -33,6 +33,10 @@ private: // Data
     PixelShader *  m_pixelShader;
     ID3D11Buffer * m_vertexBuffer;
 
+    struct ViewProjStruct {
+        XMFLOAT4X4 viewProj;
+    };
+
 public:
     DebugLine () {
         memset(this, 0, sizeof(*this));
@@ -108,6 +112,29 @@ public:
             d3dContext->PSSetShader(m_pixelShader->GetShader(), 0, 0);
             //d3dContext->PSSetShaderResources(0, 1, &m_colorMap);
             //d3dContext->PSSetSamplers(0, 1, &m_colorMapSampler);
+
+
+            /*
+            ViewProjStruct cbPerObjectData;
+            cbPerObjectData.viewProj[0] = 
+
+
+            D3D11_SUBRESOURCE_DATA dataGlue;
+            SecureZeroMemory(&dataGlue, sizeof(dataGlue));
+            dataGlue.pSysMem = &cbPerObjectData;
+            
+            ASSERT(m_perObjectCb);
+            d3dContext->UpdateSubresource(
+                m_perObjectCb,
+                0,
+                NULL,
+                &cbPerObjectData,
+                0,
+                0
+            );
+            
+            d3dContext->VSSetConstantBuffers(0, 1, &m_perObjectCb);
+            //*/
         }
 
         // Render
@@ -115,7 +142,7 @@ public:
             XMMATRIX mvp = XMMatrixMultiply(world, viewProjection);
             mvp = XMMatrixTranspose(mvp);
             
-            ID3D11Buffer *        buffer     = g_graphicsMgrInternal->GetRenderResource();
+            ID3D11Buffer *        buffer     = g_graphicsMgrInternal->GetProjectionFromWorldMtxCb();
             ID3D11DeviceContext * d3dContext = g_graphicsMgrInternal->GetContext();
             d3dContext->UpdateSubresource(buffer, 0, nullptr, &mvp, 0, 0);
             d3dContext->VSSetConstantBuffers(1, 1, &buffer);
