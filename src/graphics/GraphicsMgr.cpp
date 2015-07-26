@@ -466,8 +466,11 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
     }
 #endif
         
-    //m_vertexShaders.reserve(16);
-    //m_pixelShaders.reserve(16);
+#ifdef _DEBUG
+    // Hacks!! Hides issues with lost pointers to VertexShaders!
+    m_vertexShaders.reserve(16);
+    m_pixelShaders.reserve(16);
+#endif
     
     ASSERT(!g_keyboardMouse);
     XInputKeyboardMouse * xikm = new XInputKeyboardMouse();

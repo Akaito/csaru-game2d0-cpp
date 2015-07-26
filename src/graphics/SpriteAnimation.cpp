@@ -40,7 +40,7 @@ void SpriteAnimation::Render (const XMMATRIX & world, const XMMATRIX & viewProje
 
 
 
-    /*
+    /* // Rem; do only this stuff to draw a second time.
     m_sheet2->RenderPrep(
         frame.x,
         frame.y,

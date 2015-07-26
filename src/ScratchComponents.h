@@ -24,6 +24,7 @@ SOFTWARE.
 
 #include "GameObjectComponent.h"
 #include "graphics/SpriteAnimation.hpp"
+#include "graphics/DebugLine.hpp"
 
 
 //==============================================================================
@@ -107,6 +108,38 @@ public:
     const SpritesheetFrame * GetCurrentFrame () const    { return m_sprite.GetCurrentFrame(); }
     const SpriteAnimation &  GetSprite () const          { return m_sprite; }
     SpriteAnimation &        GetSprite ()                { return m_sprite; }
+
+};
+
+//==============================================================================
+class GocDebugLines : public GameObjectComponent {
+private:
+    DebugLine m_lines[1];
+
+public:
+    GocDebugLines () :
+        GameObjectComponent()
+    {
+        m_type = GOC_TYPE_DEBUG_LINES;
+    }
+
+private:
+    void Render () override {
+
+        XMMATRIX viewProjection;
+        XMMATRIX world;
+        g_graphicsMgrInternal->GetViewProjectionMatrix(&viewProjection);
+        m_owner->GetTransform().GetWorldMatrix(&world);
+
+        m_lines[0].Render(world, viewProjection);
+
+    }
+
+    void Update (float dt) override {
+        ref(dt);
+    }
+
+public:
 
 };
 

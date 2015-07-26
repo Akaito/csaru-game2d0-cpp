@@ -35,7 +35,7 @@ extern const D3D11_INPUT_ELEMENT_DESC s_VertexPos3UvLayout[];
 extern const unsigned                 s_VertexPos3UvLayoutCount;
 
 // 3D Position and RGB float color
-struct VertexPo3Rgb {
+struct VertexPos3Rgb {
     XMFLOAT3 pos;
     XMFLOAT3 rgb;
 };
