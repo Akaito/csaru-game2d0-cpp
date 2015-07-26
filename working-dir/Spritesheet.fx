@@ -30,10 +30,10 @@ PS_Input VS_Main(VS_Input vertex) {
     // Position
     float4 outPos = vertex.pos;
     outPos.xy *= frameTexDims;
-    outPos.zw = vertex.pos.zw;
     
     //outPos = mul(outPos, worldFromModelMtx);
     outPos = mul(outPos, projectionFromWorldMtx);
+    outPos.xy *= 1.0;
     vs_out.pos = outPos;
     
     // Texture coords
