@@ -4,6 +4,7 @@ cbuffer cbPerFrame : register(b0) {
 
 cbuffer cbPerObject : register(b1) {
     matrix worldFromModelMtx;
+    matrix projectionFromModelMtx;
     float2 textureDims;
     float2 frameTexPos;
     float2 frameTexDims;
@@ -31,8 +32,13 @@ PS_Input VS_Main(VS_Input vertex) {
     float4 outPos = vertex.pos;
     outPos.xy *= frameTexDims;
     
-    //outPos = mul(outPos, worldFromModelMtx);
+    /*
+    outPos = mul(outPos, worldFromModelMtx);
     outPos = mul(outPos, projectionFromWorldMtx);
+    /*/
+    outPos = mul(outPos, projectionFromModelMtx);
+    //*/
+    
     outPos.xy *= 1.0;
     vs_out.pos = outPos;
     
