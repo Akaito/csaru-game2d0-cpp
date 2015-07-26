@@ -462,7 +462,6 @@ void Spritesheet::RenderPrep (
     
     ASSERT(m_perObjectCb);
     d3dContext->UpdateSubresource(
-        //g_graphicsMgrInternal->GetRenderResource(),
         m_perObjectCb,
         0,
         NULL,
