@@ -37,6 +37,14 @@ PS_Input VS_Main(VS_Input vertex) {
     outPos = mul(outPos, projectionFromWorldMtx);
     /*/
     outPos = mul(outPos, projectionFromModelMtx);
+    /*/
+    outPos = mul(
+        outPos,
+        transpose(mul(
+            transpose(worldFromModelMtx),
+            transpose(projectionFromWorldMtx)
+        ))
+    );
     //*/
     
     outPos.xy *= 1.0;

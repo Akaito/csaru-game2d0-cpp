@@ -488,6 +488,9 @@ void CGraphicsMgr::RenderPre () {
     float clearColor[4] = {0.0f, 0.0f, 0.25f, 1.0f};
     m_d3dContext->ClearRenderTargetView(m_backBufferTarget, clearColor);
 
+    XMMATRIX projFromWorldMtxTrans;
+    memcpy(projFromWorldMtxTrans.m, m_projectionFromWorldMtx.m, sizeof(projFromWorldMtxTrans.m));
+    projFromWorldMtxTrans = XMMatrixTranspose(projFromWorldMtxTrans);
     m_d3dContext->UpdateSubresource(m_projectionFromWorldMtxCb, 0, nullptr, &m_projectionFromWorldMtx, 0, 0);
     m_d3dContext->VSSetConstantBuffers(0, 1, &m_projectionFromWorldMtxCb);
 
