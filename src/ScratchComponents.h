@@ -71,12 +71,10 @@ public:
 private:
     void Render () override {
 
-        XMMATRIX projectionFromWorldMtx;
         XMMATRIX worldFromModelMtx;
-        g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
         m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
-        m_sprite.Render(worldFromModelMtx, projectionFromWorldMtx);
+        m_sprite.Render(worldFromModelMtx);
 
     }
 
@@ -266,9 +264,7 @@ class GocLevel : public GameObjectComponent {
     }
 
     void Render () override {
-        XMMATRIX projectionFromWorldMtx;
-        g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
-        m_level.Render(m_owner->GetTransform(), projectionFromWorldMtx);
+        m_level.Render(m_owner->GetTransform());
     }
 
 public:

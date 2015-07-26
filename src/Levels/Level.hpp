@@ -68,8 +68,5 @@ public:
     void Reload ();
 
     void Update (float dt);
-    void Render (
-        const Transform & levelTransform,
-        const XMMATRIX &  viewProjection
-    );
+    void Render (const Transform & levelTransform);
 };

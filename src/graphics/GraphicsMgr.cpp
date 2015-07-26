@@ -463,7 +463,7 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
     }
 #if defined(_DEBUG)
     {
-        char tempName[] = "GraphicsMgr's model-view-proj ConstantBuffer";
+        char tempName[] = "GraphicsMgr's projectionFromWorldMtx ConstantBuffer";
         m_projectionFromWorldMtxCb->SetPrivateData(WKPDID_D3DDebugObjectName, arrsize(tempName), tempName);
     }
 #endif
@@ -487,6 +487,9 @@ void CGraphicsMgr::RenderPre () {
 
     float clear_color[4] = {0.0f, 0.0f, 0.25f, 1.0f};
     m_d3dContext->ClearRenderTargetView(m_backBufferTarget, clear_color);
+
+    m_d3dContext->UpdateSubresource(m_projectionFromWorldMtxCb, 0, nullptr, &m_projectionFromWorldMtx, 0, 0);
+    m_d3dContext->VSSetConstantBuffers(0, 1, &m_projectionFromWorldMtxCb);
 
 }
 

@@ -285,7 +285,7 @@ bool Spritesheet::PrepareConstantBuffers () {
     }
 #if defined(_DEBUG)
     char           tempName[256];
-    const unsigned strLen = sprintf_s(tempName, "Spritesheet {%S}'s ConstantBuffer", m_name.c_str());
+    const unsigned strLen = sprintf_s(tempName, "Spritesheet {%S}'s PerObjectConstantBuffer", m_name.c_str());
     m_perObjectCb->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
 #endif
     
@@ -377,13 +377,13 @@ bool Spritesheet::PrepareVertexBuffer () {
     m_textureHeight = colorTexDesc.Height;
 
     VertexPos3Uv vertices[] = {
-        { XMFLOAT3( 0.5f,  0.5f, 1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3( 0.5f, -0.5f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3(-0.5f, -0.5f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
+        { XMFLOAT3( 0.5f,  0.5f, 0.5f), XMFLOAT2(1.0f, 0.0f) },
+        { XMFLOAT3( 0.5f, -0.5f, 0.5f), XMFLOAT2(1.0f, 1.0f) },
+        { XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT2(0.0f, 1.0f) },
 
-        { XMFLOAT3(-0.5f, -0.5f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-        { XMFLOAT3(-0.5f,  0.5f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3( 0.5f,  0.5f, 1.0f), XMFLOAT2(1.0f, 0.0f) }
+        { XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT2(0.0f, 1.0f) },
+        { XMFLOAT3(-0.5f,  0.5f, 0.5f), XMFLOAT2(0.0f, 0.0f) },
+        { XMFLOAT3( 0.5f,  0.5f, 0.5f), XMFLOAT2(1.0f, 0.0f) }
     };
 
     //
@@ -427,10 +427,11 @@ bool Spritesheet::RebuildFromDatafile () {
 
 //==============================================================================
 void Spritesheet::RenderPrep (
-    unsigned u,
-    unsigned v,
-    unsigned width,
-    unsigned height
+    const XMMATRIX & worldFromModelMtx,
+    unsigned         u,
+    unsigned         v,
+    unsigned         width,
+    unsigned         height
 ) {
 
     unsigned int stride = sizeof(VertexPos3Uv);
@@ -449,6 +450,13 @@ void Spritesheet::RenderPrep (
     
     // Supply data
     VertexShaderPerObjectConstantBufferData cbPerObjectData;
+    const XMMATRIX &                        transposedWorldFromModelMtx = XMMatrixTranspose(worldFromModelMtx);
+    memcpy_s(
+        cbPerObjectData.worldFromModelMtx.m,
+        sizeof(cbPerObjectData.worldFromModelMtx.m),
+        transposedWorldFromModelMtx.m,
+        sizeof(transposedWorldFromModelMtx.m)
+    );
     cbPerObjectData.textureDims.x   = float(m_textureWidth);
     cbPerObjectData.textureDims.y   = float(m_textureHeight);
     cbPerObjectData.frameTexPos.x   = float(u);
@@ -464,13 +472,13 @@ void Spritesheet::RenderPrep (
     d3dContext->UpdateSubresource(
         m_perObjectCb,
         0,
-        NULL,
+        nullptr,
         &cbPerObjectData,
         0,
         0
     );
     
-    d3dContext->VSSetConstantBuffers(0, 1, &m_perObjectCb);
+    d3dContext->VSSetConstantBuffers(1, 1, &m_perObjectCb);
 
 }
 

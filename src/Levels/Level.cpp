@@ -156,10 +156,7 @@ void Level::Reload () {
 }
 
 //==============================================================================
-void Level::Render (
-    const Transform & levelTransform,
-    const XMMATRIX &  projectionFromWorldMtx
-) {
+void Level::Render (const Transform & levelTransform) {
 
     ASSERT(m_legend.size());
 
@@ -187,7 +184,7 @@ void Level::Render (
         ));
 
         tileTransform.GetWorldFromModelMtx(&tileWorldFromModelMtx);
-        legend.sprite.Render(tileWorldFromModelMtx, projectionFromWorldMtx);
+        legend.sprite.Render(tileWorldFromModelMtx);
     }
 
 }

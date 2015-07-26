@@ -42,7 +42,7 @@ public:
         memset(this, 0, sizeof(*this));
     }
 
-    void Render (const XMMATRIX & world, const XMMATRIX & viewProjection) {
+    void Render (const XMMATRIX & worldFromModelMtx, const XMMATRIX & projectionFromWorldMtx) {
 
         // Initial prep
         if (!m_vertexShader) {
@@ -53,8 +53,8 @@ public:
             m_ends[0].rgb.y = 1.0f;
             m_ends[0].rgb.z = 1.0f;
 
-            m_ends[1].pos.x = 100.0f;
-            m_ends[1].pos.y = 100.0f;
+            m_ends[1].pos.x = 0.5f;
+            m_ends[1].pos.y = 0.1f;
             m_ends[1].pos.z = 0.0f;
             m_ends[1].rgb.x = 1.0f;
             m_ends[1].rgb.y = 1.0f;
@@ -133,19 +133,21 @@ public:
                 0
             );
             
-            d3dContext->VSSetConstantBuffers(0, 1, &m_perObjectCb);
+            d3dContext->VSSetConstantBuffers(1, 1, &m_perObjectCb);
             //*/
         }
 
         // Render
         {
-            XMMATRIX mvp = XMMatrixMultiply(world, viewProjection);
-            mvp = XMMatrixTranspose(mvp);
+            ID3D11DeviceContext * d3dContext               = g_graphicsMgrInternal->GetContext();
+            /*
+            XMMATRIX projectionFromModelMtx = XMMatrixMultiply(worldFromModelMtx, projectionFromWorldMtx);
+            projectionFromModelMtx = XMMatrixTranspose(projectionFromModelMtx);
             
-            ID3D11Buffer *        buffer     = g_graphicsMgrInternal->GetProjectionFromWorldMtxCb();
-            ID3D11DeviceContext * d3dContext = g_graphicsMgrInternal->GetContext();
-            d3dContext->UpdateSubresource(buffer, 0, nullptr, &mvp, 0, 0);
-            d3dContext->VSSetConstantBuffers(1, 1, &buffer);
+            ID3D11Buffer *        projectionFromWorldMtxCb = g_graphicsMgrInternal->GetProjectionFromWorldMtxCb();
+            d3dContext->UpdateSubresource(projectionFromWorldMtxCb, 0, nullptr, &projectionFromModelMtx, 0, 0);
+            d3dContext->VSSetConstantBuffers(1, 1, &projectionFromWorldMtxCb);
+            //*/
 
             d3dContext->Draw(2, 0);
         }

@@ -50,14 +50,8 @@ public: // Constants and types
         bool FromDataMap (const CSaruContainer::DataMapReader & reader);
     };
     
-    /*
-    struct VertexShaderPerFrameConstantBufferData {
-        XMFLOAT4X4 projectionFromModel; // TODO : Lie about what this is, and pass in mvp to the shader anyway.  Make sure we can get just one cb working.
-    };
-    //*/
-    
     struct VertexShaderPerObjectConstantBufferData {
-        //XMFLOAT4X4 worldFromModel;
+        XMFLOAT4X4 worldFromModelMtx;
         XMFLOAT2   textureDims;  // texels
         XMFLOAT2   frameTexPos;  // upper-left corner of frame in texels
         XMFLOAT2   frameTexDims; // width/height of frame in texels
@@ -107,10 +101,11 @@ public: // Commands
     bool BuildFromDatafile (const char * filepath);
     bool RebuildFromDatafile ();
     void RenderPrep (
-        unsigned u,
-        unsigned v,
-        unsigned width,
-        unsigned height
+        const XMMATRIX & worldFromModelMtx,
+        unsigned         u,
+        unsigned         v,
+        unsigned         width,
+        unsigned         height
     );
     
     void Reset();

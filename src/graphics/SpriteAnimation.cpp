@@ -16,41 +16,36 @@ const SpritesheetFrame * SpriteAnimation::GetCurrentFrame () const {
 }
 
 //==============================================================================
-void SpriteAnimation::Render (const XMMATRIX & world, const XMMATRIX & viewProjection) {
+void SpriteAnimation::Render (const XMMATRIX & worldFromModelMtx) {
 
     ASSERT(m_spritesheet);
     
     const SpritesheetFrame & frame = m_spritesheet->GetAnimation(m_animIndex)->frames[m_frameIndex];
     m_spritesheet->RenderPrep(
+        worldFromModelMtx,
         frame.x,
         frame.y,
         frame.width,
         frame.height
     );
-    
-    XMMATRIX mvp = XMMatrixMultiply(world, viewProjection);
-    mvp = XMMatrixTranspose(mvp);
-    
-    ID3D11Buffer *        projFromWorldCb = g_graphicsMgrInternal->GetProjectionFromWorldMtxCb();
-    ID3D11DeviceContext * d3dContext      = g_graphicsMgrInternal->GetContext();
-    d3dContext->UpdateSubresource(projFromWorldCb, 0, nullptr, &mvp, 0, 0);
-    d3dContext->VSSetConstantBuffers(1, 1, &projFromWorldCb);
 
+    ID3D11DeviceContext * d3dContext = g_graphicsMgrInternal->GetContext();
     d3dContext->Draw(6, 0);
 
 
 
     /* // Rem; do only this stuff to draw a second time.
     m_sheet2->RenderPrep(
+        worldFromModelMtx,
         frame.x,
         frame.y,
         frame.width,
         frame.height
     );
     
-    world = m_owner->GetTransform().GetWorldMatrix();
+    worldFromModelMtx = m_owner->GetTransform().GetWorldMatrix();
     XMMATRIX test = XMMatrixTranslation(50.0f, 0.0f, 0.0f);
-    mvp = XMMatrixMultiply(world, test);
+    mvp = XMMatrixMultiply(worldFromModelMtx, test);
     mvp = XMMatrixMultiply(mvp, view_projection);
     mvp = XMMatrixTranspose(mvp);
     

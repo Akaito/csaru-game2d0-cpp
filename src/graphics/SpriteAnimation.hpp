@@ -50,7 +50,7 @@ public:
 
     // Commands
     void Update (float dt);
-    void Render (const XMMATRIX & world, const XMMATRIX & viewProjection);
+    void Render (const XMMATRIX & worldFromModelMtx);
 
     void SetSheet (Spritesheet * sheet);
     void SetFrameIndex (unsigned index);

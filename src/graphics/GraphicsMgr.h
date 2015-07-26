@@ -85,7 +85,7 @@ public: // Internal interface
     PixelShader *  FindPixelShader (const std::wstring & name);
     
     void GetProjectionFromWorldMtx (XMMATRIX * mtxOut);
-    ID3D11Buffer * GetProjectionFromWorldMtxCb () { return m_projectionFromWorldMtxCb; };
+    //ID3D11Buffer * GetProjectionFromWorldMtxCb () { return m_projectionFromWorldMtxCb; };
     
 public: // IGraphicsMgr
     
