@@ -57,10 +57,8 @@ bool GameSpriteDemo::LoadContent(void)
     XMFLOAT2 sprite1_pos(200.0f, 100.0f);
     m_gameObjects[0].GetTransform().SetPosition(sprite1_pos);
 
-    //*
     XMFLOAT2 sprite2_pos(400.0f, 100.0f);
     m_gameObjects[1].GetTransform().SetPosition(sprite2_pos);
-    //*/
 
 
     // -- go3 --

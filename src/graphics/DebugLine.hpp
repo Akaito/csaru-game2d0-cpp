@@ -32,14 +32,54 @@ private: // Data
     VertexShader * m_vertexShader;
     PixelShader *  m_pixelShader;
     ID3D11Buffer * m_vertexBuffer;
+    ID3D11Buffer * m_perObjectCb;
 
-    struct ViewProjStruct {
-        XMFLOAT4X4 viewProj;
+    struct PerObjectCbData {
+        XMFLOAT4X4 mtx;
     };
 
 public:
     DebugLine () {
         memset(this, 0, sizeof(*this));
+    }
+
+    bool PrepareConstantBuffers () {
+
+        // Supply initial data
+        PerObjectCbData cbPerObjectData;
+        SecureZeroMemory(&cbPerObjectData, sizeof(cbPerObjectData));
+
+        D3D11_BUFFER_DESC cbPerObjectDesc;
+        SecureZeroMemory(&cbPerObjectDesc, sizeof(cbPerObjectDesc));
+        // ByteWidth must be a multiple of 16
+        // TODO : Is it okay to just lie like this?
+        cbPerObjectDesc.ByteWidth           = sizeof(cbPerObjectData) + (sizeof(cbPerObjectData) % 16);
+        cbPerObjectDesc.Usage               = D3D11_USAGE_DEFAULT;
+        cbPerObjectDesc.BindFlags           = D3D11_BIND_CONSTANT_BUFFER;
+        //cbPerObjectDesc.CPUAccessFlags      = D3D11_CPU_ACCESS_WRITE;
+        
+        // Subresource data
+        D3D11_SUBRESOURCE_DATA initData;
+        SecureZeroMemory(&initData, sizeof(initData));
+        initData.pSysMem = &cbPerObjectData;
+        
+        HRESULT d3dResult = g_graphicsMgr->GetDevice()->CreateBuffer(
+            &cbPerObjectDesc,
+            &initData,
+            &m_perObjectCb
+        );
+        if (FAILED(d3dResult)) {
+            DXTRACE_MSG(L"Failed to create constant buffer!");
+            return false;
+        }
+    #if defined(_DEBUG)
+        char           tempName[256];
+        const unsigned strLen = sprintf_s(tempName, "DebugLine PerObjectConstantBuffer");
+        m_perObjectCb->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
+    #endif
+        
+        return true;
+
     }
 
     void Render (const XMMATRIX & worldFromModelMtx) {
@@ -48,14 +88,14 @@ public:
         if (!m_vertexShader) {
             m_ends[0].pos.x = 0.0f;
             m_ends[0].pos.y = 0.0f;
-            m_ends[0].pos.z = 0.0f;
+            m_ends[0].pos.z = 1.0f;
             m_ends[0].rgb.x = 1.0f;
             m_ends[0].rgb.y = 1.0f;
             m_ends[0].rgb.z = 1.0f;
 
-            m_ends[1].pos.x = 0.5f;
+            m_ends[1].pos.x = 100.5f;
             m_ends[1].pos.y = 0.1f;
-            m_ends[1].pos.z = 0.0f;
+            m_ends[1].pos.z = 1.0f;
             m_ends[1].rgb.x = 1.0f;
             m_ends[1].rgb.y = 1.0f;
             m_ends[1].rgb.z = 1.0f;
@@ -95,6 +135,8 @@ public:
                     m_vertexBuffer->SetPrivateData(WKPDID_D3DDebugObjectName, strLen, tempName);
                 #endif
             }
+
+            PrepareConstantBuffers();
         }
 
         // Render prep
@@ -140,13 +182,11 @@ public:
         // Render
         {
             ID3D11DeviceContext * d3dContext               = g_graphicsMgrInternal->GetContext();
-            /*
-            XMMATRIX projectionFromModelMtx = XMMatrixMultiply(worldFromModelMtx, projectionFromWorldMtx);
-            projectionFromModelMtx = XMMatrixTranspose(projectionFromModelMtx);
+            //*
+            XMMATRIX transWorldFromModel = XMMatrixTranspose(worldFromModelMtx);
             
-            ID3D11Buffer *        projectionFromWorldMtxCb = g_graphicsMgrInternal->GetProjectionFromWorldMtxCb();
-            d3dContext->UpdateSubresource(projectionFromWorldMtxCb, 0, nullptr, &projectionFromModelMtx, 0, 0);
-            d3dContext->VSSetConstantBuffers(1, 1, &projectionFromWorldMtxCb);
+            d3dContext->UpdateSubresource(m_perObjectCb, 0, nullptr, &transWorldFromModel, 0, 0);
+            d3dContext->VSSetConstantBuffers(1, 1, &m_perObjectCb);
             //*/
 
             d3dContext->Draw(2, 0);

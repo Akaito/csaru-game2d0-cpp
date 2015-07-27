@@ -2,15 +2,17 @@ cbuffer cbPerFrame : register(b0) {
 	matrix projectionFromWorldMtx;
 };
 
-cbuffer cbPerFrame2 : register(b1) {
-	matrix projectionFromWorldMtx2;
+cbuffer cbPerObject : register(b1) {
+	matrix worldFromModelMtx;
 };
 
 
 float4 VS_Main(float4 pos : POSITION) : SV_POSITION {
 
-	return pos;
-    return mul(pos, projectionFromWorldMtx2);
+	//return pos;
+    float4 result = mul(pos, worldFromModelMtx);
+    result = mul(result, projectionFromWorldMtx);
+    return result;
 
 }
 

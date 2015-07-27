@@ -267,7 +267,6 @@ bool Spritesheet::PrepareConstantBuffers () {
     cbPerObjectDesc.ByteWidth           = sizeof(cbPerObjectData) + (sizeof(cbPerObjectData) % 16);
     cbPerObjectDesc.Usage               = D3D11_USAGE_DEFAULT;
     cbPerObjectDesc.BindFlags           = D3D11_BIND_CONSTANT_BUFFER;
-    //cbPerObjectDesc.CPUAccessFlags      = D3D11_CPU_ACCESS_WRITE;
     
     // Subresource data
     D3D11_SUBRESOURCE_DATA initData;
