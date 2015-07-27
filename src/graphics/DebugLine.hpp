@@ -42,7 +42,7 @@ public:
         memset(this, 0, sizeof(*this));
     }
 
-    void Render (const XMMATRIX & worldFromModelMtx, const XMMATRIX & projectionFromWorldMtx) {
+    void Render (const XMMATRIX & worldFromModelMtx) {
 
         // Initial prep
         if (!m_vertexShader) {

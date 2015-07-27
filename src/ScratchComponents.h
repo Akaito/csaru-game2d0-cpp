@@ -129,7 +129,7 @@ private:
         g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
         m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
-        m_lines[0].Render(worldFromModelMtx, projectionFromWorldMtx);
+        m_lines[0].Render(worldFromModelMtx);
 
     }
 

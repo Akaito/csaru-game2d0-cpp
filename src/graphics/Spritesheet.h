@@ -52,7 +52,6 @@ public: // Constants and types
     
     struct VertexShaderPerObjectConstantBufferData {
         XMFLOAT4X4 worldFromModelMtx;
-        XMFLOAT4X4 projectionFromModelMtx;
         XMFLOAT2   textureDims;  // texels
         XMFLOAT2   frameTexPos;  // upper-left corner of frame in texels
         XMFLOAT2   frameTexDims; // width/height of frame in texels

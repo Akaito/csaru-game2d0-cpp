@@ -491,7 +491,7 @@ void CGraphicsMgr::RenderPre () {
     XMMATRIX projFromWorldMtxTrans;
     memcpy(projFromWorldMtxTrans.m, m_projectionFromWorldMtx.m, sizeof(projFromWorldMtxTrans.m));
     projFromWorldMtxTrans = XMMatrixTranspose(projFromWorldMtxTrans);
-    m_d3dContext->UpdateSubresource(m_projectionFromWorldMtxCb, 0, nullptr, &m_projectionFromWorldMtx, 0, 0);
+    m_d3dContext->UpdateSubresource(m_projectionFromWorldMtxCb, 0, nullptr, &projFromWorldMtxTrans, 0, 0);
     m_d3dContext->VSSetConstantBuffers(0, 1, &m_projectionFromWorldMtxCb);
 
 }

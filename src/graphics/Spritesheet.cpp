@@ -451,23 +451,13 @@ void Spritesheet::RenderPrep (
     // Supply data
     VertexShaderPerObjectConstantBufferData cbPerObjectData;
 
-    const XMMATRIX & transposedWorldFromModelMtx = XMMatrixTranspose(worldFromModelMtx);
+    XMMATRIX transposedWorldFromModelMtx = worldFromModelMtx;
+    transposedWorldFromModelMtx = XMMatrixTranspose(transposedWorldFromModelMtx);
     memcpy_s(
         cbPerObjectData.worldFromModelMtx.m,
         sizeof(cbPerObjectData.worldFromModelMtx.m),
         transposedWorldFromModelMtx.m,
         sizeof(transposedWorldFromModelMtx.m)
-    );
-
-    XMMATRIX transposedProjectionFromModelMtx;
-    g_graphicsMgrInternal->GetProjectionFromWorldMtx(&transposedProjectionFromModelMtx);
-    transposedProjectionFromModelMtx = XMMatrixMultiply(worldFromModelMtx, transposedProjectionFromModelMtx);
-    transposedProjectionFromModelMtx = XMMatrixTranspose(transposedProjectionFromModelMtx);
-    memcpy_s(
-        cbPerObjectData.projectionFromModelMtx.m,
-        sizeof(cbPerObjectData.projectionFromModelMtx.m),
-        transposedProjectionFromModelMtx.m,
-        sizeof(transposedProjectionFromModelMtx.m)
     );
 
     cbPerObjectData.textureDims.x   = float(m_textureWidth);
