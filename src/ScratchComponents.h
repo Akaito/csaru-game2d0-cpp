@@ -146,10 +146,13 @@ public:
 private:
     void Render () override {
 
+        /*
         XMMATRIX worldFromModelMtx;
         m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
-
         m_lines[0].Render(worldFromModelMtx);
+        /*/
+        m_lines[0].Render(XMMatrixIdentity());
+        //*/
 
     }
 
@@ -157,14 +160,10 @@ private:
 
         ref(dt);
 
-        m_lines[0].Ends()[1].pos.y += 50.0f * dt;
-        m_lines[0].UpdateVertexBuffer();
-
-        /*
         XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
-        pos.y -= 10.0f * dt;
-        m_owner->GetTransform().SetPosition(pos);
-        //*/
+        m_lines[0].Ends()[1].pos.x = pos.x;
+        m_lines[0].Ends()[1].pos.y = pos.y;
+        m_lines[0].UpdateVertexBuffer();
 
     }
 
