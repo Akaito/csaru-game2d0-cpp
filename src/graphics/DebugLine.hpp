@@ -83,6 +83,21 @@ public:
         memset(this, 0, sizeof(*this));
     }
 
+    VertexPos3Rgb * Ends () { return m_ends; }
+
+    void UpdateVertexBuffer () {
+
+        if (!m_vertexBuffer)
+            return;
+
+        ID3D11DeviceContext *    d3dContext = g_graphicsMgrInternal->GetContext();
+        D3D11_MAPPED_SUBRESOURCE resource;
+        d3dContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+        memcpy(resource.pData, m_ends, sizeof(m_ends));
+        d3dContext->Unmap(m_vertexBuffer, 0);
+
+    }
+
     void Render (const XMMATRIX & worldFromModelMtx) {
 
         // Initial prep
@@ -139,16 +154,6 @@ public:
             }
 
             PrepareConstantBuffers();
-        }
-
-        // Update vertex buffer
-        {
-            m_ends[1].pos.y += 1.0f;
-            ID3D11DeviceContext *    d3dContext = g_graphicsMgrInternal->GetContext();
-            D3D11_MAPPED_SUBRESOURCE resource;
-            d3dContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
-            memcpy(resource.pData, m_ends, sizeof(m_ends));
-            d3dContext->Unmap(m_vertexBuffer, 0);
         }
 
         // Render prep

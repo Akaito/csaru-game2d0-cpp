@@ -157,6 +157,9 @@ private:
 
         ref(dt);
 
+        m_lines[0].Ends()[1].pos.y += 50.0f * dt;
+        m_lines[0].UpdateVertexBuffer();
+
         /*
         XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
         pos.y -= 10.0f * dt;
