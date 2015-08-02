@@ -113,14 +113,16 @@ public:
             m_ends[1].pos.y = 0.1f;
             m_ends[1].pos.z = 1.0f;
             m_ends[1].rgb.x = 1.0f;
-            m_ends[1].rgb.y = 1.0f;
+            m_ends[1].rgb.y = 0.0f;
             m_ends[1].rgb.z = 1.0f;
 
-            const wchar_t * debugLineShaderFilepath = L"SolidGreenColor.fx";
+            const wchar_t * debugLineShaderFilepath = L"ColoredVerts.fx";
             m_vertexShader = g_graphicsMgrInternal->LoadVertexShader(
                 L"DebugLine VS",
                 debugLineShaderFilepath,
-                "VS_Main"
+                "VS_Main",
+                s_VertexPos3RgbLayout,
+                s_VertexPos3RgbLayoutCount
             );
             m_pixelShader = g_graphicsMgrInternal->LoadPixelShader(
                 L"DebugLine PS",
@@ -169,31 +171,6 @@ public:
             d3dContext->VSSetShader(m_vertexShader->GetShader(), 0, 0);
             
             d3dContext->PSSetShader(m_pixelShader->GetShader(), 0, 0);
-            //d3dContext->PSSetShaderResources(0, 1, &m_colorMap);
-            //d3dContext->PSSetSamplers(0, 1, &m_colorMapSampler);
-
-
-            /*
-            ViewProjStruct cbPerObjectData;
-            cbPerObjectData.viewProj[0] = 
-
-
-            D3D11_SUBRESOURCE_DATA dataGlue;
-            SecureZeroMemory(&dataGlue, sizeof(dataGlue));
-            dataGlue.pSysMem = &cbPerObjectData;
-            
-            ASSERT(m_perObjectCb);
-            d3dContext->UpdateSubresource(
-                m_perObjectCb,
-                0,
-                NULL,
-                &cbPerObjectData,
-                0,
-                0
-            );
-            
-            d3dContext->VSSetConstantBuffers(1, 1, &m_perObjectCb);
-            //*/
         }
 
         // Render

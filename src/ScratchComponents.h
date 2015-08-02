@@ -163,6 +163,7 @@ private:
         XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
         m_lines[0].Ends()[1].pos.x = pos.x;
         m_lines[0].Ends()[1].pos.y = pos.y;
+        m_lines[0].Ends()[0].rgb.x = 0.0f;
         m_lines[0].UpdateVertexBuffer();
 
     }

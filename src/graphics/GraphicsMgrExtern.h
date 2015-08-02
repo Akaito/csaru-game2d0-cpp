@@ -68,9 +68,11 @@ public: // Commands
     virtual void RenderPost () = 0;
     
     virtual IVertexShader * LoadVertexShader (
-        const std::wstring & name,
-        const std::wstring & filepath,
-        const std::string &  entryFunction
+        const std::wstring &             name,
+        const std::wstring &             filepath,
+        const std::string &              entryFunction,
+        const D3D11_INPUT_ELEMENT_DESC * inputDesc,
+        unsigned                         inputElementCount
     ) = 0;
     virtual IPixelShader * LoadPixelShader (
         const std::wstring & name,

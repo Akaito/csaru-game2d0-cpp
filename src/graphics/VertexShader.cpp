@@ -45,9 +45,11 @@ VertexShader::~VertexShader () {
 
 //==============================================================================
 bool VertexShader::Compile (
-    const std::wstring & name,
-    const std::wstring & filepath,
-    const std::string &  entryFunction
+    const std::wstring &             name,
+    const std::wstring &             filepath,
+    const std::string &              entryFunction,
+    const D3D11_INPUT_ELEMENT_DESC * inputDesc,
+    unsigned                         inputElementCount
 ) {
     
     m_name = name;
@@ -95,9 +97,10 @@ bool VertexShader::Compile (
     // Prepare input layout
     //
 
+    // TODO : Pool input layouts?
     d3dResult = g_graphicsMgrInternal->GetDevice()->CreateInputLayout(
-        s_VertexPos3UvLayout,
-        s_VertexPos3UvLayoutCount,
+        inputDesc,
+        inputElementCount,
         vsBuffer->GetBufferPointer(),
         vsBuffer->GetBufferSize(),
         &m_inputLayout

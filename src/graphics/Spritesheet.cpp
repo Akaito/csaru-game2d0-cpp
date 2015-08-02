@@ -302,7 +302,9 @@ bool Spritesheet::PrepareGraphicsResources () {
     m_vertexShader = g_graphicsMgrInternal->LoadVertexShader(
         L"Spritesheet VS",
         spritesheetEffectFilepath,
-        "VS_Main"
+        "VS_Main",
+        s_VertexPos3UvLayout,
+        s_VertexPos3UvLayoutCount
     );
     m_pixelShader = g_graphicsMgrInternal->LoadPixelShader(
         L"Spritesheet PS",

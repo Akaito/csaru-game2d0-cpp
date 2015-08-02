@@ -204,14 +204,16 @@ Spritesheet * CGraphicsMgr::LoadSpritesheet (const char * filepath) {
 
 //==============================================================================
 VertexShader * CGraphicsMgr::LoadVertexShader (
-    const std::wstring & name,
-    const std::wstring & filepath,
-    const std::string &  entryFunction
+    const std::wstring &             name,
+    const std::wstring &             filepath,
+    const std::string &              entryFunction,
+    const D3D11_INPUT_ELEMENT_DESC * inputDesc,
+    unsigned                         inputElementCount
 ) {
 
     VertexShader * shader = FindVertexShaderRaii(name);
     
-    if (!shader->Compile(name, filepath, entryFunction))
+    if (!shader->Compile(name, filepath, entryFunction, inputDesc, inputElementCount))
         return nullptr;
 
     return shader;

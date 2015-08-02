@@ -46,9 +46,11 @@ public: // Queries
 public: // Commands
 
     bool Compile (
-        const std::wstring & name,
-        const std::wstring & filepath,
-        const std::string &  entryFunction
+        const std::wstring &             name,
+        const std::wstring &             filepath,
+        const std::string &              entryFunction,
+        const D3D11_INPUT_ELEMENT_DESC * inputDesc,
+        unsigned                         inputElementCount
     );
 
 };
