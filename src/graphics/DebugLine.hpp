@@ -83,6 +83,18 @@ public:
         memset(this, 0, sizeof(*this));
     }
 
+    ~DebugLine () {
+        if (m_perObjectCb) {
+            m_perObjectCb->Release();
+            m_perObjectCb = nullptr;
+        }
+
+        if (m_vertexBuffer) {
+            m_vertexBuffer->Release();
+            m_vertexBuffer = nullptr;
+        }
+    }
+
     VertexPos3Rgb * Ends () { return m_ends; }
 
     void UpdateVertexBuffer () {
