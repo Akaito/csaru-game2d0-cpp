@@ -25,6 +25,7 @@ SOFTWARE.
 #pragma once
 
 class Spritesheet;
+class Camera;
 
 // 3D Position and UV texture coordinates
 struct VertexPos3Uv {
@@ -78,6 +79,8 @@ public: // Commands
     ) = 0;
 
     virtual Spritesheet * LoadSpritesheet (const char * filepath) = 0;
+
+    virtual Camera * GetActiveCamera () = 0;
 
 };
 

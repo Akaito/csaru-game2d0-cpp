@@ -185,5 +185,8 @@
     <ClInclude Include="src\graphics\DebugLine.hpp">
       <Filter>src\Graphics\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="src\graphics\Camera.hpp">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

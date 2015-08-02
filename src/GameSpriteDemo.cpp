@@ -95,6 +95,15 @@ void GameSpriteDemo::Update(float dt)
     for (unsigned i = 0; i < s_goCount; ++i) {
         m_gameObjects[i].Update(dt);
     }
+
+    // camera test (Hacks!!)
+    {
+        static float time = 0.0f;
+        time += dt * 1.2f;
+        g_graphicsMgr->GetActiveCamera()->SetPosition(
+            m_gameObjects[0].GetTransform().GetPosition()
+        );
+    }
 }
 
 

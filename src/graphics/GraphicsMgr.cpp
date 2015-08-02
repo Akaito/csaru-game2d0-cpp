@@ -170,7 +170,7 @@ VertexShader * CGraphicsMgr::FindVertexShaderRaii (const std::wstring & name) {
 
 //==============================================================================
 void CGraphicsMgr::GetProjectionFromWorldMtx (XMMATRIX * mtxOut) {
-    memcpy(mtxOut->m, m_projectionFromWorldMtx.m, sizeof(mtxOut->m));
+    m_camera.GetProjectionFromWorldMtx(mtxOut);
 }
 
 //==============================================================================
@@ -440,15 +440,7 @@ bool CGraphicsMgr::Startup (HINSTANCE hInstance, HWND hwnd) {
         m_d3dContext->RSSetState(m_rasterState);
     }
     
-    // TODO : Move this to a camera class
-    {
-        XMMATRIX view = XMMatrixIdentity();
-        XMMATRIX projectionFromViewMtx = XMMatrixOrthographicOffCenterLH(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
-
-        XMMATRIX vpm_temp = XMMatrixMultiply(view, projectionFromViewMtx);
-        memcpy(m_projectionFromWorldMtx.m, vpm_temp.m, sizeof(m_projectionFromWorldMtx));
-    }
-    
+    m_camera.Setup(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
     
     D3D11_BUFFER_DESC const_desc;
     SecureZeroMemory(&const_desc, sizeof(const_desc));
@@ -489,8 +481,9 @@ void CGraphicsMgr::RenderPre () {
     m_d3dContext->ClearRenderTargetView(m_backBufferTarget, clearColor);
 
     XMMATRIX projFromWorldMtxTrans;
-    memcpy(projFromWorldMtxTrans.m, m_projectionFromWorldMtx.m, sizeof(projFromWorldMtxTrans.m));
+    m_camera.GetProjectionFromWorldMtx(&projFromWorldMtxTrans);
     projFromWorldMtxTrans = XMMatrixTranspose(projFromWorldMtxTrans);
+
     m_d3dContext->UpdateSubresource(m_projectionFromWorldMtxCb, 0, nullptr, &projFromWorldMtxTrans, 0, 0);
     m_d3dContext->VSSetConstantBuffers(0, 1, &m_projectionFromWorldMtxCb);
 

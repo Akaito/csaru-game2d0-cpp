@@ -26,6 +26,7 @@ SOFTWARE.
 #include "GraphicsMgrExtern.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include "Camera.hpp"
 
 class CGraphicsMgr : public IGraphicsMgr {
 
@@ -51,7 +52,7 @@ private: // Data
     ID3D11RenderTargetView * m_backBufferTarget;
     ID3D11RasterizerState *  m_rasterState;
     
-    XMFLOAT4X4 m_projectionFromWorldMtx; // aka view-projection matrix
+    Camera m_camera;
     ID3D11Buffer* m_projectionFromWorldMtxCb;
     
     std::vector<VertexShader> m_vertexShaders;
@@ -107,6 +108,8 @@ public: // IGraphicsMgr
     ) override;
 
     Spritesheet * LoadSpritesheet (const char * filepath) override;
+
+    Camera * GetActiveCamera () override { return &m_camera; }
 
 };
 
