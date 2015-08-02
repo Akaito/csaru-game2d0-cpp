@@ -30,8 +30,8 @@ class Camera {
 private: // Data
     XMFLOAT4X4 m_projectionFromWorldMtx; // aka view-projection matrix
     XMFLOAT2   m_position;
-    float      m_width;
-    float      m_height;
+    float      m_halfWidth;
+    float      m_halfHeight;
     float      m_nearZ;
     float      m_farZ;
 
@@ -50,8 +50,8 @@ public:
     ) {
         m_position.x = 0.0f;
         m_position.y = 0.0f;
-        m_width      = viewRight - viewLeft;
-        m_height     = viewTop - viewBottom;
+        m_halfWidth  = (viewRight - viewLeft) * 0.5f;
+        m_halfHeight = (viewTop - viewBottom) * 0.5f;
         m_nearZ      = nearZ;
         m_farZ       = farZ;
 
@@ -59,14 +59,12 @@ public:
     }
 
     void UpdateMatrix () {
-        float    halfWidth             = m_width  * 0.5f;
-        float    halfHeight            = m_height * 0.5f;
         XMMATRIX viewMtx               = XMMatrixIdentity();
         XMMATRIX projectionFromViewMtx = XMMatrixOrthographicOffCenterLH(
-            m_position.x - halfWidth,
-            m_position.x + halfWidth,
-            m_position.y - halfHeight,
-            m_position.y + halfHeight,
+            m_position.x - m_halfWidth,
+            m_position.x + m_halfWidth,
+            m_position.y - m_halfHeight,
+            m_position.y + m_halfHeight,
             m_nearZ,
             m_farZ
         );
