@@ -38,11 +38,7 @@ private: // Data
         XMFLOAT4X4 mtx;
     };
 
-public:
-    DebugLine () {
-        memset(this, 0, sizeof(*this));
-    }
-
+    // Helpers
     bool PrepareConstantBuffers () {
 
         // Supply initial data
@@ -82,6 +78,11 @@ public:
 
     }
 
+public:
+    DebugLine () {
+        memset(this, 0, sizeof(*this));
+    }
+
     void Render (const XMMATRIX & worldFromModelMtx) {
 
         // Initial prep
@@ -116,8 +117,9 @@ public:
             {
                 D3D11_BUFFER_DESC vertex_desc;
                 SecureZeroMemory(&vertex_desc, sizeof(vertex_desc));
-                vertex_desc.Usage = D3D11_USAGE_DEFAULT;
+                vertex_desc.Usage     = D3D11_USAGE_DYNAMIC;
                 vertex_desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+                vertex_desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
                 vertex_desc.ByteWidth = sizeof(VertexPos3Rgb) * 2;
 
                 D3D11_SUBRESOURCE_DATA resource_data;
@@ -137,6 +139,16 @@ public:
             }
 
             PrepareConstantBuffers();
+        }
+
+        // Update vertex buffer
+        {
+            m_ends[1].pos.y += 1.0f;
+            ID3D11DeviceContext *    d3dContext = g_graphicsMgrInternal->GetContext();
+            D3D11_MAPPED_SUBRESOURCE resource;
+            d3dContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+            memcpy(resource.pData, m_ends, sizeof(m_ends));
+            d3dContext->Unmap(m_vertexBuffer, 0);
         }
 
         // Render prep
@@ -181,7 +193,7 @@ public:
 
         // Render
         {
-            ID3D11DeviceContext * d3dContext               = g_graphicsMgrInternal->GetContext();
+            ID3D11DeviceContext * d3dContext = g_graphicsMgrInternal->GetContext();
             //*
             XMMATRIX transWorldFromModel = XMMatrixTranspose(worldFromModelMtx);
             

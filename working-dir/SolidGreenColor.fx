@@ -9,7 +9,6 @@ cbuffer cbPerObject : register(b1) {
 
 float4 VS_Main(float4 pos : POSITION) : SV_POSITION {
 
-	//return pos;
     float4 result = mul(pos, worldFromModelMtx);
     result = mul(result, projectionFromWorldMtx);
     return result;

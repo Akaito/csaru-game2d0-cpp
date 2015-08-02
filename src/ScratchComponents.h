@@ -146,9 +146,7 @@ public:
 private:
     void Render () override {
 
-        XMMATRIX projectionFromWorldMtx;
         XMMATRIX worldFromModelMtx;
-        g_graphicsMgrInternal->GetActiveCamera()->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
         m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
         m_lines[0].Render(worldFromModelMtx);
