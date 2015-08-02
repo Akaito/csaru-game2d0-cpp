@@ -391,7 +391,7 @@ bool Spritesheet::PrepareVertexBuffer () {
 
     D3D11_BUFFER_DESC vertex_desc;
     SecureZeroMemory(&vertex_desc, sizeof(vertex_desc));
-    vertex_desc.Usage = D3D11_USAGE_DEFAULT;
+    vertex_desc.Usage = D3D11_USAGE_IMMUTABLE;
     vertex_desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     vertex_desc.ByteWidth = sizeof(VertexPos3Uv) * 6;
 
