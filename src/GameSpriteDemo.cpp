@@ -41,6 +41,13 @@ bool GameSpriteDemo::LoadContent(void)
     m_gameObjects[0].AddComponent(new GocLeverDashMan());
     m_gameObjects[1].AddComponent(new GocLeverDashMan());
 
+    m_gameObjects[0].AddComponent(new GocCamera());
+    dynamic_cast<GocCamera *>(m_gameObjects[0].GetComponent(GOC_TYPE_CAMERA))->GetCamera().Setup();
+    m_gameObjects[1].AddComponent(new GocCamera());
+    dynamic_cast<GocCamera *>(m_gameObjects[1].GetComponent(GOC_TYPE_CAMERA))->GetCamera().Setup();
+
+    dynamic_cast<GocCamera *>(m_gameObjects[0].GetComponent(GOC_TYPE_CAMERA))->SetAsActiveCamera();
+
     m_gameObjects[0].AddComponent(new GocDebugLines());
 
     //////
@@ -94,15 +101,6 @@ void GameSpriteDemo::Update(float dt)
 
     for (unsigned i = 0; i < s_goCount; ++i) {
         m_gameObjects[i].Update(dt);
-    }
-
-    // camera test (Hacks!!)
-    {
-        static float time = 0.0f;
-        time += dt * 1.2f;
-        g_graphicsMgr->GetActiveCamera()->SetPosition(
-            m_gameObjects[0].GetTransform().GetPosition()
-        );
     }
 }
 

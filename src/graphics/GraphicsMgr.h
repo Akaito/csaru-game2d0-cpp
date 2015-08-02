@@ -52,7 +52,7 @@ private: // Data
     ID3D11RenderTargetView * m_backBufferTarget;
     ID3D11RasterizerState *  m_rasterState;
     
-    Camera m_camera;
+    Camera * m_camera;
     ID3D11Buffer* m_projectionFromWorldMtxCb;
     
     std::vector<VertexShader> m_vertexShaders;
@@ -85,7 +85,6 @@ public: // Internal interface
     VertexShader * FindVertexShader (const std::wstring & name);
     PixelShader *  FindPixelShader (const std::wstring & name);
     
-    void GetProjectionFromWorldMtx (XMMATRIX * mtxOut);
     //ID3D11Buffer * GetProjectionFromWorldMtxCb () { return m_projectionFromWorldMtxCb; };
     
 public: // IGraphicsMgr
@@ -109,7 +108,8 @@ public: // IGraphicsMgr
 
     Spritesheet * LoadSpritesheet (const char * filepath) override;
 
-    Camera * GetActiveCamera () override { return &m_camera; }
+    Camera * GetActiveCamera () override { return m_camera; }
+    void     SetActiveCamera (Camera * camera) override { m_camera = camera; }
 
 };
 

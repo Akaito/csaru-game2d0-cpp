@@ -35,24 +35,6 @@ private: // Data
     float      m_nearZ;
     float      m_farZ;
 
-    // Helpers
-    void UpdateMatrix () {
-        float    halfWidth             = m_width  * 0.5f;
-        float    halfHeight            = m_height * 0.5f;
-        XMMATRIX viewMtx               = XMMatrixIdentity();
-        XMMATRIX projectionFromViewMtx = XMMatrixOrthographicOffCenterLH(
-            m_position.x - halfWidth,
-            m_position.x + halfWidth,
-            m_position.y - halfHeight,
-            m_position.y + halfHeight,
-            m_nearZ,
-            m_farZ
-        );
-
-        XMMATRIX vpm_temp = XMMatrixMultiply(viewMtx, projectionFromViewMtx);
-        memcpy(m_projectionFromWorldMtx.m, vpm_temp.m, sizeof(m_projectionFromWorldMtx));
-    }
-
 public:
     Camera () {
         memset(this, 0, sizeof(*this));
@@ -74,6 +56,23 @@ public:
         m_farZ       = farZ;
 
         UpdateMatrix();
+    }
+
+    void UpdateMatrix () {
+        float    halfWidth             = m_width  * 0.5f;
+        float    halfHeight            = m_height * 0.5f;
+        XMMATRIX viewMtx               = XMMatrixIdentity();
+        XMMATRIX projectionFromViewMtx = XMMatrixOrthographicOffCenterLH(
+            m_position.x - halfWidth,
+            m_position.x + halfWidth,
+            m_position.y - halfHeight,
+            m_position.y + halfHeight,
+            m_nearZ,
+            m_farZ
+        );
+
+        XMMATRIX vpm_temp = XMMatrixMultiply(viewMtx, projectionFromViewMtx);
+        memcpy(m_projectionFromWorldMtx.m, vpm_temp.m, sizeof(m_projectionFromWorldMtx));
     }
 
     const XMFLOAT2 & GetPosition () const { return m_position; }
@@ -103,9 +102,13 @@ public:
     }
 
     void SetPosition (const XMFLOAT2 & float2) {
+        SetPositionNoUpdate(float2);
+        UpdateMatrix();
+    }
+
+    void SetPositionNoUpdate (const XMFLOAT2 & float2) {
         SetXNoUpdate(float2.x);
         SetYNoUpdate(float2.y);
-        UpdateMatrix();
     }
 
     void GetProjectionFromWorldMtx (XMMATRIX * mtxOut) {

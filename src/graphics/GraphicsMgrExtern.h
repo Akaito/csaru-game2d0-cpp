@@ -81,6 +81,7 @@ public: // Commands
     virtual Spritesheet * LoadSpritesheet (const char * filepath) = 0;
 
     virtual Camera * GetActiveCamera () = 0;
+    virtual void     SetActiveCamera (Camera * camera) = 0;
 
 };
 

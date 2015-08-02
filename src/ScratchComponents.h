@@ -28,6 +28,32 @@ SOFTWARE.
 
 
 //==============================================================================
+class GocCamera : public GameObjectComponent {
+
+    Camera m_camera;
+
+    void Update (float dt) override {
+        m_camera.SetPosition(m_owner->GetTransform().GetPosition());
+    }
+
+    void Render () override {
+    }
+
+public:
+    GocCamera () : GameObjectComponent() {
+        m_type = GOC_TYPE_CAMERA;
+    }
+
+    Camera & GetCamera () { return m_camera; }
+
+    void SetAsActiveCamera () {
+        g_graphicsMgr->SetActiveCamera(&m_camera);
+    }
+
+};
+
+
+//==============================================================================
 class GocGamepad : public GameObjectComponent {
 protected:
     XInputGamepad m_gamepad;
@@ -62,9 +88,7 @@ private:
     SpriteAnimation m_sprite;
 
 public:
-    GocSprite () :
-        GameObjectComponent()
-    {
+    GocSprite () : GameObjectComponent() {
         m_type = GOC_TYPE_SPRITE;
     }
 
@@ -115,9 +139,7 @@ private:
     DebugLine m_lines[1];
 
 public:
-    GocDebugLines () :
-        GameObjectComponent()
-    {
+    GocDebugLines () : GameObjectComponent() {
         m_type = GOC_TYPE_DEBUG_LINES;
     }
 
@@ -126,7 +148,7 @@ private:
 
         XMMATRIX projectionFromWorldMtx;
         XMMATRIX worldFromModelMtx;
-        g_graphicsMgrInternal->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
+        g_graphicsMgrInternal->GetActiveCamera()->GetProjectionFromWorldMtx(&projectionFromWorldMtx);
         m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
         m_lines[0].Render(worldFromModelMtx);
@@ -245,9 +267,7 @@ class GocLeverDashMan : public GameObjectComponent {
     }
 
 public:
-    GocLeverDashMan () :
-        GameObjectComponent()
-    {
+    GocLeverDashMan () : GameObjectComponent() {
         m_type = GOC_TYPE_LEVER_DASH_MAN;
     }
 
@@ -304,9 +324,7 @@ class GocTest : public GameObjectComponent {
     }
 
 public:
-    GocTest () :
-        GameObjectComponent()
-    {
+    GocTest () : GameObjectComponent() {
         m_type = GOC_TYPE_COMP_TEST;
     }
 
