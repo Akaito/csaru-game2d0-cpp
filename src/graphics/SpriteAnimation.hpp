@@ -57,7 +57,8 @@ public:
     void SetAnimIndex (unsigned index);
 
     // Queries
-    Spritesheet * GetSheet () { return m_spritesheet; }
+    Spritesheet *        GetSheet () { return m_spritesheet; }
+    const std::wstring & GetCurrentAnimName () const;
 
     unsigned GetAnimationIndex () const { return m_animIndex; }
 

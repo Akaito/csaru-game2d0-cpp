@@ -118,11 +118,21 @@ public:
     bool RebuildFromDatafile ()      { return m_sprite.GetSheet()->RebuildFromDatafile(); }
     bool TrySetAnim (const std::wstring & name) {
         unsigned animIndex = m_sprite.GetSheet()->GetAnimationIndex(name);
-        if (animIndex < unsigned(-1)) {
-            m_sprite.SetAnimIndex(animIndex);
-            return true;
-        }
-        return false;
+        if (animIndex >= unsigned(-1))
+            return false;
+
+        m_sprite.SetAnimIndex(animIndex);
+        return true;
+    }
+    bool TrySetAnim (const std::wstring & name, unsigned frameIndexIfAnimChanges) {
+        const unsigned oldIndex = m_sprite.GetAnimationIndex();
+        if (!TrySetAnim(name))
+            return false;
+
+        if (oldIndex != m_sprite.GetAnimationIndex())
+            SetFrameIndex(frameIndexIfAnimChanges);
+
+        return true;
     }
     void SetFrameIndex (unsigned index) { m_sprite.SetFrameIndex(index); }
 
@@ -168,8 +178,66 @@ private:
 
     }
 
-public:
+};
 
+
+//==============================================================================
+// Based on ActionGame Algorithm Maniax "Jump" chapter.
+class GocJump : public GameObjectComponent {
+private: // Data
+    float m_jumpSpeed;
+    float m_jumpAcceleration;
+    bool  m_canJump;
+
+    void Update (float dt) {
+
+        GocGamepad * gamepad    = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
+        GocSprite *  spriteComp = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
+        ASSERT(gamepad);
+        ASSERT(spriteComp);
+
+        XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
+        XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
+
+        if (m_canJump) {
+            if (gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A)) {
+                m_canJump = false;
+                vel.y     = m_jumpSpeed;
+                spriteComp->TrySetAnim(L"jump", 0);
+            }
+        }
+        else {
+            //vel.y += m_jumpAcceleration;
+        }
+
+        SpriteAnimation & sprite = spriteComp->GetSprite();
+
+        const SpritesheetFrame * frame  = spriteComp->GetCurrentFrame();
+        if (pos.y <= frame->height) {
+            pos.y = frame->height;
+            if (vel.y <= 0.0f) {
+                vel.y = 0.0f;
+                m_canJump = true;
+                //spriteComp->TryChangeAnim(L"idle", 0);
+            }
+        }
+
+        m_owner->GetTransform().SetPosition(pos);
+        m_owner->GetTransform().SetVelocity(vel);
+
+    }
+
+public:
+    GocJump () :
+        GameObjectComponent(),
+        m_jumpSpeed(4.0f),
+        m_jumpAcceleration(0.02f),
+        m_canJump(false)
+    {
+        m_type = GOC_TYPE_JUMP;
+    }
+
+    bool IsJumping () const { return !m_canJump; }
 };
 
 
@@ -181,7 +249,8 @@ class GocLeverDashMan : public GameObjectComponent {
 
         {
             XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
-            vel.y -= 0.98f * dt;
+            //vel.y -= 0.98f * dt;
+            vel.y -= 6.0f * dt;
             m_owner->GetTransform().SetVelocity(vel);
         }
 
@@ -232,24 +301,26 @@ class GocLeverDashMan : public GameObjectComponent {
         SpriteAnimation & sprite = spriteComp->GetSprite();
         
         // Animation control
-        unsigned oldIndex = sprite.GetAnimationIndex();
-        spriteComp->TrySetAnim(L"idle");
-        // Skidding
-        if (fabs(vx) > max_speed * 0.5f && ((vx < 0.0f && isx > 0.0f) || (vx > 0.0f && isx < 0.0f))) {
-            spriteComp->TrySetAnim(L"skid");
+        unsigned  oldIndex = sprite.GetAnimationIndex();
+        GocJump * jumpComp = dynamic_cast<GocJump * >(m_owner->GetComponent(GOC_TYPE_JUMP));
+        if (!jumpComp || !jumpComp->IsJumping()) {
+            // Skidding
+            if (fabs(vx) > max_speed * 0.5f && ((vx < 0.0f && isx > 0.0f) || (vx > 0.0f && isx < 0.0f))) {
+                spriteComp->TrySetAnim(L"skid", 0);
+            }
+            else if (oldIndex == 7 && fabs(vx) > 0.05f)
+                spriteComp->TrySetAnim(L"skid", 0);
+            // Running
+            else if (fabs(vx) > max_speed * 0.9f) {
+                spriteComp->TrySetAnim(L"run", 0);
+            }
+            // Walking
+            else if (fabs(vx) > max_speed * 0.1f) {
+                spriteComp->TrySetAnim(L"walk", 0) || spriteComp->TrySetAnim(L"run", 0);
+            }
+            else
+                spriteComp->TrySetAnim(L"idle", 0);
         }
-        else if (oldIndex == 7 && fabs(vx) > 0.05f)
-            spriteComp->TrySetAnim(L"skid");
-        // Running
-        else if (fabs(vx) > max_speed * 0.9f) {
-            spriteComp->TrySetAnim(L"run");
-        }
-        // Walking
-        else if (fabs(vx) > max_speed * 0.1f)
-            spriteComp->TrySetAnim(L"walk") || spriteComp->TrySetAnim(L"run");
-            
-        if (sprite.GetAnimationIndex() != oldIndex)
-            spriteComp->SetFrameIndex(0);
 
         {
             XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
@@ -260,10 +331,13 @@ class GocLeverDashMan : public GameObjectComponent {
             const SpritesheetFrame * frame = spriteComp->GetCurrentFrame();
             ASSERT(frame);
             
-            if (pos.y < frame->height)
+            if (pos.y < frame->height) {
                 pos.y = frame->height;
+                vel.y = 0.0f;
+            }
                 
             m_owner->GetTransform().SetPosition(pos);
+            m_owner->GetTransform().SetVelocity(vel);
         }
 
     }
@@ -273,30 +347,6 @@ public:
         m_type = GOC_TYPE_LEVER_DASH_MAN;
     }
 
-};
-
-
-//==============================================================================
-// Based on ActionGame Algorithm Maniax "Jump" chapter.
-class GocJump : public GameObjectComponent {
-private: // Data
-    float m_jumpSpeed;
-    float m_jumpAcceleration;
-
-    void Update (float dt) {
-
-        
-
-    }
-
-public:
-    GocJump () :
-        GameObjectComponent(),
-        m_jumpSpeed(0.5f),
-        m_jumpAcceleration(0.02f)
-    {
-        m_type = GOC_TYPE_JUMP;
-    }
 };
 
 

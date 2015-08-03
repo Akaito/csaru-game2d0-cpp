@@ -193,35 +193,56 @@
 						"y": 226,
 						"width": 29,
 						"height": 30,
-						"durationMs": 250
+						"durationMs": 35
+					},
+					{
+						"x": 155,
+						"y": 225,
+						"width": 30,
+						"height": 30,
+						"durationMs": 80
 					},
 					{
 						"x": 44,
 						"y": 227,
 						"width": 30,
 						"height": 29,
-						"durationMs": 250
+						"durationMs": 35
+					},
+					{
+						"x": 155,
+						"y": 225,
+						"width": 30,
+						"height": 30,
+						"durationMs": 80
 					},
 					{
 						"x": 80,
 						"y": 226,
 						"width": 29,
 						"height": 30,
-						"durationMs": 250
+						"durationMs": 35
+					},
+					{
+						"x": 155,
+						"y": 225,
+						"width": 30,
+						"height": 30,
+						"durationMs": 80
 					},
 					{
 						"x": 117,
 						"y": 227,
 						"width": 30,
 						"height": 29,
-						"durationMs": 250
+						"durationMs": 35
 					},
 					{
-						"x": 115,
+						"x": 155,
 						"y": 225,
 						"width": 30,
 						"height": 30,
-						"durationMs": 250
+						"durationMs": 80
 					}
 				]
 			},

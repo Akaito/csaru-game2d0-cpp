@@ -2,6 +2,11 @@
 #include "Spritesheet.h"
 
 //==============================================================================
+const std::wstring & SpriteAnimation::GetCurrentAnimName () const {
+    return m_spritesheet->GetAnimation(m_animIndex)->name;
+}
+
+//==============================================================================
 const SpritesheetFrame * SpriteAnimation::GetCurrentFrame () const {
 
     if (!m_spritesheet)
