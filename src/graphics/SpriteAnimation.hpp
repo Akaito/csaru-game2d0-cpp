@@ -53,8 +53,9 @@ public:
     void Render (const XMMATRIX & worldFromModelMtx);
 
     void SetSheet (Spritesheet * sheet);
-    void SetFrameIndex (unsigned index);
     void SetAnimIndex (unsigned index);
+    void SetFrameIndex (unsigned index);
+    void SetTimeOnFrameSeconds (float seconds);
 
     // Queries
     Spritesheet *        GetSheet () { return m_spritesheet; }

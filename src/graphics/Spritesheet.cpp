@@ -51,15 +51,17 @@ bool SpritesheetFrame::FromDataMap (const CSaruContainer::DataMapReaderSimple & 
 }
 
 //==============================================================================
-Spritesheet::Animation::Animation () {
-}
+Spritesheet::Animation::Animation () :
+    style(EStyle::LOOP)
+{}
 
 //==============================================================================
 bool Spritesheet::Animation::FromDataMap (const CSaruContainer::DataMapReader & reader) {
 
     CSaruContainer::DataMapReaderSimple animReader(reader);
     
-    name = animReader.WString("name");
+    name     = animReader.WString("name");
+    nextAnim = animReader.WString("nextAnim", L"");
     
     // Read in each frame's data
     for (animReader.EnterArray("frames"); animReader.IsValid(); animReader.ToNextSibling()) {

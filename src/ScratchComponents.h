@@ -103,9 +103,7 @@ private:
     }
 
     void Update (float dt) override {
-
         m_sprite.Update(dt);
-
     }
 
 public:
@@ -115,7 +113,9 @@ public:
         m_sprite.SetSheet(sheet);
         return sheet;
     }
+
     bool RebuildFromDatafile ()      { return m_sprite.GetSheet()->RebuildFromDatafile(); }
+
     bool TrySetAnim (const std::wstring & name) {
         unsigned animIndex = m_sprite.GetSheet()->GetAnimationIndex(name);
         if (animIndex >= unsigned(-1))
@@ -124,6 +124,7 @@ public:
         m_sprite.SetAnimIndex(animIndex);
         return true;
     }
+
     bool TrySetAnim (const std::wstring & name, unsigned frameIndexIfAnimChanges) {
         const unsigned oldIndex = m_sprite.GetAnimationIndex();
         if (!TrySetAnim(name))
@@ -134,7 +135,11 @@ public:
 
         return true;
     }
-    void SetFrameIndex (unsigned index) { m_sprite.SetFrameIndex(index); }
+
+    void SetFrameIndex (unsigned index) {
+        m_sprite.SetFrameIndex(index);
+        m_sprite.SetTimeOnFrameSeconds(0.0f);
+    }
 
     // Queries
     const SpritesheetFrame * GetCurrentFrame () const    { return m_sprite.GetCurrentFrame(); }
@@ -186,8 +191,8 @@ private:
 class GocJump : public GameObjectComponent {
 private: // Data
     float m_jumpSpeed;
-    float m_jumpAcceleration;
     bool  m_canJump;
+    bool  m_jumping;
 
     void Update (float dt) {
 
@@ -202,12 +207,16 @@ private: // Data
         if (m_canJump) {
             if (gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A)) {
                 m_canJump = false;
+                m_jumping = true;
                 vel.y     = m_jumpSpeed;
                 spriteComp->TrySetAnim(L"jump", 0);
             }
         }
-        else {
-            //vel.y += m_jumpAcceleration;
+        else if (vel.y < 0.0f && !IsJumping()) {
+            spriteComp->TrySetAnim(L"fall", 0);
+        }
+        else if (vel.y < 0.5f && IsJumping()) {
+            spriteComp->TrySetAnim(L"jump-crest", 0);
         }
 
         SpriteAnimation & sprite = spriteComp->GetSprite();
@@ -218,7 +227,8 @@ private: // Data
             if (vel.y <= 0.0f) {
                 vel.y = 0.0f;
                 m_canJump = true;
-                //spriteComp->TryChangeAnim(L"idle", 0);
+                m_jumping = false;
+                //spriteComp->TrySetAnim(L"land", 0);
             }
         }
 
@@ -231,13 +241,15 @@ public:
     GocJump () :
         GameObjectComponent(),
         m_jumpSpeed(4.0f),
-        m_jumpAcceleration(0.02f),
-        m_canJump(false)
+        m_canJump(false),
+        m_jumping(false)
     {
         m_type = GOC_TYPE_JUMP;
     }
 
-    bool IsJumping () const { return !m_canJump; }
+    bool CanJump () const   { return m_canJump; }
+    bool IsJumping () const { return m_jumping; }
+    bool IsFalling () const { return m_owner->GetTransform().GetVelocity().y < 0.0f; }
 };
 
 
@@ -303,7 +315,7 @@ class GocLeverDashMan : public GameObjectComponent {
         // Animation control
         unsigned  oldIndex = sprite.GetAnimationIndex();
         GocJump * jumpComp = dynamic_cast<GocJump * >(m_owner->GetComponent(GOC_TYPE_JUMP));
-        if (!jumpComp || !jumpComp->IsJumping()) {
+        if (!jumpComp || jumpComp->CanJump()) {
             // Skidding
             if (fabs(vx) > max_speed * 0.5f && ((vx < 0.0f && isx > 0.0f) || (vx > 0.0f && isx < 0.0f))) {
                 spriteComp->TrySetAnim(L"skid", 0);

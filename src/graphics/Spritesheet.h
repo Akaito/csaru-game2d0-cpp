@@ -43,7 +43,14 @@ class Spritesheet {
 public: // Constants and types
 
     struct Animation {
+        enum class EStyle {
+            LOOP = 0,
+            END
+        };
+
         std::wstring                  name;
+        std::wstring                  nextAnim;
+        EStyle                        style;
         std::vector<SpritesheetFrame> frames;
         
         Animation();

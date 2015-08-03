@@ -73,6 +73,11 @@ void SpriteAnimation::SetFrameIndex (unsigned index) {
 }
 
 //==============================================================================
+void SpriteAnimation::SetTimeOnFrameSeconds (float seconds) {
+    m_timeOnFrameSeconds = seconds;
+}
+
+//==============================================================================
 void SpriteAnimation::SetSheet (Spritesheet * sheet) {
 
     m_spritesheet        = sheet;
@@ -101,10 +106,20 @@ void SpriteAnimation::Update (float dt) {
     while (m_timeOnFrameSeconds > frameDurationSeconds && frame->durationMs) {
         
         m_timeOnFrameSeconds -= frameDurationSeconds;
-        
         ++m_frameIndex;
-        m_frameIndex %= anim->frames.size();
-        frame = &anim->frames[m_frameIndex];
+
+        if (m_frameIndex >= anim->frames.size()) {
+            if (anim->nextAnim.size()) {
+                SetAnimIndex(m_spritesheet->GetAnimationIndex(anim->nextAnim));
+                SetFrameIndex(0);
+                anim = m_spritesheet->GetAnimation(m_animIndex);
+            }
+            else
+                m_frameIndex = 0;
+        }
+
+        frame                 = &anim->frames[m_frameIndex];
+        frameDurationSeconds  = float(frame->durationMs) / 1000.0f;
     }
 
 }

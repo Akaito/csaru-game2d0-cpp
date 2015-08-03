@@ -96,6 +96,13 @@
 						"durationMs": 100
 					},
 					{
+						"x": 321,
+						"y": 2,
+						"width": 38,
+						"height": 36,
+						"durationMs": 100
+					},
+					{
 						"x": 367,
 						"y": 2,
 						"width": 43,
@@ -127,6 +134,110 @@
 						"width": 34,
 						"height": 36,
 						"durationMs": 0
+					}
+				]
+			},
+			{
+				"name": "jump",
+				"frames": [
+					{
+						"x": 184,
+						"y": 100,
+						"width": 33,
+						"height": 38,
+						"durationMs": 0
+					}
+				]
+			},
+			{
+				"name": "jump-crest",
+				"frames": [
+					{
+						"x": 224,
+						"y": 112,
+						"width": 31,
+						"height": 26,
+						"durationMs": 50
+					},
+					{
+						"x": 266,
+						"y": 104,
+						"width": 30,
+						"height": 34,
+						"durationMs": 50
+					},
+					{
+						"x": 305,
+						"y": 108,
+						"width": 30,
+						"height": 30,
+						"durationMs": 50
+					},
+					{
+						"x": 342,
+						"y": 110,
+						"width": 32,
+						"height": 28,
+						"durationMs": 50
+					},
+					{
+						"x": 381,
+						"y": 105,
+						"width": 27,
+						"height": 33,
+						"durationMs": 50
+					},
+					{
+						"x": 413,
+						"y": 103,
+						"width": 27,
+						"height": 35,
+						"durationMs": 50
+					},
+					{
+						"x": 446,
+						"y": 102,
+						"width": 32,
+						"height": 36,
+						"durationMs": 50
+					},
+					{
+						"x": 484,
+						"y": 102,
+						"width": 34,
+						"height": 39,
+						"durationMs": 0
+					}
+				]
+			},
+			{
+				"name": "fall",
+				"frames": [
+					{
+						"x": 484,
+						"y": 102,
+						"width": 34,
+						"height": 39,
+						"durationMs": 0
+					}
+				]
+			},
+			{
+				"name": "land",
+				"frames": [
+					{
+						"x": 526,
+						"y": 112,
+						"width": 27,
+						"height": 30,
+						"durationMs": 50
+					},
+					{
+						"x": 560,
+						"y": 107,
+						"width": 24,
+						"height": 34,
+						"durationMs": 50
 					}
 				]
 			}
