@@ -8,32 +8,32 @@
                 {
                     "key": 0,
                     "collision": 0,
-                    "spritefile": "kenney_tiles_spritesheet.json",
+                    "spritefile": "kenney_spritesheet_ground.json",
                     "anim": "snowCenter"
                 },
                 {
                     "key": 5,
                     "collision": 1,
-                    "spritefile": "kenney_tiles_spritesheet.json",
+                    "spritefile": "kenney_spritesheet_ground.json",
                     "anim": "grassCenter"
                 },
                 {
                     "key": 8,
                     "collision": 1,
-                    "spritefile": "kenney_tiles_spritesheet.json",
+                    "spritefile": "kenney_spritesheet_ground.json",
                     "anim": "grassMid"
                 },
                 {
                     "key": 17,
                     "collision": 2,
-                    "spritefile": "kenney_tiles_spritesheet.json",
-                    "anim": "grassHalfLeft"
+                    "spritefile": "kenney_spritesheet_ground.json",
+                    "anim": "grassHalf_left"
                 },
                 {
                     "key": 19,
                     "collision": 2,
-                    "spritefile": "kenney_tiles_spritesheet.json",
-                    "anim": "grassHalfRight"
+                    "spritefile": "kenney_spritesheet_ground.json",
+                    "anim": "grassHalf_right"
                 }
             ]
         },
