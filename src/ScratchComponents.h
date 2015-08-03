@@ -311,7 +311,7 @@ class GocTest : public GameObjectComponent {
         ref(dt);
 
         GocGamepad * gamepad = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
-        if (!gamepad || !gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A))
+        if (!gamepad || !gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_START))
             return;
 
         GocSprite * sprite = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
