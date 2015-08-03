@@ -72,7 +72,7 @@ bool GameSpriteDemo::LoadContent(void)
     {
         GameObject & go3 = m_gameObjects[2];
         go3.GetTransform().SetPosition(XMFLOAT2(300.0f, 200.0f));
-        go3.GetTransform().SetScale(XMFLOAT2(3.0f, 3.0f));
+        //go3.GetTransform().SetScale(XMFLOAT2(3.0f, 3.0f));
 
         GocLevel * level = new GocLevel();
         go3.AddComponent(level);

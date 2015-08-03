@@ -28,9 +28,13 @@ enum EGocType {
     GOC_TYPE_GAMEPAD,
     GOC_TYPE_SPRITE,
     GOC_TYPE_DEBUG_LINES,
-    GOC_TYPE_LEVER_DASH_MAN,
     GOC_TYPE_LEVEL,
     GOC_TYPE_CAMERA,
+
+    // ActionGame Algorithm Maniax
+    GOC_TYPE_LEVER_DASH_MAN,
+    GOC_TYPE_JUMP,
+
     GOC_TYPES
 };
 

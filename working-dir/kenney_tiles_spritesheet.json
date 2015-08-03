@@ -1,0 +1,2072 @@
+{
+    "spritesheet": {
+        "name": "kenney platformer tiles",
+        "imageFile": "kenney_tiles_spritesheet.png",
+        "animations": [
+            {
+                "name": "box",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxAlt",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxCoin",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxCoinAlt",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxCoinAlt_disabled",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxCoin_disabled",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxEmpty",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxExplosive",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxExplosiveAlt",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxExplosive_disabled",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxItem",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxItemAlt",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxItemAlt_disabled",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxItem_disabled",
+                "frames": [
+                    {
+                        "x": 0,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "boxWarning",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "brickWall",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "bridge",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "bridgeLogs",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castle",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleCenter",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleCenter_rounded",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleCliffLeft",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleCliffLeftAlt",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleCliffRight",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleCliffRightAlt",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHalf",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHalfLeft",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHalfMid",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHalfRight",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHillLeft",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHillLeft2",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHillRight",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleHillRight2",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleLedgeLeft",
+                "frames": [
+                    {
+                        "x": 856,
+                        "y": 868,
+                        "width": 5,
+                        "height": 22,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleLedgeRight",
+                "frames": [
+                    {
+                        "x": 842,
+                        "y": 868,
+                        "width": 5,
+                        "height": 22,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleLeft",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleMid",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "castleRight",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirt",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtCenter",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtCenter_rounded",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtCliffLeft",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtCliffLeftAlt",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtCliffRight",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtCliffRightAlt",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHalf",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHalfLeft",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHalfMid",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHalfRight",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHillLeft",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHillLeft2",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHillRight",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtHillRight2",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtLedgeLeft",
+                "frames": [
+                    {
+                        "x": 842,
+                        "y": 892,
+                        "width": 5,
+                        "height": 18,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtLedgeRight",
+                "frames": [
+                    {
+                        "x": 842,
+                        "y": 912,
+                        "width": 5,
+                        "height": 18,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtLeft",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtMid",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "dirtRight",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "door_closedMid",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "door_closedTop",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "door_openMid",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "door_openTop",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "fence",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "fenceBroken",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grass",
+                "frames": [
+                    {
+                        "x": 648,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassCenter",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassCenter_rounded",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassCliffLeft",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassCliffLeftAlt",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassCliffRight",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassCliffRightAlt",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHalf",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHalfLeft",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHalfMid",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHalfRight",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHillLeft",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHillLeft2",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHillRight",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassHillRight2",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassLedgeLeft",
+                "frames": [
+                    {
+                        "x": 849,
+                        "y": 868,
+                        "width": 5,
+                        "height": 24,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassLedgeRight",
+                "frames": [
+                    {
+                        "x": 849,
+                        "y": 894,
+                        "width": 5,
+                        "height": 24,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassLeft",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassMid",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "grassRight",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "hill_large",
+                "frames": [
+                    {
+                        "x": 842,
+                        "y": 720,
+                        "width": 48,
+                        "height": 146,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "hill_largeAlt",
+                "frames": [
+                    {
+                        "x": 864,
+                        "y": 0,
+                        "width": 48,
+                        "height": 146,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "hill_small",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 828,
+                        "width": 48,
+                        "height": 106,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "hill_smallAlt",
+                "frames": [
+                    {
+                        "x": 792,
+                        "y": 720,
+                        "width": 48,
+                        "height": 106,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "ladder_mid",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "ladder_top",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "liquidLava",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "liquidLavaTop",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "liquidLavaTop_mid",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "liquidWater",
+                "frames": [
+                    {
+                        "x": 504,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "liquidWaterTop",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "liquidWaterTop_mid",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "lock_blue",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "lock_green",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "lock_red",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "lock_yellow",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "rockHillLeft",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "rockHillRight",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "ropeAttached",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "ropeHorizontal",
+                "frames": [
+                    {
+                        "x": 432,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "ropeVertical",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sand",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandCenter",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandCenter_rounded",
+                "frames": [
+                    {
+                        "x": 576,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandCliffLeft",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandCliffLeftAlt",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandCliffRight",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandCliffRightAlt",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHalf",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHalfLeft",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHalfMid",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHalfRight",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHillLeft",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHillLeft2",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHillRight",
+                "frames": [
+                    {
+                        "x": 360,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandHillRight2",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandLedgeLeft",
+                "frames": [
+                    {
+                        "x": 856,
+                        "y": 892,
+                        "width": 5,
+                        "height": 18,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandLedgeRight",
+                "frames": [
+                    {
+                        "x": 856,
+                        "y": 912,
+                        "width": 5,
+                        "height": 18,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandLeft",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandMid",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sandRight",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "sign",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "signExit",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "signLeft",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "signRight",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snow",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowCenter",
+                "frames": [
+                    {
+                        "x": 720,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowCenter_rounded",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowCliffLeft",
+                "frames": [
+                    {
+                        "x": 288,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowCliffLeftAlt",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowCliffRight",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowCliffRightAlt",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHalf",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHalfLeft",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHalfMid",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHalfRight",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHillLeft",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHillLeft2",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHillRight",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowHillRight2",
+                "frames": [
+                    {
+                        "x": 216,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowLedgeLeft",
+                "frames": [
+                    {
+                        "x": 863,
+                        "y": 868,
+                        "width": 5,
+                        "height": 18,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowLedgeRight",
+                "frames": [
+                    {
+                        "x": 863,
+                        "y": 888,
+                        "width": 5,
+                        "height": 18,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowLeft",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowMid",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "snowRight",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stone",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 648,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneCenter",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 576,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneCenter_rounded",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneCliffLeft",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneCliffLeftAlt",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneCliffRight",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneCliffRightAlt",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneHalf",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneHalfLeft",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneHalfMid",
+                "frames": [
+                    {
+                        "x": 144,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneHalfRight",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 864,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneHillLeft2",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 792,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneHillRight2",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 720,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneLedgeLeft",
+                "frames": [
+                    {
+                        "x": 863,
+                        "y": 908,
+                        "width": 5,
+                        "height": 24,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneLedgeRight",
+                "frames": [
+                    {
+                        "x": 864,
+                        "y": 148,
+                        "width": 5,
+                        "height": 24,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneLeft",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 504,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneMid",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 432,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneRight",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 360,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "stoneWall",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 288,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "tochLit",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 216,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "tochLit2",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 144,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "torch",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 72,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			},
+			{
+                "name": "window",
+                "frames": [
+                    {
+                        "x": 72,
+                        "y": 0,
+                        "width": 70,
+                        "height": 70,
+                        "durationMs": 0
+                    }
+                ]
+			}
+        ]
+    }
+}

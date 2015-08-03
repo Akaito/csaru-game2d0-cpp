@@ -174,6 +174,7 @@ public:
 
 
 //==============================================================================
+// Based on ActionGame Algorithm Maniax "Lever Dash Man" chapter.
 class GocLeverDashMan : public GameObjectComponent {
 
     void Update (float dt) override {
@@ -272,6 +273,30 @@ public:
         m_type = GOC_TYPE_LEVER_DASH_MAN;
     }
 
+};
+
+
+//==============================================================================
+// Based on ActionGame Algorithm Maniax "Jump" chapter.
+class GocJump : public GameObjectComponent {
+private: // Data
+    float m_jumpSpeed;
+    float m_jumpAcceleration;
+
+    void Update (float dt) {
+
+        
+
+    }
+
+public:
+    GocJump () :
+        GameObjectComponent(),
+        m_jumpSpeed(0.5f),
+        m_jumpAcceleration(0.02f)
+    {
+        m_type = GOC_TYPE_JUMP;
+    }
 };
 
 
