@@ -8,31 +8,31 @@
                 {
                     "key": 0,
                     "collision": 0,
-                    "spritefile": "kenney_spritesheet_ground.json",
+                    "spritefile": "kenney/platformer_redux/spritesheet_ground.json",
                     "anim": "snowCenter"
                 },
                 {
                     "key": 5,
                     "collision": 1,
-                    "spritefile": "kenney_spritesheet_ground.json",
+                    "spritefile": "kenney/platformer_redux/spritesheet_ground.json",
                     "anim": "grassCenter"
                 },
                 {
                     "key": 8,
                     "collision": 1,
-                    "spritefile": "kenney_spritesheet_ground.json",
+                    "spritefile": "kenney/platformer_redux/spritesheet_ground.json",
                     "anim": "grassMid"
                 },
                 {
                     "key": 17,
                     "collision": 2,
-                    "spritefile": "kenney_spritesheet_ground.json",
+                    "spritefile": "kenney/platformer_redux/spritesheet_ground.json",
                     "anim": "grassHalf_left"
                 },
                 {
                     "key": 19,
                     "collision": 2,
-                    "spritefile": "kenney_spritesheet_ground.json",
+                    "spritefile": "kenney/platformer_redux/spritesheet_ground.json",
                     "anim": "grassHalf_right"
                 }
             ]
@@ -53,6 +53,12 @@
             [
                 5,8,8,8,8,8
             ]
+        ],
+        "objects": [
+            {
+                "name": "basicBlock",
+                "typeId": 0
+            }
         ]
     }
 }

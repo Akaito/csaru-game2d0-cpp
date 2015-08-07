@@ -324,14 +324,14 @@ class GocLeverDashMan : public GameObjectComponent {
                 spriteComp->TrySetAnim(L"skid", 0);
             // Running
             else if (fabs(vx) > max_speed * 0.9f) {
-                spriteComp->TrySetAnim(L"run", 0);
+                spriteComp->TrySetAnim(L"run", 0) || spriteComp->TrySetAnim(L"walk", 0);
             }
             // Walking
             else if (fabs(vx) > max_speed * 0.1f) {
                 spriteComp->TrySetAnim(L"walk", 0) || spriteComp->TrySetAnim(L"run", 0);
             }
             else
-                spriteComp->TrySetAnim(L"idle", 0);
+                spriteComp->TrySetAnim(L"idle", 0) || spriteComp->TrySetAnim(L"stand", 0);
         }
 
         {

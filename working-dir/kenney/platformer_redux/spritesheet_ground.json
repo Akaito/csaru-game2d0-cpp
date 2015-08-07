@@ -1,7 +1,7 @@
 {
     "spritesheet": {
         "name": "kenny platform redux ground",
-        "imageFile": "kenney_spritesheet_ground.png",
+        "imageFile": "kenney/platformer_redux/spritesheet_ground.png",
         "animations": [
             {
                 "name": "dirt",

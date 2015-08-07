@@ -9,5 +9,6 @@ Release
 **/*.gif
 **/*.png
 **/*.dds
+!*/kenney/
 
 **/*.autosave.scml
