@@ -120,7 +120,7 @@ bool Level::BuildFromDatafile (const char * filepath) {
     }
         
     // Prepare to read in rows
-    reader.PopNode().ToChild("rows");
+    reader.PopNode().ToChild("terrainRows");
     if (!reader.IsValid())
         return false;
     
