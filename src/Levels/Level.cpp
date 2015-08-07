@@ -105,7 +105,7 @@ bool Level::BuildFromDatafile (const char * filepath) {
                 m_legend.resize(legendIndex + 1);
 
             TileLegend & legend = m_legend[legendIndex];
-            legend.collision = static_cast<Level::TileCollision>(simple.Int("collision"));
+            legend.collision = static_cast<Level::ETileCollision>(simple.Int("collision"));
 
             std::string tempStdStr = simple.String("spritefile");
             Spritesheet * sheet = g_graphicsMgr->LoadSpritesheet(tempStdStr.c_str());

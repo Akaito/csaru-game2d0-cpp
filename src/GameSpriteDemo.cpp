@@ -5,7 +5,6 @@ static const char * s_spriteFiles[] = {
     "sonic-1-sonic.json",
     "kenney/platformer_redux/spritesheet_players.json",
     //"shadow.json",
-    //"sotn-debug-terrain.json",
     //"sonic-1-sonic.json",
 };
 static const unsigned s_spriteFilesCount = arrsize(s_spriteFiles);
@@ -59,7 +58,6 @@ bool GameSpriteDemo::LoadContent(void)
         XMFLOAT2 scale;
         scale.x = scale.y = 1.6f;
         m_gameObjects[0].GetTransform().SetScale(scale);
-        //m_gameObjects[1].GetTransform().SetScale(scale);
     }
     //
     /////

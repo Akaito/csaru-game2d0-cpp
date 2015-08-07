@@ -188,5 +188,8 @@
     <ClInclude Include="src\graphics\Camera.hpp">
       <Filter>src\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="src\ActionGameAlgorithmManiaxComponents.h">
+      <Filter>src\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

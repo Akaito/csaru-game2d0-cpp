@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#pragma once
+
 #include "GameObjectComponent.h"
 #include "graphics/SpriteAnimation.hpp"
 #include "graphics/DebugLine.hpp"
@@ -148,6 +150,7 @@ public:
 
 };
 
+
 //==============================================================================
 class GocDebugLines : public GameObjectComponent {
 private:
@@ -181,182 +184,6 @@ private:
         m_lines[0].Ends()[0].rgb.x = 0.0f;
         m_lines[0].UpdateVertexBuffer();
 
-    }
-
-};
-
-
-//==============================================================================
-// Based on ActionGame Algorithm Maniax "Jump" chapter.
-class GocJump : public GameObjectComponent {
-private: // Data
-    float m_jumpSpeed;
-    bool  m_canJump;
-    bool  m_jumping;
-
-    void Update (float dt) {
-
-        GocGamepad * gamepad    = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
-        GocSprite *  spriteComp = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
-        ASSERT(gamepad);
-        ASSERT(spriteComp);
-
-        XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
-        XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
-
-        if (m_canJump) {
-            if (gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A)) {
-                m_canJump = false;
-                m_jumping = true;
-                vel.y     = m_jumpSpeed;
-                spriteComp->TrySetAnim(L"jump", 0);
-            }
-        }
-        else if (vel.y < 0.0f && !IsJumping()) {
-            spriteComp->TrySetAnim(L"fall", 0);
-        }
-        else if (vel.y < 0.5f && IsJumping()) {
-            spriteComp->TrySetAnim(L"jump-crest", 0);
-        }
-
-        SpriteAnimation & sprite = spriteComp->GetSprite();
-
-        const SpritesheetFrame * frame  = spriteComp->GetCurrentFrame();
-        if (pos.y <= frame->height) {
-            pos.y = frame->height;
-            if (vel.y <= 0.0f) {
-                vel.y = 0.0f;
-                m_canJump = true;
-                m_jumping = false;
-                //spriteComp->TrySetAnim(L"land", 0);
-            }
-        }
-
-        m_owner->GetTransform().SetPosition(pos);
-        m_owner->GetTransform().SetVelocity(vel);
-
-    }
-
-public:
-    GocJump () :
-        GameObjectComponent(),
-        m_jumpSpeed(4.0f),
-        m_canJump(false),
-        m_jumping(false)
-    {
-        m_type = GOC_TYPE_JUMP;
-    }
-
-    bool CanJump () const   { return m_canJump; }
-    bool IsJumping () const { return m_jumping; }
-    bool IsFalling () const { return m_owner->GetTransform().GetVelocity().y < 0.0f; }
-};
-
-
-//==============================================================================
-// Based on ActionGame Algorithm Maniax "Lever Dash Man" chapter.
-class GocLeverDashMan : public GameObjectComponent {
-
-    void Update (float dt) override {
-
-        {
-            XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
-            //vel.y -= 0.98f * dt;
-            vel.y -= 6.0f * dt;
-            m_owner->GetTransform().SetVelocity(vel);
-        }
-
-        ref(dt);
-
-        GocGamepad * gamepadComp = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
-        GocSprite *  spriteComp  = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
-        assert(gamepadComp);
-        assert(spriteComp);
-
-        float isx       = gamepadComp->GetAnalogValueAsFloat(XInputGamepad::ANALOG_TYPE_LEFT_STICK_X);
-        float vx        = m_owner->GetTransform().GetVelocity().x;
-        float max_speed = 0.5f  * 10.0f;
-        float accel     = 0.01f * 10.0f;
-        
-        if (isx > 0.0f)
-            vx += accel;
-        else if (isx < 0.0f)
-            vx -= accel;
-        else {
-            if (vx > 0.0f)
-                vx -= accel * 0.5f;
-            else if (vx < 0.0f)
-                vx += accel * 0.5f;
-        }
-            
-        if (fabs(vx) < 0.001f)
-            vx = 0.0f;
-            
-        vx = max(-max_speed, min(vx, max_speed));
-            
-        float angle = vx / max_speed * 0.1f;
-        
-        
-        m_owner->GetTransform().SetVelocity(vx, m_owner->GetTransform().GetVelocity().y);
-        
-        XMFLOAT2 scale = m_owner->GetTransform().GetScale();
-        if (vx < 0.0f && scale.x > 0.0f)
-            scale.x *= -1.0f;
-        else if (vx > 0.0f && scale.x < 0.0f)
-            scale.x *= -1.0f;
-        //if (vx > 0.0f) scale.y = 2.0f;
-        //else scale.y = 1.6f;
-        m_owner->GetTransform().SetScale(scale);
-        
-        m_owner->GetTransform().SetRotation(angle);
-
-        SpriteAnimation & sprite = spriteComp->GetSprite();
-        
-        // Animation control
-        unsigned  oldIndex = sprite.GetAnimationIndex();
-        GocJump * jumpComp = dynamic_cast<GocJump * >(m_owner->GetComponent(GOC_TYPE_JUMP));
-        if (!jumpComp || jumpComp->CanJump()) {
-            // Skidding
-            if (fabs(vx) > max_speed * 0.5f && ((vx < 0.0f && isx > 0.0f) || (vx > 0.0f && isx < 0.0f))) {
-                spriteComp->TrySetAnim(L"skid", 0);
-            }
-            else if (oldIndex == 7 && fabs(vx) > 0.05f)
-                spriteComp->TrySetAnim(L"skid", 0);
-            // Running
-            else if (fabs(vx) > max_speed * 0.9f) {
-                spriteComp->TrySetAnim(L"run", 0) || spriteComp->TrySetAnim(L"walk", 0);
-            }
-            // Walking
-            else if (fabs(vx) > max_speed * 0.1f) {
-                spriteComp->TrySetAnim(L"walk", 0) || spriteComp->TrySetAnim(L"run", 0);
-            }
-            else
-                spriteComp->TrySetAnim(L"idle", 0) || spriteComp->TrySetAnim(L"stand", 0);
-        }
-
-        {
-            XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
-            XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
-            pos.x += vel.x;
-            pos.y += vel.y;
-            
-            const SpritesheetFrame * frame = spriteComp->GetCurrentFrame();
-            ASSERT(frame);
-            
-            if (pos.y < frame->height) {
-                pos.y = frame->height;
-                vel.y = 0.0f;
-            }
-                
-            m_owner->GetTransform().SetPosition(pos);
-            m_owner->GetTransform().SetVelocity(vel);
-        }
-
-    }
-
-public:
-    GocLeverDashMan () : GameObjectComponent() {
-        m_type = GOC_TYPE_LEVER_DASH_MAN;
     }
 
 };
@@ -417,3 +244,6 @@ public:
     }
 
 };
+
+// Hacks!!
+#include "ActionGameAlgorithmManiaxComponents.h"

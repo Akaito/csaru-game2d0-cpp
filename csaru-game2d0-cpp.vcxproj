@@ -63,6 +63,7 @@
     <ClCompile Include="src\XInputGamepad.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ActionGameAlgorithmManiaxComponents.h" />
     <ClInclude Include="src\BlankDemo.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

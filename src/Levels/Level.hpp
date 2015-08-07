@@ -28,7 +28,7 @@ SOFTWARE.
 
 class Level {
 public: // Types and Constants
-    enum class TileCollision : unsigned char {
+    enum class ETileCollision : unsigned char {
         None = 0,
         Solid,
         BottomHalf,
@@ -36,16 +36,16 @@ public: // Types and Constants
     };
 
     struct TileData {
-        TileCollision collision;
+        ETileCollision collision;
         unsigned      legendIndex;
     };
 
     struct TileLegend {
         SpriteAnimation sprite;
-        TileCollision   collision;
+        ETileCollision   collision;
 
         TileLegend () :
-            collision(TileCollision::None)
+            collision(ETileCollision::None)
         {}
     };
 
