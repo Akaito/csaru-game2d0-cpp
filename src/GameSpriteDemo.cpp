@@ -12,8 +12,7 @@ static const unsigned s_spriteFilesCount = arrsize(s_spriteFiles);
 static const char s_levelFile[] = "levels/level0.json";
 
 GameSpriteDemo::GameSpriteDemo(void)
-{
-}
+{}
 
 
 GameSpriteDemo::~GameSpriteDemo(void)
