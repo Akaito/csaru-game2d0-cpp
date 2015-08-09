@@ -38,9 +38,9 @@ bool GameSpriteDemo::LoadContent(void)
         ASSERT(success);
     }
 
-    m_gameObjects[0].AddComponent(new GocJump());
+    m_gameObjects[0].AddComponent(new GocJumpMan());
     m_gameObjects[0].AddComponent(new GocLeverDashMan());
-    m_gameObjects[1].AddComponent(new GocJump());
+    m_gameObjects[1].AddComponent(new GocJumpMan());
     m_gameObjects[1].AddComponent(new GocLeverDashMan());
 
     m_gameObjects[0].AddComponent(new GocCamera());

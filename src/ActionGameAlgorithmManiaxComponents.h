@@ -6,16 +6,26 @@ I can't read Japanese well enough to know what kind of licensing they might have
 
 #pragma once
 
+unsigned short AGAM_MODULE_ID = 2;
+
+enum EAgamCompId : unsigned short {
+    AGAM_COMP_ID_INVALID = 0,
+    AGAM_COMP_ID_JUMP_MAN,
+    AGAM_COMP_ID_LEVER_DASH_MAN,
+};
+
 
 //==============================================================================
 // Based on ActionGame Algorithm Maniax "Jump" chapter.
-class GocJump : public GameObjectComponent {
+class GocJumpMan : public GameObjectComponent {
 private: // Data
     float m_jumpSpeed;
     bool  m_canJump;
     bool  m_jumping;
 
     void Update (float dt) {
+
+        ref(dt);
 
         GocGamepad * gamepad    = dynamic_cast<GocGamepad *>(m_owner->GetComponent(GOC_TYPE_GAMEPAD));
         GocSprite *  spriteComp = dynamic_cast<GocSprite *>(m_owner->GetComponent(GOC_TYPE_SPRITE));
@@ -40,8 +50,6 @@ private: // Data
             spriteComp->TrySetAnim(L"jump-crest", 0);
         }
 
-        SpriteAnimation & sprite = spriteComp->GetSprite();
-
         const SpritesheetFrame * frame  = spriteComp->GetCurrentFrame();
         if (pos.y <= frame->height) {
             pos.y = frame->height;
@@ -59,14 +67,12 @@ private: // Data
     }
 
 public:
-    GocJump () :
-        GameObjectComponent(),
+    GocJumpMan () :
+        GameObjectComponent(AGAM_MODULE_ID, AGAM_COMP_ID_JUMP_MAN),
         m_jumpSpeed(4.0f),
         m_canJump(false),
         m_jumping(false)
-    {
-        m_type = GOC_TYPE_JUMP;
-    }
+    {}
 
     bool CanJump () const   { return m_canJump; }
     bool IsJumping () const { return m_jumping; }
@@ -135,7 +141,7 @@ class GocLeverDashMan : public GameObjectComponent {
         
         // Animation control
         unsigned  oldIndex = sprite.GetAnimationIndex();
-        GocJump * jumpComp = dynamic_cast<GocJump * >(m_owner->GetComponent(GOC_TYPE_JUMP));
+        GocJumpMan * jumpComp = dynamic_cast<GocJumpMan * >(m_owner->GetComponent(AGAM_MODULE_ID << 16 | AGAM_COMP_ID_JUMP_MAN));
         if (!jumpComp || jumpComp->CanJump()) {
             // Skidding
             if (fabs(vx) > max_speed * 0.5f && ((vx < 0.0f && isx > 0.0f) || (vx > 0.0f && isx < 0.0f))) {
@@ -176,8 +182,7 @@ class GocLeverDashMan : public GameObjectComponent {
     }
 
 public:
-    GocLeverDashMan () : GameObjectComponent() {
-        m_type = GOC_TYPE_LEVER_DASH_MAN;
-    }
+    GocLeverDashMan () : GameObjectComponent(AGAM_MODULE_ID << 16 | AGAM_COMP_ID_LEVER_DASH_MAN)
+    {}
 
 };

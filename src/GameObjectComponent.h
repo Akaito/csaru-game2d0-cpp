@@ -22,38 +22,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-enum EGocType {
-    GOC_TYPE_INVALID = 0,
-    GOC_TYPE_COMP_TEST,
-    GOC_TYPE_GAMEPAD,
-    GOC_TYPE_SPRITE,
-    GOC_TYPE_DEBUG_LINES,
-    GOC_TYPE_LEVEL,
-    GOC_TYPE_CAMERA,
-
-    // ActionGame Algorithm Maniax
-    GOC_TYPE_LEVER_DASH_MAN,
-    GOC_TYPE_JUMP,
-
-    GOC_TYPES
-};
-
 // GameObjectComponents must be guaranteed to not change address or delete while attached to a GameObject.
 class GameObjectComponent {
-protected: // Types and data
-    EGocType     m_type;
+public: // Types
+    typedef unsigned GlobalTypeId;
+    static const unsigned s_InvalidGlobalTypeId = 0;
+
+protected: // Data
+    GlobalTypeId m_typeId;
     GameObject * m_owner;
 
 public: // Methods
-    GameObjectComponent () : m_type(GOC_TYPE_INVALID), m_owner(nullptr) {
-    }
+    GameObjectComponent (GlobalTypeId typeId = s_InvalidGlobalTypeId) : m_typeId(typeId), m_owner(nullptr)
+    {}
+
+    GameObjectComponent (unsigned short moduleId, unsigned short componentTypeId) :
+        m_typeId(moduleId << 16 | componentTypeId),
+        m_owner(nullptr)
+    {}
 
     virtual ~GameObjectComponent () {}
 
     virtual void Update (float dt) { ref(dt); }
     virtual void Render ()         {}
 
-    EGocType     GetType ()                    { return m_type; }
-    GameObject * GetOwner ()                   { return m_owner; }
-    void         SetOwner (GameObject * owner) { m_owner = owner; }
+    GlobalTypeId GetGlobalTypeId () const      { return m_typeId; }
+    unsigned short  GetLocalTypeId () const       { return m_typeId & 0xFFFF; }
+    unsigned short  GetModuleId () const          { return m_typeId >> 16; }
+    GameObject *    GetOwner ()                   { return m_owner; }
+    void            SetOwner (GameObject * owner) { m_owner = owner; }
 };

@@ -29,12 +29,23 @@ SOFTWARE.
 #include "graphics/DebugLine.hpp"
 
 
+enum EScratchGocType : unsigned {
+    GOC_TYPE_INVALID     = 0,
+    GOC_TYPE_COMP_TEST   = 1 << 16 | 1,
+    GOC_TYPE_GAMEPAD     = 1 << 16 | 2,
+    GOC_TYPE_SPRITE      = 1 << 16 | 3,
+    GOC_TYPE_DEBUG_LINES = 1 << 16 | 4,
+    GOC_TYPE_LEVEL       = 1 << 16 | 5,
+    GOC_TYPE_CAMERA      = 1 << 16 | 6,
+};
+
 //==============================================================================
 class GocCamera : public GameObjectComponent {
 
     Camera m_camera;
 
     void Update (float dt) override {
+        ref(dt);
         m_camera.SetPosition(m_owner->GetTransform().GetPosition());
     }
 
@@ -42,9 +53,8 @@ class GocCamera : public GameObjectComponent {
     }
 
 public:
-    GocCamera () : GameObjectComponent() {
-        m_type = GOC_TYPE_CAMERA;
-    }
+    GocCamera () : GameObjectComponent(GOC_TYPE_CAMERA)
+    {}
 
     Camera & GetCamera () { return m_camera; }
 
@@ -66,11 +76,8 @@ protected:
     }
 
 public:
-    GocGamepad () :
-        GameObjectComponent()
-    {
-        m_type = GOC_TYPE_GAMEPAD;
-    }
+    GocGamepad () : GameObjectComponent(GOC_TYPE_GAMEPAD)
+    {}
 
     bool  IsConnected () const                                                 { return m_gamepad.IsConnected(); }
     bool  AreButtonsPressed (XInputGamepad::EButtonFlags buttonFlags) const    { return m_gamepad.AreButtonsPressed(buttonFlags); }
@@ -90,9 +97,8 @@ private:
     SpriteAnimation m_sprite;
 
 public:
-    GocSprite () : GameObjectComponent() {
-        m_type = GOC_TYPE_SPRITE;
-    }
+    GocSprite () : GameObjectComponent(GOC_TYPE_SPRITE)
+    {}
 
 private:
     void Render () override {
@@ -157,9 +163,8 @@ private:
     DebugLine m_lines[1];
 
 public:
-    GocDebugLines () : GameObjectComponent() {
-        m_type = GOC_TYPE_DEBUG_LINES;
-    }
+    GocDebugLines () : GameObjectComponent(GOC_TYPE_DEBUG_LINES)
+    {}
 
 private:
     void Render () override {
@@ -203,9 +208,8 @@ class GocLevel : public GameObjectComponent {
     }
 
 public:
-    GocLevel () : GameObjectComponent() {
-        m_type = GOC_TYPE_LEVEL;
-    }
+    GocLevel () : GameObjectComponent(GOC_TYPE_LEVEL)
+    {}
 
     bool LoadLevel (const char * filepath) {
         return m_level.BuildFromDatafile(filepath);
@@ -239,9 +243,8 @@ class GocTest : public GameObjectComponent {
     }
 
 public:
-    GocTest () : GameObjectComponent() {
-        m_type = GOC_TYPE_COMP_TEST;
-    }
+    GocTest () : GameObjectComponent(GOC_TYPE_COMP_TEST)
+    {}
 
 };
 

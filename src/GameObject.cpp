@@ -12,10 +12,10 @@ void GameObject::AddComponent (GameObjectComponent * component) {
 }
 
 //==============================================================================
-GameObjectComponent * GameObject::GetComponent (EGocType componentType) {
+GameObjectComponent * GameObject::GetComponent (unsigned componentType) {
 
     for (GameObjectComponent * goc : m_components) {
-        if (goc->GetType() == componentType)
+        if (goc->GetGlobalTypeId() == componentType)
             return goc;
     }
 

@@ -28,7 +28,6 @@ SOFTWARE.
 #include "XInputGamepad.h"
 
 class GameObjectComponent;
-enum  EGocType;
 
 class GameObject {
     
@@ -52,6 +51,9 @@ public: // GameObject
     const Transform & GetTransform () const { return m_transform; }
 
     void                  AddComponent (GameObjectComponent * component);
-    GameObjectComponent * GetComponent (EGocType componentType);
+    GameObjectComponent * GetComponent (unsigned componentTypeId);
+    GameObjectComponent * GetComponent (unsigned short module, unsigned short componentType) {
+        return GetComponent(module << 16 | componentType);
+    }
 
 };
