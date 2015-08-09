@@ -43,8 +43,6 @@ public:
     
 private: // Helpers
 
-    void UpdatePhysics (float dt); // Hacks!
-
 public: // GameObject
 
     void Update (float dt);
