@@ -24,9 +24,6 @@ SOFTWARE.
 
 #pragma once
 
-#include "graphics\Spritesheet.h"
-#include "XInputGamepad.h"
-
 class GameObjectComponent;
 
 class GameObject {

@@ -29,13 +29,6 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameSpriteDemo.cpp" />
     <ClCompile Include="src\GameTimer.cpp" />
-    <ClCompile Include="src\graphics\BitmapFont.cpp" />
-    <ClCompile Include="src\graphics\GraphicsMgr.cpp" />
-    <ClCompile Include="src\graphics\PixelShader.cpp" />
-    <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
-    <ClCompile Include="src\graphics\Spritesheet.cpp" />
-    <ClCompile Include="src\graphics\VertexShader.cpp" />
-    <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp" />
     <ClCompile Include="src\Levels\Level.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\StdAfx.cpp">
@@ -60,7 +53,6 @@
     <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="src\Utils_Posix.cpp" />
     <ClCompile Include="src\Utils_Windows.cpp" />
-    <ClCompile Include="src\XInputGamepad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ActionGameAlgorithmManiaxComponents.h" />
@@ -76,16 +68,6 @@
     <ClInclude Include="src\GameObjectComponent.h" />
     <ClInclude Include="src\GameSpriteDemo.hpp" />
     <ClInclude Include="src\GameTimer.h" />
-    <ClInclude Include="src\graphics\BitmapFont.h" />
-    <ClInclude Include="src\graphics\Camera.hpp" />
-    <ClInclude Include="src\graphics\DebugLine.hpp" />
-    <ClInclude Include="src\graphics\GraphicsMgr.h" />
-    <ClInclude Include="src\graphics\GraphicsMgrExtern.h" />
-    <ClInclude Include="src\graphics\PixelShader.h" />
-    <ClInclude Include="src\graphics\SpriteAnimation.hpp" />
-    <ClInclude Include="src\graphics\Spritesheet.h" />
-    <ClInclude Include="src\graphics\VertexShader.h" />
-    <ClInclude Include="src\input\DirectInputKeyboardMouse.h" />
     <ClInclude Include="src\Levels\Level.hpp" />
     <ClInclude Include="src\ScratchComponents.h" />
     <ClInclude Include="src\StdAfx.h" />
@@ -103,7 +85,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\Utils.h" />
-    <ClInclude Include="src\XInputGamepad.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A34A1937-C9DC-4D49-A6E4-B175051F64CE}</ProjectGuid>
@@ -184,13 +165,13 @@
       <SDLCheck>true</SDLCheck>
       <ForcedIncludeFiles>$(ProjectDir)src\StdAfx.h</ForcedIncludeFiles>
       <PrecompiledHeaderFile>$(ProjectDir)src\StdAfx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;dxerr.lib;XInput.lib;dinput8.lib;dxguid.lib;csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -202,13 +183,13 @@
       <SDLCheck>true</SDLCheck>
       <ForcedIncludeFiles>$(ProjectDir)src\StdAfx.h</ForcedIncludeFiles>
       <PrecompiledHeaderFile>$(ProjectDir)src\StdAfx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;$(DXSDK_DIR)Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;dxerr.lib;XInput.lib;dinput8.lib;dxguid.lib;csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -222,15 +203,15 @@
       <SDLCheck>true</SDLCheck>
       <ForcedIncludeFiles>$(ProjectDir)src\StdAfx.h</ForcedIncludeFiles>
       <PrecompiledHeaderFile>$(ProjectDir)src\StdAfx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;dxerr.lib;XInput.lib;dinput8.lib;dxguid.lib;csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -244,15 +225,15 @@
       <SDLCheck>true</SDLCheck>
       <ForcedIncludeFiles>$(ProjectDir)src\StdAfx.h</ForcedIncludeFiles>
       <PrecompiledHeaderFile>$(ProjectDir)src\StdAfx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\source;$(ProjectDir)..\csaru-core-cpp\include;$(ProjectDir)..\csaru-container-cpp\include;$(ProjectDir)..\csaru-json-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;$(DXSDK_DIR)Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;dxerr.lib;XInput.lib;dinput8.lib;dxguid.lib;csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>csaru-container-cpp.lib;csaru-core-cpp.lib;csaru-json-cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,3 @@
-#include <D3D11.h>
-#include <D3DX11.h>
 #include "Transform.h"
 
 //==============================================================================
@@ -16,11 +14,15 @@ Transform::~Transform () {
 }
 
 //==============================================================================
-void Transform::GetWorldFromModelMtx (XMMATRIX * worldMatrixOut) const {
+void Transform::GetWorldFromModelMtx (Mtx44 * worldMatrixOut) const {
 
-    XMMATRIX translation = XMMatrixTranslation(m_position.x, m_position.y, 0.0f);
-    XMMATRIX rotationZ   = XMMatrixRotationZ(m_rotation);
-    XMMATRIX scale       = XMMatrixScaling(m_scale.x, m_scale.y, 1.0f);
+    Mtx44 translation;
+    Mtx44 rotationZ;
+    Mtx44 scale;
+
+    Mtx44::BuildTranslate(m_position.x, m_position.y, 0.0f, &translation);
+    Mtx44::BuildRotateZ(m_rotation, &rotationZ);
+    Mtx44::BuildScale(m_scale.x, m_scale.y, 1.0f, &scale);
 
     //*worldMatrixOut = translation * rotationZ * scale;
     *worldMatrixOut = scale * rotationZ * translation;
@@ -28,7 +30,7 @@ void Transform::GetWorldFromModelMtx (XMMATRIX * worldMatrixOut) const {
 }
 
 //==============================================================================
-void Transform::SetPosition (const XMFLOAT2& position) {
+void Transform::SetPosition (const Vec3 & position) {
     m_position = position;
 }
 
@@ -38,12 +40,12 @@ void Transform::SetRotation (float rotation) {
 }
 
 //==============================================================================
-void Transform::SetScale (const XMFLOAT2& scale) {
+void Transform::SetScale (const Vec3 & scale) {
     m_scale = scale;
 }
 
 //==============================================================================
-void Transform::SetVelocity (const XMFLOAT2& velocity) {
+void Transform::SetVelocity (const Vec3 & velocity) {
     m_velocity = velocity;
 }
 

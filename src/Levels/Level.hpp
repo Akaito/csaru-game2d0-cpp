@@ -24,8 +24,6 @@ SOFTWARE.
 
 #pragma once
 
-#include "../graphics/SpriteAnimation.hpp"
-
 class Level {
 public: // Types and Constants
     enum class ETileCollision : unsigned char {

@@ -49,29 +49,30 @@ bool GameSpriteDemo::LoadContent(void)
 
     dynamic_cast<GocCamera *>(m_gameObjects[0].GetComponent(GOC_TYPE_CAMERA))->SetAsActiveCamera();
 
-    m_gameObjects[0].AddComponent(new GocDebugLines());
+    //m_gameObjects[0].AddComponent(new GocDebugLines());
 
     //////
     //
     {
-        XMFLOAT2 scale;
+        Vec3 scale;
         scale.x = scale.y = 1.6f;
+        scale.z = 1.6f;
         m_gameObjects[0].GetTransform().SetScale(scale);
     }
     //
     /////
 
-    XMFLOAT2 sprite1_pos(200.0f, 100.0f);
+    Vec3 sprite1_pos(200.0f, 100.0f, 0.0f);
     m_gameObjects[0].GetTransform().SetPosition(sprite1_pos);
 
-    XMFLOAT2 sprite2_pos(400.0f, 100.0f);
+    Vec3 sprite2_pos(400.0f, 100.0f, 0.0f);
     m_gameObjects[1].GetTransform().SetPosition(sprite2_pos);
 
 
     // -- go3 --
     {
         GameObject & go3 = m_gameObjects[2];
-        go3.GetTransform().SetPosition(XMFLOAT2(300.0f, 200.0f));
+        go3.GetTransform().SetPosition(Vec3(300.0f, 200.0f, 0.0f));
         //go3.GetTransform().SetScale(XMFLOAT2(3.0f, 3.0f));
 
         GocLevel * level = new GocLevel();
@@ -79,7 +80,7 @@ bool GameSpriteDemo::LoadContent(void)
         level->LoadLevel(s_levelFile);
 
 
-        go3.AddComponent(new GocDebugLines());
+        //go3.AddComponent(new GocDebugLines());
     }
 
     return true;
@@ -106,9 +107,6 @@ void GameSpriteDemo::Update(float dt)
 
 
 void GameSpriteDemo::Render () {
-
-    if (g_graphicsMgr->GetContext() == NULL)
-        return;
 
     g_graphicsMgr->RenderPre();
 

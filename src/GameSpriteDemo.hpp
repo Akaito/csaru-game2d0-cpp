@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Levels/Level.hpp"
 #include "GameObject.h"
-#include "XInputGamepad.h"
 
 class GameSpriteDemo : public Dx11DemoBase
 {

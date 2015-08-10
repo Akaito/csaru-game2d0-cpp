@@ -25,8 +25,13 @@ SOFTWARE.
 #pragma once
 
 #include "GameObjectComponent.h"
-#include "graphics/SpriteAnimation.hpp"
-#include "graphics/DebugLine.hpp"
+#include <SpriteAnimation.h>
+#include <Spritesheet.h>
+#include <Camera.h>
+#include <XInputGamepad.h>
+//#include "graphics/DebugLine.hpp"
+
+#include "Levels\Level.hpp"
 
 
 enum EScratchGocType : unsigned {
@@ -103,7 +108,7 @@ public:
 private:
     void Render () override {
 
-        XMMATRIX worldFromModelMtx;
+        Mtx44 worldFromModelMtx;
         m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
 
         m_sprite.Render(worldFromModelMtx);
@@ -117,7 +122,7 @@ private:
 public:
     // Commands
     bool BuildFromDatafile (const char * filepath)  {
-        Spritesheet * sheet = g_graphicsMgrInternal->LoadSpritesheet(filepath);
+        Spritesheet * sheet = g_graphicsMgr->LoadSpritesheet(filepath);
         m_sprite.SetSheet(sheet);
         return sheet;
     }
@@ -158,6 +163,8 @@ public:
 
 
 //==============================================================================
+#if 0
+// TODO : Get debug lines working more generically.
 class GocDebugLines : public GameObjectComponent {
 private:
     DebugLine m_lines[1];
@@ -192,6 +199,7 @@ private:
     }
 
 };
+#endif
 
 
 //==============================================================================

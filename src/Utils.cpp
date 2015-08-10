@@ -13,19 +13,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+// (Note exception to above in Djb2Hash below.)
 
 #include "Utils.h"
 
 namespace Core
 {
 
-uint32_t Djb2Hash(const char* str)
+std::uint32_t Djb2Hash (const char * str)
 {
-  // code *literally* from http://www.cse.yorku.ca/~oz/hash.html
+  // code *exactly* from http://www.cse.yorku.ca/~oz/hash.html
   //   EXCEPTION: Changed "unsigned long" to "uint32_t".  C++'s standard states
   //   only unsigned long's range, not its size in bits or bytes.  That range
   //   corresponds to a 4-byte unsigned integer (if each byte is 8 bits).
-  uint32_t hash = 5381;
+  std::uint32_t hash = 5381;
   int c;
   
   while (c = *str++)

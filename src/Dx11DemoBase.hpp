@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 #pragma once
-#include "graphics/GraphicsMgrExtern.h"
 
 class Dx11DemoBase {
 

@@ -27,7 +27,7 @@ SOFTWARE.
 #include <DataMap.hpp>
 #include <JsonParserCallbackForDataMap.hpp>
 #include <DataMapReaderSimple.hpp>
-#include "../graphics/Spritesheet.h"
+#include <Spritesheet.h>
 
 //==============================================================================
 Level::Level () :
@@ -67,8 +67,8 @@ bool Level::BuildFromDatafile (const char * filepath) {
     if (!reader.IsValid())
         return false;
 
-    char  tempStr[512];
-    WCHAR tempWStr[512];
+    char    tempStr[512];
+    wchar_t tempWStr[512];
         
     // Get spritesheet name
     reader.ToChild("name");
@@ -166,7 +166,7 @@ void Level::Render (const Transform & levelTransform) {
     const float tileHeight = sampleFrame->height * levelTransform.GetScale().y;
 
     Transform tileTransform = levelTransform;
-    XMMATRIX  tileWorldFromModelMtx;
+    Mtx44     tileWorldFromModelMtx;
 
     const unsigned tileCount = m_width * m_height;
     for (unsigned i = 0; i < tileCount; ++i) {
@@ -178,9 +178,10 @@ void Level::Render (const Transform & levelTransform) {
         const unsigned x = i % m_width;
         const unsigned y = i / m_width;
 
-        tileTransform.SetPosition(XMFLOAT2(
+        tileTransform.SetPosition(Vec3(
             x * tileWidth  + levelTransform.GetPosition().x,
-            y * tileHeight + levelTransform.GetPosition().y
+            y * tileHeight + levelTransform.GetPosition().y,
+            levelTransform.GetPosition().z
         ));
 
         tileTransform.GetWorldFromModelMtx(&tileWorldFromModelMtx);

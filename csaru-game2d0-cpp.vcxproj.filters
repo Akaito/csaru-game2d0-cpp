@@ -13,35 +13,17 @@
     <Filter Include="src\Components\Common">
       <UniqueIdentifier>{85e70829-ee96-4e75-8023-271592856207}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Components\Input">
-      <UniqueIdentifier>{eda9adc5-053d-492e-b21e-317150f6abb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Components\Input\DirectX">
-      <UniqueIdentifier>{28d78118-3df0-4450-8af5-84477eae49bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Demos">
       <UniqueIdentifier>{2946bf74-9fe0-4ca2-82de-7df89749319d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameObject">
       <UniqueIdentifier>{ba12d0ee-36ed-47de-887c-a7ddfe22d19c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Graphics">
-      <UniqueIdentifier>{72f66c5b-1bfd-4e7f-8722-216d037564bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphics\Resources">
-      <UniqueIdentifier>{5c986b07-67d7-469e-acb9-f122f9ffa91c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphics\Text">
-      <UniqueIdentifier>{426f0b3c-a80e-46a2-9ad1-47b3401145fc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Utils">
       <UniqueIdentifier>{d1009770-c9aa-4d4a-8ac2-ac33637aaccd}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Level">
       <UniqueIdentifier>{2264cf18-2bb5-491f-ad69-487662d52530}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphics\Debug">
-      <UniqueIdentifier>{71ba05e7-20e4-45b2-b68e-07686b3c8f87}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,12 +35,6 @@
     </ClCompile>
     <ClCompile Include="src\Transform.cpp">
       <Filter>src\Components\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XInputGamepad.cpp">
-      <Filter>src\Components\Input\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="src\input\DirectInputKeyboardMouse.cpp">
-      <Filter>src\Components\Input\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="src\BlankDemo.cpp">
       <Filter>src\Demos</Filter>
@@ -81,21 +57,6 @@
     <ClCompile Include="src\GameTimer.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\GraphicsMgr.cpp">
-      <Filter>src\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\PixelShader.cpp">
-      <Filter>src\Graphics\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\VertexShader.cpp">
-      <Filter>src\Graphics\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Spritesheet.cpp">
-      <Filter>src\Graphics\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\BitmapFont.cpp">
-      <Filter>src\Graphics\Text</Filter>
-    </ClCompile>
     <ClCompile Include="src\Utils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
@@ -108,9 +69,6 @@
     <ClCompile Include="src\Levels\Level.cpp">
       <Filter>src\Level</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\SpriteAnimation.cpp">
-      <Filter>src\Graphics</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\StdAfx.h">
@@ -121,12 +79,6 @@
     </ClInclude>
     <ClInclude Include="src\Transform.h">
       <Filter>src\Components\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XInputGamepad.h">
-      <Filter>src\Components\Input\DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\input\DirectInputKeyboardMouse.h">
-      <Filter>src\Components\Input\DirectX</Filter>
     </ClInclude>
     <ClInclude Include="src\BlankDemo.hpp">
       <Filter>src\Demos</Filter>
@@ -155,38 +107,11 @@
     <ClInclude Include="src\GameTimer.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\GraphicsMgr.h">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\GraphicsMgrExtern.h">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\PixelShader.h">
-      <Filter>src\Graphics\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\VertexShader.h">
-      <Filter>src\Graphics\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\Spritesheet.h">
-      <Filter>src\Graphics\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\BitmapFont.h">
-      <Filter>src\Graphics\Text</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utils.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\Levels\Level.hpp">
       <Filter>src\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\SpriteAnimation.hpp">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\DebugLine.hpp">
-      <Filter>src\Graphics\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\Camera.hpp">
-      <Filter>src\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\ActionGameAlgorithmManiaxComponents.h">
       <Filter>src\GameObject</Filter>

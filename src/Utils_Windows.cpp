@@ -37,12 +37,14 @@ int GetSystemPageSize(void) {
 
 bool GenerateUuidV4 (Uuid * uuid) {
     GUID msGuid;
-    if (CoCreateGuid(&msGuid) != S_OK) {
-        memset(uuid, 0, sizeof(uuid));
+    if (S_OK != CoCreateGuid(&msGuid)) {
+        memset(uuid, 0, sizeof(*uuid));
         return false;
     }
 
-    memcpy(reinterpret_cast<GUID *>(uuid), &msGuid, sizeof(*uuid));
+    static_assert(sizeof(Uuid) == sizeof(GUID), "Uuid must match MS GUID in size!");
+    memcpy(uuid, &msGuid, sizeof(*uuid));
+
     return true;
 }
 

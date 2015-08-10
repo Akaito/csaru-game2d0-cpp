@@ -32,8 +32,8 @@ private: // Data
         ASSERT(gamepad);
         ASSERT(spriteComp);
 
-        XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
-        XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
+        Vec3 pos = m_owner->GetTransform().GetPosition();
+        Vec3 vel = m_owner->GetTransform().GetVelocity();
 
         if (m_canJump) {
             if (gamepad->AreButtonsPressed(XInputGamepad::BUTTON_FLAG_A)) {
@@ -87,7 +87,7 @@ class GocLeverDashMan : public GameObjectComponent {
     void Update (float dt) override {
 
         {
-            XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
+            Vec3 vel = m_owner->GetTransform().GetVelocity();
             //vel.y -= 0.98f * dt;
             vel.y -= 6.0f * dt;
             m_owner->GetTransform().SetVelocity(vel);
@@ -126,7 +126,7 @@ class GocLeverDashMan : public GameObjectComponent {
         
         m_owner->GetTransform().SetVelocity(vx, m_owner->GetTransform().GetVelocity().y);
         
-        XMFLOAT2 scale = m_owner->GetTransform().GetScale();
+        Vec3 scale = m_owner->GetTransform().GetScale();
         if (vx < 0.0f && scale.x > 0.0f)
             scale.x *= -1.0f;
         else if (vx > 0.0f && scale.x < 0.0f)
@@ -162,8 +162,8 @@ class GocLeverDashMan : public GameObjectComponent {
         }
 
         {
-            XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
-            XMFLOAT2 vel = m_owner->GetTransform().GetVelocity();
+            Vec3 pos = m_owner->GetTransform().GetPosition();
+            Vec3 vel = m_owner->GetTransform().GetVelocity();
             pos.x += vel.x;
             pos.y += vel.y;
             

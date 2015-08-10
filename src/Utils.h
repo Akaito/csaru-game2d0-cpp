@@ -24,24 +24,18 @@ SOFTWARE.
 
 #pragma once
 
-/*
-#ifndef nullptr
-#define nullptr 0
-#endif
-*/
-
-#define ASSERT assert
-
 namespace Core {
 
 
 // djb2 hash from http://www.cse.yorku.ca/~oz/hash.html
 //unsigned long Djb2Hash(unsigned char* str);
-uint32_t Djb2Hash(const char* str);
+std::uint32_t Djb2Hash(const char* str);
 
 
-// MS GUID
-typedef GUID Uuid;
+struct Uuid {
+    std::uint64_t high;
+    std::uint64_t low;
+};
 bool GenerateUuidV4 (Uuid * uuid);
 
 

@@ -1,6 +1,6 @@
 #include "Dx11DemoBase.hpp"
 #include <D3Dcompiler.h>
-#include "input\DirectInputKeyboardMouse.h"
+//#include "input\DirectInputKeyboardMouse.h"
 
 Dx11DemoBase::Dx11DemoBase(void) :
     m_demoFrame(0)
