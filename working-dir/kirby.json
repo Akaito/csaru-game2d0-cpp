@@ -173,6 +173,18 @@
                 ]
             },
             {
+                "name": "skid",
+				"frames": [
+					{
+						"x": 147,
+						"y": 193,
+						"width": 24,
+						"height": 23,
+						"durationMs": 0
+					}
+                ]
+            },
+            {
                 "name": "jump",
 				"frames": [
 					{
