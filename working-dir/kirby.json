@@ -1,0 +1,246 @@
+{
+	"spritesheet": {
+		"name": "kirby",
+		"imageFile": "Kirby.png",
+		"animations": [
+			{
+				"name": "idle",
+				"frames": [
+					{
+						"x": 113,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 2500
+					},
+					{
+						"x": 142,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 60
+					},
+					{
+						"x": 113,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 4000
+					},
+					{
+						"x": 142,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 60
+					},
+					{
+						"x": 113,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 80
+					},
+					{
+						"x": 142,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 60
+					},
+					{
+						"x": 113,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 3500
+					},
+					{
+						"x": 142,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 1500
+					},
+					{
+						"x": 113,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 3500
+					},
+					{
+						"x": 142,
+						"y": 55,
+						"width": 24,
+						"height": 23,
+						"durationMs": 120
+					}
+                ]
+            },
+            {
+                "name": "walk",
+				"frames": [
+					{
+						"x": 32,
+						"y": 126,
+						"width": 24,
+						"height": 23,
+						"durationMs": 150
+					},
+					{
+						"x": 61,
+						"y": 125,
+						"width": 22,
+						"height": 24,
+						"durationMs": 150
+					},
+					{
+						"x": 88,
+						"y": 125,
+						"width": 21,
+						"height": 24,
+						"durationMs": 150
+					},
+					{
+						"x": 114,
+						"y": 126,
+						"width": 24,
+						"height": 23,
+						"durationMs": 150
+					},
+					{
+						"x": 88,
+						"y": 125,
+						"width": 21,
+						"height": 24,
+						"durationMs": 150
+					},
+					{
+						"x": 61,
+						"y": 125,
+						"width": 22,
+						"height": 24,
+						"durationMs": 150
+					}
+                ]
+            },
+            {
+                "name": "run",
+				"frames": [
+					{
+						"x": 149,
+						"y": 126,
+						"width": 27,
+						"height": 23,
+						"durationMs": 80
+					},
+					{
+						"x": 181,
+						"y": 125,
+						"width": 22,
+						"height": 24,
+						"durationMs": 80
+					},
+					{
+						"x": 208,
+						"y": 125,
+						"width": 21,
+						"height": 24,
+						"durationMs": 80
+					},
+					{
+						"x": 234,
+						"y": 126,
+						"width": 25,
+						"height": 22,
+						"durationMs": 80
+					},
+					{
+						"x": 208,
+						"y": 125,
+						"width": 21,
+						"height": 24,
+						"durationMs": 80
+					},
+					{
+						"x": 181,
+						"y": 125,
+						"width": 22,
+						"height": 24,
+						"durationMs": 80
+					}
+                ]
+            },
+            {
+                "name": "jump",
+				"frames": [
+					{
+						"x": 66,
+						"y": 193,
+						"width": 23,
+						"height": 24,
+						"durationMs": 0
+					}
+                ]
+            },
+            {
+                "name": "jump-crest",
+				"frames": [
+					{
+						"x": 94,
+						"y": 193,
+						"width": 23,
+						"height": 23,
+						"durationMs": 80
+					},
+					{
+						"x": 122,
+						"y": 194,
+						"width": 21,
+						"height": 22,
+						"durationMs": 80
+					},
+					{
+						"x": 147,
+						"y": 193,
+						"width": 24,
+						"height": 23,
+						"durationMs": 80
+					},
+					{
+						"x": 176,
+						"y": 193,
+						"width": 23,
+						"height": 24,
+						"durationMs": 0
+					}
+                ]
+            },
+            {
+                "name": "fall",
+				"frames": [
+					{
+						"x": 176,
+						"y": 193,
+						"width": 23,
+						"height": 24,
+						"durationMs": 0
+					}
+                ]
+            },
+            {
+                "name": "wallCling",
+				"frames": [
+					{
+						"x": 73,
+						"y": 1460,
+						"width": 22,
+						"height": 28,
+						"durationMs": 0
+					}
+                ]
+            }
+        ]
+    }
+}

@@ -4,6 +4,7 @@
 static const char * s_spriteFiles[] = {
     "sonic-1-sonic.json",
     "kenney/platformer_redux/spritesheet_players.json",
+    //"kirby.json",
     //"shadow.json",
     //"sonic-1-sonic.json",
 };
@@ -58,6 +59,7 @@ bool GameSpriteDemo::LoadContent(void)
         scale.x = scale.y = 1.6f;
         scale.z = 1.6f;
         m_gameObjects[0].GetTransform().SetScale(scale);
+        //m_gameObjects[1].GetTransform().SetScale(scale);
     }
     //
     /////

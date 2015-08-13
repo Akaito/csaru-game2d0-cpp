@@ -51,7 +51,10 @@ class GocCamera : public GameObjectComponent {
 
     void Update (float dt) override {
         ref(dt);
-        m_camera.SetPosition(m_owner->GetTransform().GetPosition());
+        Vec3 pos = m_camera.GetPosition();
+        pos = m_owner->GetTransform().GetPosition();
+        //pos.x = m_owner->GetTransform().GetPosition().x;
+        m_camera.SetPosition(pos);
     }
 
     void Render () override {
