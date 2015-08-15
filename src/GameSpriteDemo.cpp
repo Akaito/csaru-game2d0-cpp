@@ -60,7 +60,7 @@ bool GameSpriteDemo::LoadContent(void)
         m_gameObjects[i].GetTransform().SetPosition(sprite_pos);
 
         sprite_pos.x += 100.0f;
-        sprite_pos.y += 100.0f;
+        sprite_pos.y += 50.0f;
     }
 
     dynamic_cast<GocCamera *>(m_gameObjects[0].GetComponent(GOC_TYPE_CAMERA))->SetAsActiveCamera();
