@@ -166,43 +166,26 @@ public:
 
 
 //==============================================================================
-#if 0
-// TODO : Get debug lines working more generically.
 class GocDebugLines : public GameObjectComponent {
-private:
-    DebugLine m_lines[1];
-
 public:
     GocDebugLines () : GameObjectComponent(GOC_TYPE_DEBUG_LINES)
     {}
 
 private:
-    void Render () override {
-
-        /*
-        XMMATRIX worldFromModelMtx;
-        m_owner->GetTransform().GetWorldFromModelMtx(&worldFromModelMtx);
-        m_lines[0].Render(worldFromModelMtx);
-        /*/
-        m_lines[0].Render(XMMatrixIdentity());
-        //*/
-
-    }
-
     void Update (float dt) override {
 
         ref(dt);
 
-        XMFLOAT2 pos = m_owner->GetTransform().GetPosition();
-        m_lines[0].Ends()[1].pos.x = pos.x;
-        m_lines[0].Ends()[1].pos.y = pos.y;
-        m_lines[0].Ends()[0].rgb.x = 0.0f;
-        m_lines[0].UpdateVertexBuffer();
+        g_graphicsMgr->DebugDrawLine(
+            Vec3(0.0f, 0.0f, 0.0f),
+            m_owner->GetTransform().GetPosition(),
+            Vec3(1.0f, 0.0f, 1.0f),
+            Vec3(1.0f, 1.0f, 0.0f)
+        );
 
     }
 
 };
-#endif
 
 
 //==============================================================================
@@ -228,7 +211,7 @@ public:
 
     const Level * GetLevel () const { return &m_level; }
     bool          GetTilePosInWorld (unsigned tileIndex, Vec3 * posOut) const {
-        posOut->z = 0.1f;
+        posOut->z = 0.5f;
 
         unsigned tileX, tileY;
         if (!m_level.GetTilePos(tileIndex, &tileX, &tileY))
@@ -237,7 +220,8 @@ public:
         posOut->x = m_level.GetTileWidth() * tileX * m_owner->GetTransform().GetScale().x;
         posOut->y = m_level.GetTileWidth() * tileY * m_owner->GetTransform().GetScale().y;
 
-        *posOut += m_owner->GetTransform().GetPosition();
+        posOut->x += m_owner->GetTransform().GetPosition().x;
+        posOut->y += m_owner->GetTransform().GetPosition().y;
         return true;
     }
     bool          GetTilePosInWorld (unsigned tileX, unsigned tileY, Vec3 * posOut) const {
@@ -248,7 +232,7 @@ public:
         ASSERT(dimsOut);
         dimsOut->x = m_level.GetTileWidth() * m_owner->GetTransform().GetScale().x;
         dimsOut->y = m_level.GetTileHeight() * m_owner->GetTransform().GetScale().y;
-        dimsOut->z = m_owner->GetTransform().GetScale().z;
+        dimsOut->z = 1.0f;
     }
 
     bool GetTilePosFromWorldPos (const Vec3 & worldPos, unsigned * tileXOut, unsigned * tileYOut) {
@@ -274,14 +258,16 @@ public:
         ASSERT(maxOut);
         GetTilePosInWorld(0, minOut);
         GetTilePosInWorld((m_level.GetWidthInTiles() * m_level.GetHeightInTiles()) - 1, maxOut);
-        *minOut *= m_owner->GetTransform().GetScale();
-        *maxOut *= m_owner->GetTransform().GetScale();
+        minOut->x *= m_owner->GetTransform().GetScale().x;
+        maxOut->y *= m_owner->GetTransform().GetScale().y;
 
         Vec3 tileDims;
         GetTileSize(&tileDims);
         tileDims *= 0.5f;
         *minOut -= tileDims;
         *maxOut += tileDims;
+        minOut->z = 0.0f;
+        maxOut->z = 1.0f;
     }
 
     void Reload () {

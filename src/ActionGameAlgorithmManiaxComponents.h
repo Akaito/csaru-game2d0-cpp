@@ -230,7 +230,8 @@ class GocLevelMan : public GameObjectComponent {
         if (tilePos.y < pos.y && vel.y <= 0.0f) {
             pos.y = tilePos.y + halfTileHeight;
             vel.y = 0.0f;
-            jumpGoc->EnableJump();
+            if (jumpGoc)
+                jumpGoc->EnableJump();
         }
 
         /*

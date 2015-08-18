@@ -31,7 +31,7 @@ bool GameSpriteDemo::LoadContent(void)
         m_gameObjects[i].AddComponent(new GocGamepad());
     }
 
-    Vec3 sprite_pos(200.0f, 100.0f, 0.0f);
+    Vec3 sprite_pos(200.0f, 100.0f, 0.5f);
     for (unsigned i = 0;  i < s_spriteFilesCount && i < s_goCount;  ++i) {
         GocSprite * sprite = new GocSprite();
         m_gameObjects[i].AddComponent(sprite);
@@ -51,7 +51,7 @@ bool GameSpriteDemo::LoadContent(void)
         {
             Vec3 scale;
             scale.x = scale.y = 1.6f;
-            scale.z = 1.6f;
+            scale.z = 1.0f;
             m_gameObjects[i].GetTransform().SetScale(scale);
         }
         //
@@ -62,6 +62,8 @@ bool GameSpriteDemo::LoadContent(void)
         sprite_pos.x += 100.0f;
         sprite_pos.y += 50.0f;
     }
+
+    m_gameObjects[0].AddComponent(new GocDebugLines());
 
     dynamic_cast<GocCamera *>(m_gameObjects[0].GetComponent(GOC_TYPE_CAMERA))->SetAsActiveCamera();
 
