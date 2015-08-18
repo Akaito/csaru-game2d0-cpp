@@ -226,6 +226,32 @@ void Level::Render (const Transform & levelTransform) {
 
         tileTransform.GetWorldFromModelMtx(&tileWorldFromModelMtx);
         legend.sprite.Render(tileWorldFromModelMtx);
+
+        // debugging
+        if (legend.collision != ETileCollision::None) {
+            Vec3 upperLeft(
+                tileTransform.GetPosition().x - tileWidth*0.5f,
+                tileTransform.GetPosition().y - tileHeight*0.5f,
+                0.5f
+            );
+            Vec3 lowerRight(
+                tileTransform.GetPosition().x + tileWidth*0.5f,
+                tileTransform.GetPosition().y + tileHeight*0.5f,
+                0.5f
+            );
+            g_graphicsMgr->DebugDrawLine(
+                upperLeft,
+                lowerRight,
+                Vec3(1.0f, 0.0f, 1.0f),
+                Vec3(0.0f, 1.0f, 1.0f)
+            );
+            g_graphicsMgr->DebugDrawLine(
+                Vec3(upperLeft.x, lowerRight.y, upperLeft.z),
+                Vec3(lowerRight.x, upperLeft.y, upperLeft.z),
+                Vec3(1.0f, 0.0f, 1.0f),
+                Vec3(0.0f, 1.0f, 1.0f)
+            );
+        }
     }
 
 }
