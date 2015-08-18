@@ -69,13 +69,16 @@ bool GameSpriteDemo::LoadContent(void)
     // -- go3 --
     {
         GameObject & go3 = m_gameObjects[s_goCount - 1];
-        go3.GetTransform().SetPosition(Vec3(300.0f, 200.0f, 0.0f));
+        //go3.GetTransform().SetPosition(Vec3(300.0f, 200.0f, 0.0f));
         //go3.GetTransform().SetScale(XMFLOAT2(3.0f, 3.0f));
 
         GocLevel * level = new GocLevel();
         go3.AddComponent(level);
         level->LoadLevel(s_levelFile);
 
+        for (unsigned i = 0;  i < s_spriteFilesCount && i < s_goCount;  ++i) {
+            m_gameObjects[i].AddComponent(new GocLevelMan(&go3));
+        }
 
         //go3.AddComponent(new GocDebugLines());
     }
@@ -107,7 +110,8 @@ void GameSpriteDemo::Render () {
 
     g_graphicsMgr->RenderPre();
 
-    for (unsigned i = 0;  i < s_goCount;  ++i)
+    //for (unsigned i = 0;  i < s_goCount;  ++i)
+    for (int i = s_goCount - 1;  0 <= i;  --i) // Hacks!! Lazy opposite order drawing to put level in back.
         m_gameObjects[i].Render();
     
     g_graphicsMgr->RenderPost();

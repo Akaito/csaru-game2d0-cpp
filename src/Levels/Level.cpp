@@ -33,7 +33,9 @@ SOFTWARE.
 Level::Level () :
     m_width(0),
     m_height(0),
-    m_tiles(nullptr)
+    m_tiles(nullptr),
+    m_tileWidth(0),
+    m_tileHeight(0)
 {}
 
 //==============================================================================
@@ -116,6 +118,14 @@ bool Level::BuildFromDatafile (const char * filepath) {
 
         } while (reader.ToNextSibling().IsValid());
 
+        // Store arbitrarily-chosen tile's dimensions.  Assume it works for everything.
+        {
+            const SpritesheetFrame * sampleFrame = m_legend[0].sprite.GetCurrentFrame();
+            ASSERT(sampleFrame);
+            m_tileWidth  = sampleFrame->width;
+            m_tileHeight = sampleFrame->height;
+        }
+
         reader.PopNode().PopNode();
     }
         
@@ -148,6 +158,38 @@ bool Level::BuildFromDatafile (const char * filepath) {
 }
 
 //==============================================================================
+const Level::TileData * Level::GetTileData (unsigned x, unsigned y) const {
+    unsigned i = y * m_width + x;
+    return EnumTileData(&i);
+}
+
+//==============================================================================
+const Level::TileData * Level::EnumTileData (unsigned * indexInOut) const {
+
+    ASSERT(indexInOut);
+
+    if ((m_width * m_height) <= *indexInOut)
+        return nullptr;
+
+    return &m_tiles[(*indexInOut)++];
+
+}
+
+//==============================================================================
+bool Level::GetTilePos (unsigned tileIndex, unsigned * xOut, unsigned * yOut) const {
+
+    ASSERT(xOut);
+    ASSERT(yOut);
+    if ((m_width * m_height) <= tileIndex)
+        return false;
+
+    *xOut = (tileIndex % m_width);
+    *yOut = (tileIndex / m_width);
+    return true;
+
+}
+
+//==============================================================================
 void Level::Reload () {
 
     std::string tempFilepath = m_sourceFilepath;
@@ -160,10 +202,8 @@ void Level::Render (const Transform & levelTransform) {
 
     ASSERT(m_legend.size());
 
-    const SpritesheetFrame * sampleFrame = m_legend[0].sprite.GetCurrentFrame();
-    ASSERT(sampleFrame);
-    const float tileWidth  = sampleFrame->width  * levelTransform.GetScale().x;
-    const float tileHeight = sampleFrame->height * levelTransform.GetScale().y;
+    const float tileWidth  = m_tileWidth  * levelTransform.GetScale().x;
+    const float tileHeight = m_tileHeight * levelTransform.GetScale().y;
 
     Transform tileTransform = levelTransform;
     Mtx44     tileWorldFromModelMtx;
@@ -196,8 +236,10 @@ void Level::Reset () {
     delete [] m_tiles;
     m_tiles  = nullptr;
 
-    m_width  = 0;
-    m_height = 0;
+    m_tileWidth  = 0;
+    m_tileHeight = 0;
+    m_width      = 0;
+    m_height     = 0;
     m_name.clear();
     m_sourceFilepath.clear();
 

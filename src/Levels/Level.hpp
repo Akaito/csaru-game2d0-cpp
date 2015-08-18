@@ -54,6 +54,8 @@ private: // Data
     unsigned                m_height;
     TileData *              m_tiles;
     std::vector<TileLegend> m_legend;
+    unsigned                m_tileWidth;
+    unsigned                m_tileHeight;
 
 private: // Helpers
     bool Resize (unsigned width, unsigned height);
@@ -64,6 +66,14 @@ public:
 
     bool BuildFromDatafile (const char * filepath);
     void Reload ();
+
+    unsigned GetWidthInTiles () const  { return m_width; }
+    unsigned GetHeightInTiles () const { return m_height; }
+    unsigned GetTileWidth () const     { return m_tileWidth; }
+    unsigned GetTileHeight () const    { return m_tileHeight; }
+    const TileData * GetTileData (unsigned x, unsigned y) const;
+    const TileData * EnumTileData (unsigned * indexInOut) const;
+    bool GetTilePos (unsigned tileIndex, unsigned * xOut, unsigned * yOut) const;
 
     void Update (float dt);
     void Render (const Transform & levelTransform);

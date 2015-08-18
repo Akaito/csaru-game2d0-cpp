@@ -12,6 +12,7 @@ enum EAgamCompId : unsigned short {
     AGAM_COMP_ID_INVALID = 0,
     AGAM_COMP_ID_JUMP_MAN,
     AGAM_COMP_ID_LEVER_DASH_MAN,
+    AGAM_COMP_ID_LEVEL_MAN,
 };
 
 
@@ -50,6 +51,7 @@ private: // Data
             spriteComp->TrySetAnim(L"jump-crest", 0);
         }
 
+        /*
         const SpritesheetFrame * frame  = spriteComp->GetCurrentFrame();
         if (pos.y <= frame->height) {
             pos.y = frame->height;
@@ -60,6 +62,7 @@ private: // Data
                 //spriteComp->TrySetAnim(L"land", 0);
             }
         }
+        //*/
 
         m_owner->GetTransform().SetPosition(pos);
         m_owner->GetTransform().SetVelocity(vel);
@@ -77,6 +80,11 @@ public:
     bool CanJump () const   { return m_canJump; }
     bool IsJumping () const { return m_jumping; }
     bool IsFalling () const { return m_owner->GetTransform().GetVelocity().y < 0.0f; }
+
+    void EnableJump () {
+        m_canJump = true;
+        m_jumping = false;
+    }
 };
 
 
@@ -170,10 +178,12 @@ class GocLeverDashMan : public GameObjectComponent {
             const SpritesheetFrame * frame = spriteComp->GetCurrentFrame();
             ASSERT(frame);
             
+            /*
             if (pos.y < frame->height) {
                 pos.y = frame->height;
                 vel.y = 0.0f;
             }
+            //*/
                 
             m_owner->GetTransform().SetPosition(pos);
             m_owner->GetTransform().SetVelocity(vel);
@@ -185,4 +195,88 @@ public:
     GocLeverDashMan () : GameObjectComponent(AGAM_MODULE_ID << 16 | AGAM_COMP_ID_LEVER_DASH_MAN)
     {}
 
+};
+
+
+//==============================================================================
+class GocLevelMan : public GameObjectComponent {
+
+    GameObject * m_levelGob;
+
+    void Update (float dt) override {
+
+        ref(dt);
+
+        GocJumpMan *  jumpGoc  = dynamic_cast<GocJumpMan *>(m_owner->GetComponent(AGAM_MODULE_ID << 16 | AGAM_COMP_ID_JUMP_MAN));
+        GocLevel *    levelGoc = dynamic_cast<GocLevel *>(m_levelGob->GetComponent(GOC_TYPE_LEVEL));
+        const Level * level    = levelGoc->GetLevel();
+
+        Vec3 pos                   = m_owner->GetTransform().GetPosition();
+        Vec3 vel                   = m_owner->GetTransform().GetVelocity();
+        const float halfTileWidth  = level->GetTileWidth()  * m_levelGob->GetTransform().GetScale().x * 0.5f;
+        const float halfTileHeight = level->GetTileHeight() * m_levelGob->GetTransform().GetScale().y * 0.5f;
+
+        Vec3 levelMin, levelMax;
+        levelGoc->GetExtents(&levelMin, &levelMax);
+        pos.ClampThis(levelMin, levelMax);
+
+        unsigned charTileX, charTileY;
+        levelGoc->GetTilePosFromWorldPos(pos, &charTileX, &charTileY);
+
+        Vec3 tilePos;
+        // check underneath
+        const Level::TileData * tileData = level->GetTileData(charTileX, charTileY-1);
+        levelGoc->GetTilePosInWorld(charTileX-1, charTileY, &tilePos);
+        if (tilePos.y < pos.y && vel.y <= 0.0f) {
+            pos.y = tilePos.y + halfTileHeight;
+            vel.y = 0.0f;
+            jumpGoc->EnableJump();
+        }
+
+        /*
+        unsigned i       = 0;
+        Vec3     tilePos;
+        while (const Level::TileData * tileData = level->EnumTileData(&i)) {
+            if (tileData->collision == Level::ETileCollision::None)
+                continue;
+
+            levelGoc->GetTilePosInWorld(i-1, &tilePos);
+            if (pos.x < tilePos.x - halfTileWidth || tilePos.x + halfTileWidth < pos.x)
+                continue;
+            if (pos.y < tilePos.y - halfTileHeight || tilePos.y + halfTileHeight < pos.y)
+                continue;
+
+            if (tilePos.x < pos.x && vel.x < 0.0f) {
+                pos.x = tilePos.x + halfTileWidth;
+                vel.x = 0.0f;
+            }
+            else if (pos.x < tilePos.x && 0.0f < vel.x) {
+                pos.x = tilePos.x - halfTileWidth;
+                vel.x = 0.0f;
+            }
+
+            if (tilePos.y < pos.y && vel.y <= 0.0f) {
+                pos.y = tilePos.y + halfTileHeight;
+                vel.y = 0.f;
+                jumpGoc->EnableJump();
+            }
+            else if (pos.y < tilePos.y && 0.0f < vel.y) {
+                pos.y = tilePos.y - halfTileHeight;
+                vel.y = 0.0f;
+            }
+
+            break;
+        }
+        //*/
+
+        m_owner->GetTransform().SetPosition(pos);
+        m_owner->GetTransform().SetVelocity(vel);
+
+    }
+
+public:
+    GocLevelMan (GameObject * levelGob) :
+        GameObjectComponent(AGAM_MODULE_ID << 16 | AGAM_COMP_ID_LEVEL_MAN),
+        m_levelGob(levelGob)
+    {}
 };
